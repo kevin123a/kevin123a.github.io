@@ -6,33 +6,121 @@
   <title>PT Sinar Langit Hanoi - Home</title>
   <link rel="icon" type="image/png" href="logo.png" />
   <style>
-    :root { --merah:#8B0000; --kuning:#FFD500; }
+    :root { --merah:#8B0000; --kuning:#FFD500; --bg:#fff6e0; }
 
     /* Global */
-    body { margin:0; padding:0; text-align:center; background:var(--merah); color:var(--kuning); 
-      font-family:"Franklin Gothic Demi","Franklin Gothic Medium",Arial,sans-serif; }
+    * { box-sizing: border-box; }
+    body {
+      margin:0;
+      padding:0 0 96px; /* tambahkan padding-bottom supaya konten tidak tertutup footer fixed */
+      background:var(--merah);
+      color:var(--kuning);
+      font-family:"Franklin Gothic Demi","Franklin Gothic Medium",Arial,sans-serif;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      text-align:center;
+    }
+
+    a { color:inherit; }
 
     /* Header */
-    header { background:var(--merah); color:var(--kuning); padding:30px 20px;
-      display:flex; flex-direction:column; align-items:center; }
-    .header-content { display:flex; align-items:center; justify-content:center; gap:15px; }
-    img.logo { max-width:90px; }
-    header h1 { margin:0; font-family:Verdana, Geneva, Tahoma, sans-serif; font-weight:700; }
-    header p  { margin:5px 0 0; font-family:"Tw Cen MT","Century Gothic",Arial,sans-serif; }
+    header {
+      background:var(--merah);
+      color:var(--kuning);
+      padding:22px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+    .header-content {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:15px;
+      flex-wrap:wrap;
+    }
+    img.logo { max-width:90px; width:90px; height:auto; display:block; }
+    header h1 {
+      margin:0;
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+      font-weight:700;
+      font-size:20px;
+      line-height:1;
+    }
+    header p  { margin:4px 0 0; font-family:"Tw Cen MT","Century Gothic",Arial,sans-serif; font-size:13px; opacity:0.95; }
 
     /* Navbar */
-    nav { background:var(--kuning); padding:8px; }
-    nav a { color:var(--merah); margin:0 12px; text-decoration:none; font-weight:bold;
-      font-family:"Franklin Gothic Demi","Franklin Gothic Medium",Arial,sans-serif; }
-    nav a:hover { text-decoration:underline; }
+    nav {
+      background:var(--kuning);
+      padding:8px 12px;
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    nav a {
+      color:var(--merah);
+      margin:0 8px;
+      text-decoration:none;
+      font-weight:bold;
+      font-family:"Franklin Gothic Demi","Franklin Gothic Medium",Arial,sans-serif;
+      padding:6px 8px;
+      border-radius:6px;
+    }
+    nav a:hover { text-decoration:underline; background: rgba(0,0,0,0.04); }
 
     /* Section */
-    section { padding:60px 40px; background:var(--merah); color:var(--kuning); }
-    section h2 { margin-top:0; font-family:"Tw Cen MT","Century Gothic",Arial,sans-serif; font-weight:700; }
-    section p  { max-width:900px; margin:10px auto 0; line-height:1.6; }
+    main { padding:36px 16px; max-width:1100px; margin:0 auto; }
+    section { padding:40px 20px; background:transparent; color:var(--kuning); }
+    section h2 { margin-top:0; font-family:"Tw Cen MT","Century Gothic",Arial,sans-serif; font-weight:700; font-size:28px; }
+    section p  { max-width:900px; margin:10px auto 0; line-height:1.6; font-size:16px; }
+
+    /* Social icons (reusable) */
+    .social { display:inline-flex; gap:10px; align-items:center; justify-content:center; margin-top:10px; }
+    .social a {
+      display:inline-flex;
+      width:40px; height:40px;
+      align-items:center; justify-content:center;
+      background:transparent;
+      border-radius:8px;
+      color:var(--kuning);
+      text-decoration:none;
+      transition: transform .12s ease, opacity .12s ease;
+      border: 1px solid rgba(255, 213, 0, 0.12);
+    }
+    .social a svg { width:20px; height:20px; display:block; }
+    .social a:hover { transform:translateY(-4px); opacity:0.95; }
 
     /* Footer */
-    footer { background:var(--merah); color:var(--kuning); padding:15px; margin-top:40px; }
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background:var(--merah);
+      color:var(--kuning);
+      padding:14px 12px;
+      box-shadow: 0 -6px 18px rgba(0,0,0,0.12);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:18px;
+      z-index: 999;
+    }
+    footer .footer-inner { max-width:1100px; width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:0 12px; }
+    footer p { margin:0; font-size:14px; font-weight:600; }
+
+    /* Responsive */
+    @media (max-width:720px){
+      header { padding:16px 12px; }
+      nav { padding:8px 10px; }
+      .header-content { gap:10px; }
+      .social a { width:36px; height:36px; }
+      footer .footer-inner { flex-direction:column; gap:8px; align-items:center; text-align:center; padding:8px; }
+      body { padding-bottom:120px; } /* ruang lebih di mobile */
+    }
   </style>
 </head>
 <body>
@@ -49,48 +137,68 @@
   <nav>
     <a href="index.html">Home</a>
     <a href="mengenaikami.html">About Us</a>
-    <a href="visi.html">Vision & Mission</a>
+    <a href="visi.html">Vision &amp; Mission</a>
     <a href="kontak.html">Contact</a>
   </nav>
 
-  <section>
-    <h2>WELCOME</h2>
-    <p>PT Sinar Langit Hanoi is here as a strategic transformation partner to help your business grow faster, more efficiently, and more competitively in Southeast Asia.</p>
-    <p>We believe every challenge is an opportunity to create new advantages.</p>
-  </section>
+  <main>
+    <section>
+      <h2>WELCOME</h2>
+      <p>PT Sinar Langit Hanoi is here as a strategic transformation partner to help your business grow faster, more efficiently, and more competitively in Southeast Asia.</p>
+      <p>We believe every challenge is an opportunity to create new advantages.</p>
 
-  <style>
-        footer {
-            position: fixed; bottom: 0;  width: 100%; }
-    </style>
+      <!-- social (optional also can be duplicated in footer) -->
+      <div class="social" aria-label="Social links">
+        <a href="https://facebook.com/share/16qzF3CvJr" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <!-- Facebook SVG -->
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M22 12.07C22 6.51 17.52 2 12 2S2 6.51 2 12.07C2 17.1 5.66 21.26 10.44 22v-7.03H7.9v-2.9h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.45h-1.25c-1.23 0-1.61.77-1.61 1.56v1.88h2.74l-.44 2.9h-2.3V22C18.34 21.26 22 17.1 22 12.07z"/>
+          </svg>
+        </a>
 
-  
+        <a href="https://instagram.com/eudeverse?igsh=bGM1eTI0bmFjbw1v" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <!-- Instagram SVG -->
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.66 0 3 1.34 3 3v10c0 1.66-1.34 3-3 3H7c-1.66 0-3-1.34-3-3V7c0-1.66 1.34-3 3-3h10zM12 7.5A4.5 4.5 0 1 0 12 16.5 4.5 4.5 0 1 0 12 7.5zm6-2.2a1.05 1.05 0 1 0 0 2.1 1.05 1.05 0 0 0 0-2.1z"/>
+          </svg>
+        </a>
+
+        <a href="https://wa.me/628977546561" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+          <!-- WhatsApp SVG -->
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.52 3.48A11.8 11.8 0 0 0 12 .5C6 .5 1.06 5.5 1.06 11.5c0 2.03.53 4 .98 4.98L.5 23.5l7.28-1.92c1 .56 2.06.85 3.05.85 6 0 10.94-5 10.94-11.5 0-3.08-1.2-5.96-3.25-8.45zM12 21.5c-.94 0-1.86-.27-2.66-.78l-.19-.11-4.33 1.14 1.14-4.22-.12-.22A8.43 8.43 0 0 1 3.56 11.5C3.56 7 7 3.5 12 3.5c2.1 0 4.08.78 5.58 2.2a7.88 7.88 0 0 1 2.28 5.8c0 4.5-3.44 9-8.86 9z"/>
+          </svg>
+        </a>
+
+        <a href="mailto:slh.co@otlook.com?subject=Contact%20Form%20Web" aria-label="Email">
+          <!-- Email SVG -->
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
   <footer>
-    <!-- Social links (example) -->
-<div class="social">
-  <a href="https://facebook.com/yourpage" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-    <!-- Facebook SVG -->
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M22 12.07C22 6.51 17.52 2 12 2S2 6.51 2 12.07C2 17.1 5.66 21.26 10.44 22v-7.03H7.9v-2.9h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.45h-1.25c-1.23 0-1.61.77-1.61 1.56v1.88h2.74l-.44 2.9h-2.3V22C18.34 21.26 22 17.1 22 12.07z"/>
-    </svg>
-  </a>
+    <div class="footer-inner">
+      <div class="social" aria-hidden="true">
+        <a href="https://facebook.com/share/16qzF3CvJr" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.07C22 6.51 17.52 2 12 2S2 6.51 2 12.07C2 17.1 5.66 21.26 10.44 22v-7.03H7.9v-2.9h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.45h-1.25c-1.23 0-1.61.77-1.61 1.56v1.88h2.74l-.44 2.9h-2.3V22C18.34 21.26 22 17.1 22 12.07z"/></svg>
+        </a>
+        <a href="https://instagram.com/eudeverse?igsh=bGM1eTI0bmFjbw1v" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.66 0 3 1.34 3 3v10c0 1.66-1.34 3-3 3H7c-1.66 0-3-1.34-3-3V7c0-1.66 1.34-3 3-3h10zM12 7.5A4.5 4.5 0 1 0 12 16.5 4.5 4.5 0 1 0 12 7.5zm6-2.2a1.05 1.05 0 1 0 0 2.1 1.05 1.05 0 0 0 0-2.1z"/></svg>
+        </a>
+        <a href="https://wa.me/628977546561" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.8 11.8 0 0 0 12 .5C6 .5 1.06 5.5 1.06 11.5c0 2.03.53 4 .98 4.98L.5 23.5l7.28-1.92c1 .56 2.06.85 3.05.85 6 0 10.94-5 10.94-11.5 0-3.08-1.2-5.96-3.25-8.45zM12 21.5c-.94 0-1.86-.27-2.66-.78l-.19-.11-4.33 1.14 1.14-4.22-.12-.22A8.43 8.43 0 0 1 3.56 11.5C3.56 7 7 3.5 12 3.5c2.1 0 4.08.78 5.58 2.2a7.88 7.88 0 0 1 2.28 5.8c0 4.5-3.44 9-8.86 9z"/></svg>
+        </a>
+        <a href="mailto:slh.co@otlook.com?subject=Contact%20Form%20Web" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </a>
+      </div>
 
-  <a href="https://instagram.com/yourpage" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-    <!-- Instagram SVG -->
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.66 0 3 1.34 3 3v10c0 1.66-1.34 3-3 3H7c-1.66 0-3-1.34-3-3V7c0-1.66 1.34-3 3-3h10zM12 7.5A4.5 4.5 0 1 0 12 16.5 4.5 4.5 0 1 0 12 7.5zm6-2.2a1.05 1.05 0 1 0 0 2.1 1.05 1.05 0 0 0 0-2.1z"/>
-    </svg>
-  </a>
-
-  <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-    <!-- WhatsApp SVG -->
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M20.52 3.48A11.8 11.8 0 0 0 12 .5C6  .5 1.06 5.5 1.06 11.5c0 2.03.53 4 .98 4.98L.5 23.5l7.28-1.92c1 .56 2.06.85 3.05.85 6 0 10.94-5 10.94-11.5 0-3.08-1.2-5.96-3.25-8.45zM12 21.5c-.94 0-1.86-.27-2.66-.78l-.19-.11-4.33 1.14 1.14-4.22-.12-.22A8.43 8.43 0 0 1 3.56 11.5C3.56 7 7 3.5 12 3.5c2.1 0 4.08.78 5.58 2.2a7.88 7.88 0 0 1 2.28 5.8c0 4.5-3.44 9-8.86 9z"/>
-    </svg>
-  </a>
-</div>
-
-    <p>©2025 PT Sinar Langit Hanoi</p>
+      <p>©2025 PT Sinar Langit Hanoi</p>
+    </div>
   </footer>
 </body>
 </html>
