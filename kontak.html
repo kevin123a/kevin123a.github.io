@@ -1,59 +1,21 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PT Sinar Langit Hanoi - Kontak</title>
-  <style>
-    body { font-family: "Segoe UI", Arial, sans-serif; margin:0; padding:0; background:#fff; }
-    header { background:#8B0000; color:#FFD500; padding:40px 20px; text-align:center; }
-    nav { background:#FFD500; text-align:center; padding:10px; }
-    nav a { color:#8B0000; margin:0 15px; text-decoration:none; font-weight:bold; }
-    nav a:hover { text-decoration:underline; }
-    section { padding:60px 20px; text-align:center; }
-    h2 { color:#8B0000; }
-    footer { background:#8B0000; color:#FFD500; text-align:center; padding:15px; margin-top:40px; }
-    a.email { color:#8B0000; font-weight:bold; }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Kontak Kami</h1>
-  </header>
+<section>
+  <h2>Contact Us</h2>
+  <p>We’d love to hear from you. Please reach out to us through the following contact details:</p>
+  
+  <p><strong>Email:</strong> <a href="mailto:slh.co@outlook.com">slh.co@outlook.com</a></p>
+  <p><strong>Address:</strong> Jl. Nakula, Kampungbaru, Tanjunganom, Nganjuk, East Java, Indonesia</p>
+  
+  <!-- Optional: contact form -->
+  <form action="mailto:slh.co@outlook.com" method="post" enctype="text/plain" style="max-width:500px; margin:20px auto; text-align:left;">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" required style="width:100%; margin-bottom:10px;"><br>
 
-    <nav>
-    <a href="index.html">Home</a>
-    <a href="mengenaikami.html">Mengenai Kami</a>
-    <a href="visi.html">Visi</a>
-    <a href="kontak.html">Kontak</a>
-    </nav>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required style="width:100%; margin-bottom:10px;"><br>
 
-  <section>
-    <h2>Email</h2>
-    <p>Hubungi kami melalui email berikut:</p>
-    <p><a class="email" href="mailto:slh.co@outlook.com">slh.co@outlook.com</a></p>
-  </section>
+    <label for="message">Message:</label><br>
+    <textarea id="message" name="message" rows="5" required style="width:100%; margin-bottom:10px;"></textarea><br>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Judul Halaman</title>
-    <style>
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
-</head>
-<body>
-    <p></p>
-
-    <footer>
-        <p>© 2025 PT Sinar Langit Hanoi</p>
-    </footer>
-</body>
-</html>
-
+    <button type="submit" style="padding:10px 20px; background:#FFD500; color:#8B0000; border:none; font-weight:bold;">Send</button>
+  </form>
+</section>
