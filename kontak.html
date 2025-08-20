@@ -1,88 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PT Sinar Langit Hanoi - Contact</title>
-  <link rel="icon" type="image/png" href="logo.png" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Sinar Langit Hanoi</title>
   <style>
-    :root { --merah:#8B0000; --kuning:#FFD500; }
-
-    /* Global */
-    body { margin:0; padding:0; text-align:center; background:var(--merah); color:var(--kuning); 
-      font-family:"Franklin Gothic Demi","Franklin Gothic Medium",Arial,sans-serif; }
-
-    /* Header */
-    header { background:var(--merah); color:var(--kuning); padding:30px 20px;
-      display:flex; flex-direction:column; align-items:center; }
-    .header-content { display:flex; align-items:center; justify-content:center; gap:15px; }
-    img.logo { max-width:90px; }
-    header h1 { margin:0; font-family:Verdana, Geneva, Tahoma, sans-serif; font-weight:700; }
-    header p  { margin:5px 0 0; font-family:"Tw Cen MT","Century Gothic",Arial,sans-serif; }
-
-    /* Navbar */
-    nav { background:var(--kuning); padding:8px; }
-    nav a { color:var(--merah); margin:0 12px; text-decoration:none; font-weight:bold;
-      font-family:"Franklin Gothic Demi","Franklin Gothic Medium",Arial,sans-serif; }
-    nav a:hover { text-decoration:underline; }
-
-    /* Section */
-    section { padding:60px 40px; background:var(--merah); color:var(--kuning); }
-    section h2 { margin-top:0; font-family:"Tw Cen MT","Century Gothic",Arial,sans-serif; font-weight:700; }
-    section p  { max-width:900px; margin:10px auto 0; line-height:1.6; }
-
-    /* Contact form */
-    form { max-width:500px; margin:20px auto; text-align:left; }
-    input, textarea { width:100%; margin-bottom:10px; padding:8px; border:none; }
-    button { padding:10px 20px; background:var(--kuning); color:var(--merah); border:none; font-weight:bold; cursor:pointer; }
-    button:hover { opacity:0.9; }
-
-    /* Footer */
-    footer { background:var(--merah); color:var(--kuning); padding:15px; position:fixed; bottom:0; width:100%; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f9f9f9; color: #333;
+    }
+    header {
+      background: #004466;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 30px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin-top: 0;
+      color: #004466;
+    }
+    form label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    form button {
+      margin-top: 15px;
+      padding: 12px;
+      width: 100%;
+      background: #004466;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    form button:hover {
+      background: #006699;
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px;
+      background: #eee;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
+
   <header>
-    <div class="header-content">
-      <img src="logo.png" alt="Logo PT Sinar Langit Hanoi" class="logo" />
-      <div>
-        <h1>PT SINAR LANGIT HANOI</h1>
-        <p>Strategic Transformation, Competitive Advantage</p>
-      </div>
-    </div>
+    <h1>Contact Us</h1>
   </header>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="mengenaikami.html">About Us</a>
-    <a href="visi.html">Vision & Mission</a>
-    <a href="kontak.html">Contact</a>
-  </nav>
+  <div class="container">
+    <h2>Get in Touch</h2>
+    <p>Email: <a href="mailto:slh.co@otlook.com">slh.co@otlook.com</a><br>
+       Address: Jl. Nakula, Kampungbaru, Tanjunganom, Nganjuk, East Java, Indonesia</p>
 
-  <section>
-    <h2>Contact Us</h2>
-    <p>We’d love to hear from you. Please reach out to us through the following contact details:</p>
-    
-    <p><strong>Email:</strong> <a href="mailto:slh.co@outlook.com" style="color:#FFD500;">slh.co@outlook.com</a></p>
-    <p><strong>Address:</strong> Jl. Nakula, Kampungbaru, Tanjunganom, Nganjuk, East Java, Indonesia</p>
+    <form action="mailto:slh.co@otlook.com?subject=Contact Form Web" method="post" enctype="text/plain">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" required>
 
-    <!-- Optional contact form -->
-    <form action="mailto:slh.co@outlook.com" method="post" enctype="text/plain">
-      <label for="name">Name:</label><br>
-      <input type="text" id="name" name="name" required><br>
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="email" required>
 
-      <label for="email">Email:</label><br>
-      <input type="email" id="email" name="email" required><br>
-
-      <label for="message">Message:</label><br>
-      <textarea id="message" name="message" rows="5" required></textarea><br>
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
 
       <button type="submit">Send</button>
     </form>
-  </section>
+  </div>
 
   <footer>
-    <p>©2025 PT Sinar Langit Hanoi</p>
+    <p>&copy; 2025 Sinar Langit Hanoi</p>
   </footer>
+
 </body>
 </html>
