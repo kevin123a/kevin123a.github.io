@@ -1,72 +1,66 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PT Sinar Langit Hanoi - Home</title>
-  
-  <link rel="icon" type="image/png" href="logo.png">
-  
+  <link rel="icon" type="image/png" href="logo.png" />
   <style>
-    body { margin:0; padding:0; text-align:center; background:#8B0000; /* merah */ }
-    header { background:#8B0000; color:#FFD500;  padding:30px 20px;  /* lebih kecil supaya logo+judul naik */ display:flex;  flex-direction:column; align-items:center; }
-    header-content {  display:flex; align-items:center; justify-content:center; gap:15px; /* kurangi jarak antara logo & teks */ }
-    header h1 { margin:0; font-family:Verdana, sans-serif; /* Judul utama */ }
-    header p { margin:5px 0 0; font-family: "TW Cen MT", sans-serif; /* Subjudul */ }
-    nav { background:#FFD500; padding:8px; }
-    nav a { color:#8B0000; margin:0 12px; text-decoration:none; font-weight:bold; font-family: "Franklin Gothic Demi", sans-serif; }
-    nav a:hover { text-decoration:underline; }
-    section { padding:60px 40px; background:#8B0000; colour:#FFD500; font-family: "Franklin Gothic Demi", sans-serif; }
-    section h2 { font-family: "Tw Cen MT", sans-serif; }
-    footer { background:#8B0000; color:#FFD500; padding:15px; margin-top:40px; font-family: "Franklin Gothic Demi", sans-serif; }
+    :root { --merah:#8B0000; --kuning:#FFD500; }
+
+    /* Global */
+    body { margin:0; padding:0; text-align:center; background:var(--merah); color:var(--kuning); 
+      font-family:"Franklin Gothic Demi","Franklin Gothic Medium",Arial,sans-serif; }
+
+    /* Header */
+    header { background:var(--merah); color:var(--kuning); padding:30px 20px;
+      display:flex; flex-direction:column; align-items:center; }
+    .header-content { display:flex; align-items:center; justify-content:center; gap:15px; }
     img.logo { max-width:90px; }
+    header h1 { margin:0; font-family:Verdana, Geneva, Tahoma, sans-serif; font-weight:700; }
+    header p  { margin:5px 0 0; font-family:"Tw Cen MT","Century Gothic",Arial,sans-serif; }
+
+    /* Navbar */
+    nav { background:var(--kuning); padding:8px; }
+    nav a { color:var(--merah); margin:0 12px; text-decoration:none; font-weight:bold;
+      font-family:"Franklin Gothic Demi","Franklin Gothic Medium",Arial,sans-serif; }
+    nav a:hover { text-decoration:underline; }
+
+    /* Section */
+    section { padding:60px 40px; background:var(--merah); color:var(--kuning); }
+    section h2 { margin-top:0; font-family:"Tw Cen MT","Century Gothic",Arial,sans-serif; font-weight:700; }
+    section p  { max-width:900px; margin:10px auto 0; line-height:1.6; }
+
+    /* Footer */
+    footer { background:var(--merah); color:var(--kuning); padding:15px; margin-top:40px; }
   </style>
 </head>
 <body>
   <header>
     <div class="header-content">
-      <img src="logo.png" alt="Logo PT Sinar Langit Hanoi" class="logo">
+      <img src="logo.png" alt="Logo PT Sinar Langit Hanoi" class="logo" />
       <div>
-       <h1>PT SINAR LANGIT HANOI</h1>
+        <h1>PT SINAR LANGIT HANOI</h1>
         <p>Strategic Transformation, Competitive Advantage</p>
       </div>
     </div>
   </header>
 
-    <nav>
-  <a href="index.html">Home</a>
-  <a href="mengenaikami.html">About Us</a>
-  <a href="visi.html">Vision & Mission</a>
-  <a href="kontak.html">Contact</a>
-</nav>
-
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="mengenaikami.html">About Us</a>
+    <a href="visi.html">Vision & Mission</a>
+    <a href="kontak.html">Contact</a>
+  </nav>
 
   <section>
     <h2>WELCOME</h2>
-    <p>PT Sinar Langit Hanoi is here as a strategic transformation partner to help your business grow faster, more efficiently, and more competitively in Southeast Asia</p>
-    <p>We believe every challenge is an opportunity to create new advantages</p>
+    <p>PT Sinar Langit Hanoi is here as a strategic transformation partner to help your business grow faster, more efficiently, and more competitively in Southeast Asia.</p>
+    <p>We believe every challenge is an opportunity to create new advantages.</p>
   </section>
 
- 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Judul Halaman</title>
-    <style>
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
-</head>
-<body>
-    <p></p>
-
-    <footer>
-        <p>©2025 PT Sinar Langit Hanoi</p>
-    </footer>
+  <footer>
+    <p>©2025 PT Sinar Langit Hanoi</p>
+  </footer>
 </body>
 </html>
