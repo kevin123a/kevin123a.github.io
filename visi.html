@@ -1,65 +1,91 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PT Sinar Langit Hanoi - Visi</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PT Sinar Langit Hanoi - About Us</title>
+  <link rel="icon" type="image/png" href="logo.png" />
   <style>
-    body { font-family: "Segoe UI", Arial, sans-serif; margin:0; padding:0; background:#fff; }
-    header { background:#8B0000; color:#FFD500; padding:40px 20px; text-align:center; }
-    nav { background:#FFD500; text-align:center; padding:10px; }
-    nav a { color:#8B0000; margin:0 15px; text-decoration:none; font-weight:bold; }
+    :root { --merah:#8B0000; --kuning:#FFD500; }
+
+    /* Global */
+    body {
+      margin:0; padding:0; text-align:center;
+      background:var(--merah); color:var(--kuning);
+      font-family:"Franklin Gothic Demi","Franklin Gothic Medium",Arial,sans-serif;
+    }
+
+    /* Header */
+    header {
+      background:var(--merah); color:var(--kuning);
+      padding:30px 20px; display:flex; flex-direction:column; align-items:center;
+    }
+    .header-content { display:flex; align-items:center; justify-content:center; gap:15px; }
+    img.logo { max-width:90px; }
+    header h1 { margin:0; font-family:Verdana, Geneva, Tahoma, sans-serif; font-weight:700; }
+    header p  { margin:5px 0 0; font-family:"Tw Cen MT","Century Gothic",Arial,sans-serif; }
+
+    /* Navbar */
+    nav { background:var(--kuning); padding:8px; }
+    nav a {
+      color:var(--merah); margin:0 12px; text-decoration:none; font-weight:bold;
+      font-family:"Franklin Gothic Demi","Franklin Gothic Medium",Arial,sans-serif;
+    }
     nav a:hover { text-decoration:underline; }
-    section { padding:60px 20px; max-width:800px; margin:auto; }
-    h2 { color:#8B0000; }
-    footer { background:#8B0000; color:#FFD500; text-align:center; padding:15px; margin-top:40px; }
+
+    /* Section */
+    section { padding:56px 24px 100px; /* tambah bottom agar tidak ketutup footer fixed */ }
+    section h2, section h3 {
+      font-family:"Tw Cen MT","Century Gothic",Arial,sans-serif; font-weight:700; margin-top:0;
+    }
+    .container { max-width:1000px; margin:0 auto; line-height:1.6; text-align:left; }
+
+    ul { padding-left:18px; }
+    li { margin:6px 0; }
+
+    /* Footer (nempel bawah) */
+    footer {
+      background:var(--merah); color:var(--kuning);
+      padding:15px; position:fixed; bottom:0; left:0; width:100%;
+      font-family:"Franklin Gothic Demi","Franklin Gothic Medium",Arial,sans-serif;
+      text-align:center;
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Visi Perusahaan</h1>
+    <div class="header-content">
+      <img src="logo.png" alt="Logo PT Sinar Langit Hanoi" class="logo" />
+      <div>
+        <h1>PT SINAR LANGIT HANOI</h1>
+        <p>Strategic Transformation, Competitive Advantage</p>
+      </div>
+    </div>
   </header>
 
   <nav>
     <a href="index.html">Home</a>
-    <a href="mengenaikami.html">Mengenai Kami</a>
-    <a href="visi.html">Visi</a>
-    <a href="kontak.html">Kontak</a>
+    <a href="mengenaikami.html">About Us</a>
+    <a href="visi.html">Vision & Mission</a>
+    <a href="kontak.html">Contact</a>
   </nav>
 
   <section>
-    <h2>Visi</h2>
-    <p>Menjadi mitra transformasi strategis yang mendukung keunggulan kompetitif bisnis klien di Asia Tenggara.</p>
-    <h2>Produk & Jasa</h2>
-    <ul>
-      <li>Konsultasi Manajemen Umum</li>
-      <li>Strategi Bisnis dan Korporasi</li>
-      <li>Restrukturisasi Organisasi</li>
-      <li>Analisis Kinerja Keuangan</li>
-      <li>Transformasi Digital UMKM</li>
-    </ul>
+    <div class="container">
+      <h2>Vision</h3>
+      <p>
+        Becoming a strategic transformation partner that supports clients’ business competitive advantage in Southeast Asia.
+      </p>
+
+      <h2>Mission</h3>
+      <ul>
+        <li>Providing advice and execution on <strong>strategic planning & organizational strengthening</strong>.</li> <li>Formulating <strong>marketing policies & market development</strong> based on data-driven insights.</li> <li>Assisting in <strong>financial decisions & performance management</strong> for sustainable profitability.</li> <li>Designing <strong>HR planning & policies</strong> (talent, performance, compensation) aligned with corporate strategy.</li> <li>Improving <strong>process & operational efficiency</strong> including scheduling and control mechanisms.</li> <li>Driving <strong>digital transformation</strong> and data governance for faster & more accurate decision-making.</li> <li>Strengthening <strong>corporate governance, risk management, and compliance</strong>.</li> <li>Providing <strong>training & implementation support</strong> to ensure that change is effectively realized.</li>
+      </ul>
+    </div>
   </section>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Judul Halaman</title>
-    <style>
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
-</head>
-<body>
-    <p></p>
-
-    <footer>
-        <p>© 2025 PT Sinar Langit Hanoi</p>
-    </footer>
+  <footer>
+    <p>©2025 PT Sinar Langit Hanoi</p>
+  </footer>
 </body>
 </html>
-
