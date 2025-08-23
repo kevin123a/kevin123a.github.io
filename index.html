@@ -66,7 +66,8 @@
       transition: 0.3s;
     }
 
-    nav ul li a:hover {
+    nav ul li a:hover,
+    nav ul li a.active {
       color: white;
       text-shadow: 0 0 10px #FFD500;
     }
@@ -111,6 +112,7 @@
     /* Home Section */
     .home {
       padding: 100px 20px;
+      animation: fadeIn 2s ease-in-out;
     }
 
     .home h1 {
@@ -124,6 +126,12 @@
       max-width: 800px;
       margin: 0 auto;
       line-height: 1.6;
+    }
+
+    /* Fade in animation */
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
     }
 
     /* Footer */
@@ -169,13 +177,24 @@
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 PT Sinar Langit Hanoi. All rights reserved.</p>
+    <p>&copy; <span id="year"></span> PT Sinar Langit Hanoi. All rights reserved.</p>
   </footer>
 
   <script>
     function toggleMenu() {
       document.getElementById("nav-links").classList.toggle("active");
     }
+
+    // auto update tahun copyright
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // kasih class 'active' ke menu sesuai halaman
+    const navLinks = document.querySelectorAll("nav ul li a");
+    navLinks.forEach(link => {
+      if(link.href === window.location.href){
+        link.classList.add("active");
+      }
+    });
   </script>
 </body>
 </html>
