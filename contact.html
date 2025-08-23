@@ -5,136 +5,137 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact - PT Sinar Langit Hanoi</title>
   <link rel="icon" href="logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=EB+Garamond&display=swap" rel="stylesheet">
+
   <style>
     body {
-      font-family: "Garamond", serif;
-      margin: 0; padding: 0;
-      background: #f9f9f9; color: #333;
-    }
-    header {
-      background: #8B0000;
+      margin: 0;
+      font-family: 'EB Garamond', serif;
+      background-color: #8B0000;
       color: #FFD500;
+      text-align: center;
+    }
+
+    header {
+      background-color: rgba(0,0,0,0.3);
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 20px;
     }
+
     .logo-area {
       display: flex;
       align-items: center;
       gap: 10px;
     }
+
     .logo {
-      height: 50px;
+      height: 40px;
       width: auto;
     }
+
     .logo-title {
-      font-family: "Bickham Script Pro", cursive;
-      font-size: 26px;
-      font-weight: bold;
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 22px;
     }
-    nav {
-      display: flex;
-    }
+
     nav ul {
-      display: flex;
       list-style: none;
-      padding: 0;
       margin: 0;
-      gap: 20px;
+      padding: 0;
+      display: flex;
+      gap: 30px;
     }
+
+    nav ul li {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 18px;
+    }
+
     nav ul li a {
-      color: #FFD500;
       text-decoration: none;
-      font-weight: bold;
+      color: #FFD500;
+      transition: 0.3s;
     }
-    nav ul li a:hover {
-      text-decoration: underline;
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: white;
+      text-shadow: 0 0 10px #FFD500;
     }
+
     .hamburger {
       display: none;
       flex-direction: column;
       cursor: pointer;
+      gap: 5px;
     }
+
     .hamburger div {
       width: 25px;
       height: 3px;
-      background: #FFD500;
-      margin: 4px 0;
+      background-color: #FFD500;
+      transition: 0.3s;
     }
+
     @media (max-width: 768px) {
       nav ul {
         display: none;
         flex-direction: column;
-        background: #8B0000;
+        background-color: rgba(0,0,0,0.9);
         position: absolute;
         top: 60px;
         right: 20px;
-        padding: 15px;
-        border-radius: 8px;
+        padding: 20px;
+        border-radius: 10px;
       }
-      nav ul.show {
-        display: flex;
-      }
-      .hamburger {
-        display: flex;
-      }
+      nav ul.active { display: flex; }
+      .hamburger { display: flex; }
     }
-    .container {
-      max-width: 700px;
-      margin: 40px auto;
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+
+    /* Contact Section */
+    .contact {
+      padding: 100px 20px;
+      animation: fadeIn 1.5s ease-in-out;
     }
-    h2 {
-      margin-top: 0;
-      color: #8B0000;
-      font-size: 24px;
+
+    .contact h1 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 38px;
+      margin-bottom: 20px;
     }
-    p strong {
-      color: #8B0000;
+
+    .contact-info {
+      font-size: 18px;
+      line-height: 1.8;
+      max-width: 600px;
+      margin: 0 auto;
     }
-    form label {
-      display: block;
-      margin: 10px 0 5px;
-      font-weight: bold;
-    }
-    form input, form textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-family: inherit;
-    }
-    form button {
-      margin-top: 15px;
-      padding: 12px;
-      width: 100%;
-      background: #8B0000;
+
+    .contact-info a {
       color: #FFD500;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
+      text-decoration: underline;
     }
-    form button:hover {
-      background: #a30000;
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
     }
+
     footer {
-      text-align: center;
-      margin-top: 40px;
-      padding: 20px;
-      background: #8B0000;
-      color: #FFD500;
+      margin-top: 50px;
+      padding: 15px 0;
+      background-color: rgba(0,0,0,0.4);
       font-size: 14px;
     }
   </style>
 </head>
 <body>
-
+  <!-- Header -->
   <header>
     <div class="logo-area">
       <img src="logo.png" alt="PT Sinar Langit Hanoi" class="logo">
@@ -156,34 +157,37 @@
     </div>
   </header>
 
-  <div class="container">
-    <h2>Get in Touch</h2>
-    <p><strong>Email:</strong> <a href="mailto:slh.co@outlook.com">slh.co@outlook.com</a><br>
-       <strong>Address:</strong> Jl. Nakula, Kampungbaru, Tanjunganom, Nganjuk, East Java, Indonesia</p>
+  <!-- Contact Section -->
+  <section class="contact">
+    <h1>Contact Us</h1>
+    <div class="contact-info">
+      <p><strong>Email:</strong> <a href="mailto:langithanoi@gmail.com">langithanoi@gmail.com</a></p>
+      <p><strong>Phone:</strong> +62 812-3456-7890</p>
+      <p><strong>Instagram:</strong> <a href="https://instagram.com/langithanoi" target="_blank">@langithanoi</a></p>
+      <p><strong>NPWP:</strong> 12.345.678.9-012.000</p>
+    </div>
+  </section>
 
-    <form action="mailto:slh.co@outlook.com?subject=Contact Form Web" method="post" enctype="text/plain">
-      <label for="name">Your Name</label>
-      <input type="text" id="name" name="name" required>
-
-      <label for="email">Your Email</label>
-      <input type="email" id="email" name="email" required>
-
-      <label for="message">Message</label>
-      <textarea id="message" name="message" rows="6" required></textarea>
-
-      <button type="submit">Send Message</button>
-    </form>
-  </div>
-
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 PT Sinar Langit Hanoi. All rights reserved.</p>
+    <p>&copy; <span id="year"></span> PT Sinar Langit Hanoi. All rights reserved.</p>
   </footer>
 
   <script>
     function toggleMenu() {
-      document.getElementById('nav-links').classList.toggle('show');
+      document.getElementById("nav-links").classList.toggle("active");
     }
-  </script>
 
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // kasih highlight menu aktif
+    const navLinks = document.querySelectorAll("nav ul li a");
+    navLinks.forEach(link => {
+      if(link.href === window.location.href){
+        link.classList.add("active");
+      }
+    });
+  </script>
 </body>
 </html>
+
