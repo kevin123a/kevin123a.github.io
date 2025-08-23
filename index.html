@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PT Sinar Langit Hanoi</title>
   <!-- Favicon -->
-  <link rel="icon" href="logo.html" type="image/x-icon">
+  <link rel="icon" href="logo.png" type="image/png">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=EB+Garamond&display=swap" rel="stylesheet">
@@ -29,6 +29,17 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      height: 40px;
+      width: auto;
     }
 
     .logo-title {
@@ -114,12 +125,23 @@
       margin: 0 auto;
       line-height: 1.6;
     }
+
+    /* Footer */
+    footer {
+      margin-top: 50px;
+      padding: 15px 0;
+      background-color: rgba(0,0,0,0.4);
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
   <!-- Header -->
   <header>
-    <div class="logo-title">PT Sinar Langit Hanoi</div>
+    <div class="logo-area">
+      <img src="logo.png" alt="PT Sinar Langit Hanoi" class="logo">
+      <div class="logo-title">PT Sinar Langit Hanoi</div>
+    </div>
     <nav>
       <ul id="nav-links">
         <li><a href="#about">About Us</a></li>
@@ -145,13 +167,15 @@
     </p>
   </section>
 
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 PT Sinar Langit Hanoi. All rights reserved.</p>
+  </footer>
+
   <script>
     function toggleMenu() {
       document.getElementById("nav-links").classList.toggle("active");
     }
   </script>
-  <footer>
-    <p>&copy; 2025 PT Sinar Langit Hanoi. All rights reserved.</p>
-  </footer>
 </body>
 </html>
