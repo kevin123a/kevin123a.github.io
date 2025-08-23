@@ -1,72 +1,86 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PT Sinar Langit Hanoi - Home</title>
-  <link rel="icon" type="image/png" href="logo.png" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VVIP - Sinar Langit Hanoi</title>
+  <link rel="icon" href="logo.html" type="image/x-icon">
   <style>
-    :root { --merah:#8B0000; --kuning:#FFD500; }
-
-    /* Global */
-    body { margin:0; padding:0; text-align:center; background:var(--merah); color:var(--kuning); 
-      font-family:"Franklin Gothic Demi","Franklin Gothic Medium",Arial,sans-serif; }
-
-    /* Header */
-    header { background:var(--merah); color:var(--kuning); padding:30px 20px;
-      display:flex; flex-direction:column; align-items:center; }
-    .header-content { display:flex; align-items:center; justify-content:center; gap:15px; }
-    img.logo { max-width:90px; }
-    header h1 { margin:0; font-family:Verdana, Geneva, Tahoma, sans-serif; font-weight:700; }
-    header p  { margin:5px 0 0; font-family:"Tw Cen MT","Century Gothic",Arial,sans-serif; }
-
-    /* Navbar */
-    nav { background:var(--kuning); padding:8px; }
-    nav a { color:var(--merah); margin:0 12px; text-decoration:none; font-weight:bold;
-      font-family:"Franklin Gothic Demi","Franklin Gothic Medium",Arial,sans-serif; }
-    nav a:hover { text-decoration:underline; }
-
-    /* Section */
-    section { padding:60px 40px; background:var(--merah); color:var(--kuning); }
-    section h2 { margin-top:0; font-family:"Tw Cen MT","Century Gothic",Arial,sans-serif; font-weight:700; }
-    section p  { max-width:900px; margin:10px auto 0; line-height:1.6; }
-
-    /* Footer */
-    footer { background:var(--merah); color:var(--kuning); padding:15px; margin-top:40px; }
+    body {
+      font-family: 'Garamond', serif;
+      margin: 0;
+      padding: 0;
+      background: #8B0000;
+      color: #FFD500;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #8B0000;
+      padding: 15px 20px;
+    }
+    header img {
+      height: 50px;
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 15px;
+    }
+    nav ul li a {
+      color: #FFD500;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    main h1 {
+      font-size: 40px;
+      letter-spacing: 2px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #8B0000;
+      color: #FFD500;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
   <header>
-    <div class="header-content">
-      <img src="logo.png" alt="Logo PT Sinar Langit Hanoi" class="logo" />
-      <div>
-        <h1>PT SINAR LANGIT HANOI</h1>
-        <p>Strategic Transformation, Competitive Advantage</p>
-      </div>
-    </div>
+    <img src="logo.html" alt="Sinar Langit Hanoi Logo">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+        <li><a href="service.html">Service</a></li>
+        <li><a href="vvip.html">VVIP</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="mengenaikami.html">About Us</a>
-    <a href="visi.html">Vision & Mission</a>
-    <a href="kontak.html">Contact</a>
-  </nav>
+  <main>
+    <h1>🚧 Coming Soon 🚧<br>Stay Tuned for VVIP Access</h1>
+  </main>
 
-<section>
-    <h1>COOMING SOON</h1>
-  <p> COOMING SOON</p>
- </section>
-
-
- <style>
-        footer {
-            position: fixed; bottom: 0;  width: 100%; }
-    </style>
-
-  
   <footer>
-    <p>©2025 PT Sinar Langit Hanoi</p>
+    <p>&copy; 2025 PT Sinar Langit Hanoi</p>
   </footer>
 </body>
 </html>
