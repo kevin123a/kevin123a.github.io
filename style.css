@@ -76,3 +76,22 @@ footer {
   font-size: 14px;
   border-top: 1px solid #FDC12A;
 }
+
+/* =========================
+   Service Box Klikable
+   ========================= */
+.services a {
+  display: block;                /* biar kotak penuh bisa diklik */
+  background: rgba(0,0,0,0.4);  /* transparan gelap seperti sebelumnya */
+  color: #FDC12A;                /* warna teks emas terang */
+  text-decoration: none;         /* hapus garis bawah link */
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.services a:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(255,213,0,0.7); /* efek hover tetap sama */
+}
