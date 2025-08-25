@@ -11,7 +11,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=EB+Garamond&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
-
   <style>
     body {
       margin: 0;
@@ -138,7 +137,18 @@
       box-shadow: 0 0 15px rgba(0,0,0,0.5);
       transition: transform 0.3s, box-shadow 0.3s;
       text-decoration: none; /* hapus garis bawah */
-      color: #FFD500; /* pastikan warna teks tetap */
+      color: #FFD500; /* warna teks default emas */
+    }
+
+    /* Pastikan semua state link & anak-anaknya ikut emas */
+    .service-box:link,
+    .service-box:visited,
+    .service-box:hover,
+    .service-box:active {
+      color: #FFD500;
+    }
+    .service-box * {
+      color: inherit; /* paksa turunan pakai warna dari .service-box */
     }
 
     .service-box:hover {
@@ -237,7 +247,7 @@
     // kasih class 'active' ke menu sesuai halaman
     const navLinks = document.querySelectorAll("nav ul li a");
     navLinks.forEach(link => {
-      if(link.href === window.location.href){
+      if (link.href === window.location.href) {
         link.classList.add("active");
       }
     });
