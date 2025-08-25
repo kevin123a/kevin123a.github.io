@@ -83,7 +83,7 @@ footer {
 .services a {
   display: block;                /* biar kotak penuh bisa diklik */
   background: rgba(0,0,0,0.4);  /* transparan gelap seperti sebelumnya */
-  color: #FDC12A;                /* warna teks emas terang */
+  color: #FFD500;                /* warna teks emas terang */
   text-decoration: none;         /* hapus garis bawah link */
   padding: 25px;
   border-radius: 12px;
