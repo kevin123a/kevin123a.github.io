@@ -73,9 +73,8 @@
   <div class="sidebar">
     <h2>VVIP Panel</h2>
     <a href="#" class="active" onclick="loadContent('overview')"><i class="fa-solid fa-chart-line"></i> Overview</a>
-    <a href="#" onclick="loadContent('projects')"><i class="fa-solid fa-diagram-project"></i> Projects</a>
-    <a href="#" onclick="loadContent('clients')"><i class="fa-solid fa-user-tie"></i> Clients</a>
-    <a href="#" onclick="loadContent('finance')"><i class="fa-solid fa-coins"></i> Finance</a>
+    <a href="#" onclick="loadContent('vvip-pro')"><i class="fa-solid fa-gem"></i> VVIP Pro</a>
+    <a href="#" onclick="loadContent('vvip-plus')"><i class="fa-solid fa-crown"></i> VVIP Plus</a>
     <a href="#" onclick="loadContent('settings')"><i class="fa-solid fa-gear"></i> Settings</a>
     <a href="#" onclick="loadContent('support')"><i class="fa-solid fa-headset"></i> Support</a>
     <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
@@ -96,32 +95,27 @@
       if (page === 'overview') {
         content.innerHTML = `
           <h1>Overview</h1>
-          <p>This is the general overview of your business performance. Here you will see the latest updates and quick stats.</p>
+          <p>Dashboard overview with general performance stats and updates.</p>
         `;
-      } else if (page === 'projects') {
+      } else if (page === 'vvip-pro') {
         content.innerHTML = `
-          <h1>Projects</h1>
-          <p>Here are your ongoing and completed projects with status reports and deadlines.</p>
+          <h1>VVIP Pro</h1>
+          <p>Exclusive features and benefits for VVIP Pro members.</p>
         `;
-      } else if (page === 'clients') {
+      } else if (page === 'vvip-plus') {
         content.innerHTML = `
-          <h1>Clients</h1>
-          <p>Manage your client list, add new clients, and view client activity history here.</p>
-        `;
-      } else if (page === 'finance') {
-        content.innerHTML = `
-          <h1>Finance</h1>
-          <p>Track your revenue, expenses, and financial growth in this section.</p>
+          <h1>VVIP Plus</h1>
+          <p>Premium features and upgrades for VVIP Plus members.</p>
         `;
       } else if (page === 'settings') {
         content.innerHTML = `
           <h1>Settings</h1>
-          <p>Customize your dashboard preferences and account security settings here.</p>
+          <p>Manage your account preferences, notifications, and privacy.</p>
         `;
       } else if (page === 'support') {
         content.innerHTML = `
           <h1>Support</h1>
-          <p>Contact support for help, FAQs, or to submit a request ticket.</p>
+          <p>Need help? Contact support, view FAQs, or open a ticket.</p>
         `;
       }
     }
