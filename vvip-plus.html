@@ -1,106 +1,160 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VVIP PLUS - PT Sinar Langit Hanoi</title>
+  <link rel="icon" href="logo.png" type="image/png">
+
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=EB+Garamond&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
       font-family: 'EB Garamond', serif;
-      background-color: #420D09; /* maroon gelap */
-      color: #FDC12A; /* emas terang */
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      background-color: #121212;
+      color: #FFD500;
+      text-align: center;
     }
 
     header {
-      background: #420D09;
-      padding: 20px;
-      text-align: center;
-      border-bottom: 2px solid #FDC12A;
+      background-color: rgba(0,0,0,0.6);
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    header h1 {
-      margin: 0;
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      height: 40px;
+      width: auto;
+    }
+
+    .logo-title {
       font-family: 'Cinzel Decorative', serif;
-      font-size: 32px;
+      font-size: 22px;
     }
 
-    .container {
-      flex: 1;
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 20px;
-      background: #fff;
-      color: #333;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 30px;
     }
 
-    h2 {
-      color: #420D09;
-      font-family: 'EB Garamond', serif;
-      margin-bottom: 15px;
-    }
-
-    p {
-      font-size: 18px;
-      line-height: 1.6;
-    }
-
-    .back-btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 20px;
-      border-radius: 8px;
-      border: 2px solid #420D09;
-      background: #FDC12A;
-      color: #420D09;
-      font-weight: bold;
+    nav ul li a {
       text-decoration: none;
+      color: #FFD500;
       transition: 0.3s;
     }
 
-    .back-btn:hover {
-      background: #420D09;
-      color: #FDC12A;
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: white;
+      text-shadow: 0 0 10px #FFD500;
+    }
+
+    .content {
+      padding: 120px 20px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .content h1 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 40px;
+      margin-bottom: 25px;
+      color: #FFD700;
+    }
+
+    .features {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+      background: rgba(255,255,255,0.05);
+      padding: 25px;
+      border-radius: 15px;
+    }
+
+    .features h2 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #FFD500;
+    }
+
+    .features ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .features ul li {
+      margin: 12px 0;
+      font-size: 18px;
     }
 
     footer {
-      text-align: center;
-      padding: 15px;
-      background: #420D09;
-      color: #FDC12A;
+      margin-top: 50px;
+      padding: 15px 0;
+      background-color: rgba(0,0,0,0.4);
       font-size: 14px;
-      border-top: 1px solid #FDC12A;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
     }
   </style>
 </head>
 <body>
+  <!-- Header -->
   <header>
-    <h1>VVIP PLUS</h1>
+    <div class="logo-area">
+      <img src="logo.png" alt="PT Sinar Langit Hanoi" class="logo">
+      <div class="logo-title">PT Sinar Langit Hanoi</div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="service.html">Service</a></li>
+        <li><a href="vvip-plus.html" class="active">VVIP PLUS</a></li>
+        <li><a href="vvip-pro.html">VVIP PRO</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <div class="container">
-    <h2>Layanan Eksklusif VVIP PLUS</h2>
-    <p>
-      Selamat datang di <b>VVIP PLUS</b>.  
-      Halaman ini dirancang khusus untuk memberikan akses eksklusif kepada klien prioritas kami.  
-      Anda mendapatkan layanan dengan dukungan fleksibel, konsultasi strategis, serta materi eksklusif yang hanya tersedia di paket PLUS.
-    </p>
-    <p>
-      Silakan pilih modul atau layanan tambahan yang tersedia sesuai kebutuhan Anda.
-    </p>
+  <!-- Content -->
+  <section class="content">
+    <h1>VVIP PLUS</h1>
+    <div class="features">
+      <h2>Exclusive Benefits:</h2>
+      <ul>
+        <li>📈 Personalized financial consulting for businesses and individuals</li>
+        <li>📝 Monthly economic & business trend reports</li>
+        <li>💡 Tailored strategic planning sessions</li>
+        <li>📑 Priority access to internal publications & research</li>
+        <li>🤝 Exclusive networking opportunities</li>
+      </ul>
+    </div>
+  </section>
 
-    <a href="vvip-dashboard.html" class="back-btn">⬅ Kembali ke Dashboard</a>
-  </div>
-
+  <!-- Footer -->
   <footer>
-    © 2025 PT Sinar Langit Hanoi - VVIP PLUS Service
+    <p>&copy; <span id="year"></span> PT Sinar Langit Hanoi. All rights reserved.</p>
   </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
