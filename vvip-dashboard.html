@@ -2,68 +2,82 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VVIP Dashboard</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
       margin: 0;
-      font-family: Garamond, serif;
-      background: #420D09;
-      color: #FDC12A;
+      font-family: Arial, sans-serif;
       display: flex;
       height: 100vh;
+      background: #f4f4f4;
     }
 
     /* Sidebar */
     .sidebar {
-      width: 250px;
-      background: #2c0a07;
+      width: 260px;
+      background: #420D09;
+      color: #FDC12A;
       display: flex;
       flex-direction: column;
-      padding-top: 20px;
+      padding: 20px 0;
+      overflow-y: auto;
     }
 
     .sidebar h2 {
       text-align: center;
+      margin-bottom: 30px;
       font-family: "Bickham Script Pro", cursive;
-      margin-bottom: 20px;
-      font-size: 28px;
-      color: #FDC12A;
     }
 
     .sidebar a {
-      padding: 15px 20px;
-      text-decoration: none;
-      color: #FDC12A;
       display: flex;
       align-items: center;
-      gap: 10px;
-      transition: 0.3s;
-      font-size: 16px;
+      padding: 12px 20px;
+      color: #FDC12A;
+      text-decoration: none;
+      transition: background 0.3s;
+      font-weight: bold;
+      cursor: pointer;
     }
 
-    .sidebar a:hover, .sidebar a.active {
-      background: #FDC12A;
-      color: #420D09;
+    .sidebar a:hover {
+      background: rgba(253,193,42,0.2);
+    }
+
+    .sidebar a i {
+      margin-right: 10px;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    /* Submenu */
+    .submenu {
+      display: none;
+      flex-direction: column;
+      padding-left: 40px;
+      background: rgba(253,193,42,0.05);
+    }
+
+    .submenu a {
+      font-weight: normal;
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+
+    .submenu a:hover {
+      background: rgba(253,193,42,0.15);
     }
 
     /* Content */
     .content {
       flex: 1;
-      padding: 30px;
-      background: #fff;
-      color: #333;
+      padding: 20px;
       overflow-y: auto;
     }
 
     .content h1 {
       color: #420D09;
-      margin-bottom: 10px;
-    }
-
-    .content p {
-      line-height: 1.6;
     }
   </style>
 </head>
@@ -71,53 +85,76 @@
 
   <!-- Sidebar -->
   <div class="sidebar">
-    <h2>VVIP Panel</h2>
-    <a href="#" class="active" onclick="loadContent('overview')"><i class="fa-solid fa-chart-line"></i> Overview</a>
-    <a href="#" onclick="loadContent('vvip-pro')"><i class="fa-solid fa-gem"></i> VVIP Pro</a>
-    <a href="#" onclick="loadContent('vvip-plus')"><i class="fa-solid fa-crown"></i> VVIP Plus</a>
-    <a href="#" onclick="loadContent('settings')"><i class="fa-solid fa-gear"></i> Settings</a>
-    <a href="#" onclick="loadContent('support')"><i class="fa-solid fa-headset"></i> Support</a>
-    <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+    <h2>VVIP Dashboard</h2>
+
+    <a onclick="showContent('overview')"><i class="fa-solid fa-chart-line"></i> Overview</a>
+    <a onclick="showContent('projects')"><i class="fa-solid fa-folder-open"></i> Projects</a>
+    <a onclick="showContent('clients')"><i class="fa-solid fa-users"></i> Clients</a>
+
+    <!-- Finance with submenu -->
+    <a onclick="toggleMenu('financeSub')"><i class="fa-solid fa-sack-dollar"></i> Finance <i class="fa-solid fa-caret-down" style="margin-left:auto;"></i></a>
+    <div class="submenu" id="financeSub">
+      <a onclick="showContent('cashflow')">💰 Cashflow</a>
+      <a onclick="showContent('tax')">📊 Tax</a>
+      <a onclick="showContent('payroll')">👥 Payroll</a>
+    </div>
+
+    <!-- Contracts with submenu -->
+    <a onclick="toggleMenu('contractsSub')"><i class="fa-solid fa-file-contract"></i> Contracts <i class="fa-solid fa-caret-down" style="margin-left:auto;"></i></a>
+    <div class="submenu" id="contractsSub">
+      <a onclick="showContent('drafts')">Drafts</a>
+      <a onclick="showContent('signed')">Signed</a>
+      <a onclick="showContent('archives')">Archives</a>
+    </div>
+
+    <a onclick="showContent('compliance')"><i class="fa-solid fa-scale-balanced"></i> Compliance</a>
+
+    <!-- Investment submenu -->
+    <a onclick="toggleMenu('investmentSub')"><i class="fa-solid fa-lightbulb"></i> Investment <i class="fa-solid fa-caret-down" style="margin-left:auto;"></i></a>
+    <div class="submenu" id="investmentSub">
+      <a onclick="showContent('portfolio')">Portfolio</a>
+      <a onclick="showContent('opportunities')">New Opportunities</a>
+    </div>
+
+    <a onclick="showContent('reports')"><i class="fa-solid fa-chart-pie"></i> Reports</a>
+    <a onclick="showContent('settings')"><i class="fa-solid fa-gears"></i> Settings</a>
+    <a href="vvip-plus.html"><i class="fa-solid fa-plus-circle"></i> VVIP Plus</a>
+    <a href="vvip-pro.html"><i class="fa-solid fa-star"></i> VVIP Pro</a>
+    <a onclick="showContent('logout')"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
   </div>
 
-  <!-- Content -->
+  <!-- Main Content -->
   <div class="content" id="mainContent">
-    <h1>Welcome to the VVIP Dashboard</h1>
-    <p>Select a menu from the sidebar to view more information.</p>
+    <h1>Welcome to VVIP Dashboard</h1>
+    <p>Select a menu on the left to get started.</p>
   </div>
 
   <script>
-    function loadContent(page) {
-      const content = document.getElementById('mainContent');
-      document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
-      event.target.closest('a').classList.add('active');
+    function toggleMenu(id) {
+      const menu = document.getElementById(id);
+      menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+    }
 
-      if (page === 'overview') {
-        content.innerHTML = `
-          <h1>Overview</h1>
-          <p>Dashboard overview with general performance stats and updates.</p>
-        `;
-      } else if (page === 'vvip-pro') {
-        content.innerHTML = `
-          <h1>VVIP Pro</h1>
-          <p>Exclusive features and benefits for VVIP Pro members.</p>
-        `;
-      } else if (page === 'vvip-plus') {
-        content.innerHTML = `
-          <h1>VVIP Plus</h1>
-          <p>Premium features and upgrades for VVIP Plus members.</p>
-        `;
-      } else if (page === 'settings') {
-        content.innerHTML = `
-          <h1>Settings</h1>
-          <p>Manage your account preferences, notifications, and privacy.</p>
-        `;
-      } else if (page === 'support') {
-        content.innerHTML = `
-          <h1>Support</h1>
-          <p>Need help? Contact support, view FAQs, or open a ticket.</p>
-        `;
-      }
+    function showContent(page) {
+      const content = {
+        overview: "<h1>Overview</h1><p>This is the dashboard overview.</p>",
+        projects: "<h1>Projects</h1><p>List of ongoing and completed projects.</p>",
+        clients: "<h1>Clients</h1><p>Manage client data and relationships.</p>",
+        cashflow: "<h1>Cashflow</h1><p>Track your company’s cash inflow and outflow.</p>",
+        tax: "<h1>Tax</h1><p>Overview of tax obligations and reports.</p>",
+        payroll: "<h1>Payroll</h1><p>Manage employee salaries and benefits.</p>",
+        drafts: "<h1>Draft Contracts</h1><p>Unfinished contract documents.</p>",
+        signed: "<h1>Signed Contracts</h1><p>Contracts that are legally signed.</p>",
+        archives: "<h1>Archived Contracts</h1><p>Older contracts stored for records.</p>",
+        compliance: "<h1>Compliance</h1><p>Monitor company compliance status.</p>",
+        portfolio: "<h1>Investment Portfolio</h1><p>Current investment holdings.</p>",
+        opportunities: "<h1>New Opportunities</h1><p>Potential investment ideas.</p>",
+        reports: "<h1>Reports</h1><p>Generate business and financial reports.</p>",
+        settings: "<h1>Settings</h1><p>Configure system preferences.</p>",
+        logout: "<h1>Logout</h1><p>You have been logged out.</p>"
+      };
+
+      document.getElementById("mainContent").innerHTML = content[page] || "<h1>Page Not Found</h1>";
     }
   </script>
 
