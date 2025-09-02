@@ -2,62 +2,142 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VVIP Dashboard - PT Sinar Langit Hanoi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=EB+Garamond&display=swap" rel="stylesheet">
+  <title>VVIP Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
       margin: 0;
-      font-family: 'EB Garamond', serif;
-      background-color: #8B0000;
-      color: #FFD500;
-      text-align: center;
-      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+      background: #f4f4f4;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 260px;
+      background: #420D09;
+      color: #FDC12A;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      padding: 20px 0;
+      overflow-y: auto;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-family: "Bickham Script Pro", cursive;
+    }
+
+    .sidebar a {
+      display: flex;
       align-items: center;
-    }
-    h1 {
-      font-family: 'Cinzel Decorative', serif;
-      margin-bottom: 40px;
-    }
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      width: 80%;
-      max-width: 800px;
-    }
-    .service-box {
-      background: rgba(0,0,0,0.6);
-      padding: 30px;
-      border-radius: 15px;
+      padding: 12px 20px;
+      color: #FDC12A;
+      text-decoration: none;
+      transition: background 0.3s;
+      font-weight: bold;
       cursor: pointer;
-      transition: 0.3s;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
-    .service-box:hover {
-      transform: translateY(-5px);
-      background: rgba(255,255,255,0.1);
+
+    .sidebar a:hover {
+      background: rgba(253,193,42,0.2);
     }
-    .service-box h2 {
-      margin-bottom: 15px;
-      font-family: 'Cinzel Decorative', serif;
+
+    .sidebar a i {
+      margin-right: 10px;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    /* Submenu */
+    .submenu {
+      display: none;
+      flex-direction: column;
+      padding-left: 40px;
+      background: rgba(253,193,42,0.05);
+    }
+
+    .submenu a {
+      font-weight: normal;
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+
+    .submenu a:hover {
+      background: rgba(253,193,42,0.15);
+    }
+
+    /* Content */
+    .content {
+      flex: 1;
+      padding: 20px;
+    }
+
+    .content h1 {
+      color: #420D09;
     }
   </style>
 </head>
 <body>
-  <h1>Welcome to VVIP Dashboard</h1>
-  <div class="services">
-    <div class="service-box" onclick="window.location.href='vvip-pro.html'">
-      <h2>VVIP PRO</h2>
-      <p>Akses premium dengan fitur bisnis strategis tingkat lanjut.</p>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>VVIP Dashboard</h2>
+
+    <a><i class="fa-solid fa-chart-line"></i> Overview</a>
+    <a><i class="fa-solid fa-folder-open"></i> Projects</a>
+    <a><i class="fa-solid fa-users"></i> Clients</a>
+
+    <!-- Finance with submenu -->
+    <a onclick="toggleMenu('financeSub')"><i class="fa-solid fa-sack-dollar"></i> Finance <i class="fa-solid fa-caret-down" style="margin-left:auto;"></i></a>
+    <div class="submenu" id="financeSub">
+      <a href="#">💰 Cashflow</a>
+      <a href="#">📊 Tax</a>
+      <a href="#">👥 Payroll</a>
     </div>
-    <div class="service-box" onclick="window.location.href='vvip-plus.html'">
-      <h2>VVIP PLUS</h2>
-      <p>Layanan eksklusif dengan dukungan khusus dan fleksibel.</p>
+
+    <!-- Contracts with submenu -->
+    <a onclick="toggleMenu('contractsSub')"><i class="fa-solid fa-file-contract"></i> Contracts <i class="fa-solid fa-caret-down" style="margin-left:auto;"></i></a>
+    <div class="submenu" id="contractsSub">
+      <a href="#">Drafts</a>
+      <a href="#">Signed</a>
+      <a href="#">Archives</a>
     </div>
+
+    <a><i class="fa-solid fa-scale-balanced"></i> Compliance</a>
+
+    <!-- Investment submenu -->
+    <a onclick="toggleMenu('investmentSub')"><i class="fa-solid fa-lightbulb"></i> Investment <i class="fa-solid fa-caret-down" style="margin-left:auto;"></i></a>
+    <div class="submenu" id="investmentSub">
+      <a href="#">Portfolio</a>
+      <a href="#">New Opportunities</a>
+    </div>
+
+    <a><i class="fa-solid fa-chart-pie"></i> Reports</a>
+    <a><i class="fa-solid fa-gears"></i> Settings</a>
+    <a href="vvip-plus.html"><i class="fa-solid fa-plus-circle"></i> VVIP Plus</a>
+    <a href="vvip-pro.html"><i class="fa-solid fa-star"></i> VVIP Pro</a>
+    <a><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
   </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <h1>Welcome to VVIP Dashboard</h1>
+    <p>Select a menu on the left to get started.</p>
+  </div>
+
+  <script>
+    function toggleMenu(id) {
+      const menu = document.getElementById(id);
+      if (menu.style.display === "flex") {
+        menu.style.display = "none";
+      } else {
+        menu.style.display = "flex";
+      }
+    }
+  </script>
+
 </body>
 </html>
