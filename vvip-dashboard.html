@@ -2,81 +2,68 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VVIP Dashboard</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Garamond, serif;
+      background: #420D09;
+      color: #FDC12A;
       display: flex;
       height: 100vh;
-      background: #f4f4f4;
     }
 
     /* Sidebar */
     .sidebar {
-      width: 260px;
-      background: #420D09;
-      color: #FDC12A;
+      width: 250px;
+      background: #2c0a07;
       display: flex;
       flex-direction: column;
-      padding: 20px 0;
-      overflow-y: auto;
+      padding-top: 20px;
     }
 
     .sidebar h2 {
       text-align: center;
-      margin-bottom: 30px;
       font-family: "Bickham Script Pro", cursive;
+      margin-bottom: 20px;
+      font-size: 28px;
+      color: #FDC12A;
     }
 
     .sidebar a {
+      padding: 15px 20px;
+      text-decoration: none;
+      color: #FDC12A;
       display: flex;
       align-items: center;
-      padding: 12px 20px;
-      color: #FDC12A;
-      text-decoration: none;
-      transition: background 0.3s;
-      font-weight: bold;
-      cursor: pointer;
+      gap: 10px;
+      transition: 0.3s;
+      font-size: 16px;
     }
 
-    .sidebar a:hover {
-      background: rgba(253,193,42,0.2);
-    }
-
-    .sidebar a i {
-      margin-right: 10px;
-      min-width: 20px;
-      text-align: center;
-    }
-
-    /* Submenu */
-    .submenu {
-      display: none;
-      flex-direction: column;
-      padding-left: 40px;
-      background: rgba(253,193,42,0.05);
-    }
-
-    .submenu a {
-      font-weight: normal;
-      padding: 10px 20px;
-      font-size: 14px;
-    }
-
-    .submenu a:hover {
-      background: rgba(253,193,42,0.15);
+    .sidebar a:hover, .sidebar a.active {
+      background: #FDC12A;
+      color: #420D09;
     }
 
     /* Content */
     .content {
       flex: 1;
-      padding: 20px;
+      padding: 30px;
+      background: #fff;
+      color: #333;
+      overflow-y: auto;
     }
 
     .content h1 {
       color: #420D09;
+      margin-bottom: 10px;
+    }
+
+    .content p {
+      line-height: 1.6;
     }
   </style>
 </head>
@@ -84,57 +71,58 @@
 
   <!-- Sidebar -->
   <div class="sidebar">
-    <h2>VVIP Dashboard</h2>
-
-    <a><i class="fa-solid fa-chart-line"></i> Overview</a>
-    <a><i class="fa-solid fa-folder-open"></i> Projects</a>
-    <a><i class="fa-solid fa-users"></i> Clients</a>
-
-    <!-- Finance with submenu -->
-    <a onclick="toggleMenu('financeSub')"><i class="fa-solid fa-sack-dollar"></i> Finance <i class="fa-solid fa-caret-down" style="margin-left:auto;"></i></a>
-    <div class="submenu" id="financeSub">
-      <a href="#">💰 Cashflow</a>
-      <a href="#">📊 Tax</a>
-      <a href="#">👥 Payroll</a>
-    </div>
-
-    <!-- Contracts with submenu -->
-    <a onclick="toggleMenu('contractsSub')"><i class="fa-solid fa-file-contract"></i> Contracts <i class="fa-solid fa-caret-down" style="margin-left:auto;"></i></a>
-    <div class="submenu" id="contractsSub">
-      <a href="#">Drafts</a>
-      <a href="#">Signed</a>
-      <a href="#">Archives</a>
-    </div>
-
-    <a><i class="fa-solid fa-scale-balanced"></i> Compliance</a>
-
-    <!-- Investment submenu -->
-    <a onclick="toggleMenu('investmentSub')"><i class="fa-solid fa-lightbulb"></i> Investment <i class="fa-solid fa-caret-down" style="margin-left:auto;"></i></a>
-    <div class="submenu" id="investmentSub">
-      <a href="#">Portfolio</a>
-      <a href="#">New Opportunities</a>
-    </div>
-
-    <a><i class="fa-solid fa-chart-pie"></i> Reports</a>
-    <a><i class="fa-solid fa-gears"></i> Settings</a>
-    <a href="vvip-plus.html"><i class="fa-solid fa-plus-circle"></i> VVIP Plus</a>
-    <a href="vvip-pro.html"><i class="fa-solid fa-star"></i> VVIP Pro</a>
-    <a><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+    <h2>VVIP Panel</h2>
+    <a href="#" class="active" onclick="loadContent('overview')"><i class="fa-solid fa-chart-line"></i> Overview</a>
+    <a href="#" onclick="loadContent('projects')"><i class="fa-solid fa-diagram-project"></i> Projects</a>
+    <a href="#" onclick="loadContent('clients')"><i class="fa-solid fa-user-tie"></i> Clients</a>
+    <a href="#" onclick="loadContent('finance')"><i class="fa-solid fa-coins"></i> Finance</a>
+    <a href="#" onclick="loadContent('settings')"><i class="fa-solid fa-gear"></i> Settings</a>
+    <a href="#" onclick="loadContent('support')"><i class="fa-solid fa-headset"></i> Support</a>
+    <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
   </div>
 
-  <!-- Main Content -->
-  <div class="content">
-    <h1>Welcome to VVIP Dashboard</h1>
-    <p>Select a menu on the left to get started.</p>
+  <!-- Content -->
+  <div class="content" id="mainContent">
+    <h1>Welcome to the VVIP Dashboard</h1>
+    <p>Select a menu from the sidebar to view more information.</p>
   </div>
 
   <script>
-    function toggleMenu(id) {
-      const menu = document.getElementById(id);
-      if (menu.style.display === "flex") {
-        menu.style.display = "none";
-      } else {
-        menu.style.display = "flex";
+    function loadContent(page) {
+      const content = document.getElementById('mainContent');
+      document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
+      event.target.closest('a').classList.add('active');
+
+      if (page === 'overview') {
+        content.innerHTML = `
+          <h1>Overview</h1>
+          <p>This is the general overview of your business performance. Here you will see the latest updates and quick stats.</p>
+        `;
+      } else if (page === 'projects') {
+        content.innerHTML = `
+          <h1>Projects</h1>
+          <p>Here are your ongoing and completed projects with status reports and deadlines.</p>
+        `;
+      } else if (page === 'clients') {
+        content.innerHTML = `
+          <h1>Clients</h1>
+          <p>Manage your client list, add new clients, and view client activity history here.</p>
+        `;
+      } else if (page === 'finance') {
+        content.innerHTML = `
+          <h1>Finance</h1>
+          <p>Track your revenue, expenses, and financial growth in this section.</p>
+        `;
+      } else if (page === 'settings') {
+        content.innerHTML = `
+          <h1>Settings</h1>
+          <p>Customize your dashboard preferences and account security settings here.</p>
+        `;
+      } else if (page === 'support') {
+        content.innerHTML = `
+          <h1>Support</h1>
+          <p>Contact support for help, FAQs, or to submit a request ticket.</p>
+        `;
       }
     }
   </script>
