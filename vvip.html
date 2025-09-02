@@ -3,13 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VVIP - PT Sinar Langit Hanoi</title>
-  <!-- Favicon -->
-  <link rel="icon" href="logo.png" type="image/png">
-
-  <!-- Google Fonts -->
+  <title>VVIP Login - PT Sinar Langit Hanoi</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=EB+Garamond&display=swap" rel="stylesheet">
-
   <style>
     body {
       margin: 0;
@@ -17,179 +12,69 @@
       background-color: #8B0000;
       color: #FFD500;
       text-align: center;
-    }
-
-    /* Header & Nav */
-    header {
-      background-color: rgba(0,0,0,0.3);
-      padding: 15px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      height: 100vh;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
     }
-
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .login-box {
+      background: rgba(0,0,0,0.6);
+      padding: 30px;
+      border-radius: 15px;
+      width: 320px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
     }
-
-    .logo {
-      height: 40px;
-      width: auto;
-    }
-
-    .logo-title {
+    .login-box h2 {
       font-family: 'Cinzel Decorative', serif;
-      font-size: 22px;
-    }
-
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      gap: 30px;
-    }
-
-    nav ul li {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 18px;
-    }
-
-    nav ul li a {
-      text-decoration: none;
-      color: #FFD500;
-      transition: 0.3s;
-    }
-
-    nav ul li a:hover,
-    nav ul li a.active {
-      color: white;
-      text-shadow: 0 0 10px #FFD500;
-    }
-
-    /* Hamburger */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 5px;
-    }
-
-    .hamburger div {
-      width: 25px;
-      height: 3px;
-      background-color: #FFD500;
-      transition: 0.3s;
-    }
-
-    /* Responsive Menu */
-    @media (max-width: 768px) {
-      nav ul {
-        display: none;
-        flex-direction: column;
-        background-color: rgba(0,0,0,0.9);
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        padding: 20px;
-        border-radius: 10px;
-      }
-
-      nav ul.active {
-        display: flex;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-    }
-
-    /* Content */
-    .content {
-      padding: 120px 20px;
-      animation: fadeIn 2s ease-in-out;
-    }
-
-    .content h1 {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 42px;
       margin-bottom: 20px;
     }
-
-    .content p {
-      font-size: 20px;
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+    }
+    button {
+      background: #FFD500;
+      color: #8B0000;
       font-weight: bold;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
     }
-
-    /* Fade in animation */
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
+    button:hover {
+      background: white;
     }
-
-    /* Footer */
-    footer {
-      margin-top: 50px;
-      padding: 15px 0;
-      background-color: rgba(0,0,0,0.4);
-      font-size: 14px;
+    .error {
+      color: #FF7777;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="logo-area">
-      <img src="logo.png" alt="PT Sinar Langit Hanoi" class="logo">
-      <div class="logo-title">PT Sinar Langit Hanoi</div>
-    </div>
-    <nav>
-      <ul id="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="aboutus.html">About Us</a></li>
-        <li><a href="service.html">Service</a></li>
-        <li><a href="vvip.html">VVIP</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-    <div class="hamburger" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </header>
-
-  <!-- Content -->
-  <section class="content">
-    <h1>VVIP</h1>
-    <p>🚧COOMING SOON🚧</p>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; <span id="year"></span> PT Sinar Langit Hanoi. All rights reserved.</p>
-  </footer>
+  <div class="login-box">
+    <h2>VVIP Login</h2>
+    <input type="text" id="username" placeholder="Username"><br>
+    <input type="password" id="password" placeholder="Password"><br>
+    <button onclick="login()">Login</button>
+    <p class="error" id="error"></p>
+  </div>
 
   <script>
-    function toggleMenu() {
-      document.getElementById("nav-links").classList.toggle("active");
-    }
+    function login() {
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
 
-    // auto update tahun copyright
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // kasih class 'active' ke menu sesuai halaman
-    const navLinks = document.querySelectorAll("nav ul li a");
-    navLinks.forEach(link => {
-      if(link.href === window.location.href){
-        link.classList.add("active");
+      // Ganti username & password sesuai kamu
+      if(user === "kevin" && pass === "12345") {
+        window.location.href = "vvip-dashboard.html";
+      } else {
+        document.getElementById("error").textContent = "❌ Username atau Password salah";
       }
-    });
+    }
   </script>
 </body>
 </html>
