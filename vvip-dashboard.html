@@ -2,86 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VVIP Login - PT Sinar Langit Hanoi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=EB+Garamond&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'EB Garamond', serif;
-      background-color: #8B0000;
-      color: #FFD500;
-      text-align: center;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .login-box {
-      background: rgba(0,0,0,0.6);
-      padding: 30px;
-      border-radius: 15px;
-      width: 320px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    }
-    .login-box h2 {
-      font-family: 'Cinzel Decorative', serif;
-      margin-bottom: 20px;
-    }
-    input {
-      width: 90%;
-      padding: 10px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 8px;
-    }
-    button {
-      background: #FFD500;
-      color: #8B0000;
-      font-weight: bold;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    button:hover {
-      background: white;
-    }
-    .error {
-      color: #FF7777;
-      margin-top: 10px;
-    }
-  </style>
-</head>
-<body>
-  <div class="login-box">
-    <h2>VVIP Login</h2>
-    <input type="text" id="username" placeholder="Username"><br>
-    <input type="password" id="password" placeholder="Password"><br>
-    <button onclick="login()">Login</button>
-    <p class="error" id="error"></p>
-  </div>
-
-  <script>
-    function login() {
-      const user = document.getElementById("username").value;
-      const pass = document.getElementById("password").value;
-
-      // Ganti username & password sesuai kamu
-      if(user === "kevin" && pass === "12345") { window.location.href = "vvip-dashboard.html"; } 
-      if(user === "scelinegalak" && pas === "anjayslebew") {
-        window.location.href = "vvip-dashboard.html";
-      } else {
-        document.getElementById("error").textContent = "❌ Username atau Password salah";
-      }
-    }
-  </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
   <title>VVIP Dashboard</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -217,33 +137,131 @@
 
     function showContent(page) {
       const content = {
-        overview: "<h1>Overview</h1><p>overview: `
-  <h1>Overview</h1>
-  <p>Selamat datang di <b>PT Sinar Langit Hanoi</b>.</p>
-  <p>Kami bergerak di bidang <b>konsultasi manajemen (KBLI 70209)</b>, menyediakan layanan:</p>
-  <ul>
-    <li>Konsultasi strategi bisnis & operasional</li>
-    <li>Analisis dan pengembangan usaha</li>
-    <li>Dukungan manajemen dan tata kelola</li>
-    <li>Layanan kepatuhan regulasi</li>
-    <li>Perencanaan keuangan & investasi</li>
-  </ul>
-  <p>Dashboard ini berfungsi sebagai pusat informasi untuk memantau proyek, klien, laporan keuangan, kontrak, serta peluang investasi perusahaan.</p>
-`,
-</p>",
-        projects: "<h1>Projects</h1><p>ketik di sini</p>",
-        clients: "<h1>Clients</h1><p>ketik di sini</p>",
-        cashflow: "<h1>Cashflow</h1><p>ketik di sini</p>",
-        tax: "<h1>Tax</h1><p>ketik di sini</p>",
-        payroll: "<h1>Payroll</h1><p>ketik di sini</p>",
-        drafts: "<h1>Draft Contracts</h1><p>ketik di sini</p>",
-        signed: "<h1>Signed Contracts</h1><p>ketik di sini</p>",
-        archives: "<h1>Archived Contracts</h1><p>ketik di sini</p>",
-        compliance: "<h1>Compliance</h1><p>ketik di sini</p>",
-        portfolio: "<h1>Investment Portfolio</h1><p>ketik di sini</p>",
-        opportunities: "<h1>New Opportunities</h1><p>ketik di sini</p>",
-        reports: "<h1>Reports</h1><p>ketik di sini</p>",
-        settings: "<h1>Settings</h1><p>ketik di sini</p>"
+        overview: `
+          <h1>Overview</h1>
+          <p>Selamat datang di <b>PT Sinar Langit Hanoi</b>.</p>
+          <p>Kami bergerak di bidang <b>konsultasi manajemen (KBLI 70209)</b>, menyediakan layanan:</p>
+          <ul>
+            <li>Konsultasi strategi bisnis & operasional</li>
+            <li>Analisis dan pengembangan usaha</li>
+            <li>Dukungan manajemen dan tata kelola</li>
+            <li>Layanan kepatuhan regulasi</li>
+            <li>Perencanaan keuangan & investasi</li>
+          </ul>
+          <p>Dashboard ini berfungsi sebagai pusat informasi untuk memantau proyek, klien, laporan keuangan, kontrak, serta peluang investasi perusahaan.</p>
+        `,
+        projects: `
+          <h1>Projects</h1>
+          <p>Daftar proyek yang sedang berjalan maupun yang sudah selesai:</p>
+          <ul>
+            <li>Proyek Konsultasi Strategi – PT ABC</li>
+            <li>Studi Kelayakan Pasar – PT XYZ</li>
+            <li>Restrukturisasi Organisasi – PT Maju Bersama</li>
+          </ul>
+        `,
+        clients: `
+          <h1>Clients</h1>
+          <p>Data klien yang ditangani:</p>
+          <ul>
+            <li>PT ABC – Konsultasi Manajemen</li>
+            <li>PT XYZ – Analisis Pasar</li>
+            <li>PT Maju Bersama – Restrukturisasi</li>
+          </ul>
+        `,
+        cashflow: `
+          <h1>Cashflow</h1>
+          <p>Pantau arus kas masuk dan keluar perusahaan:</p>
+          <ul>
+            <li>Pendapatan bulanan</li>
+            <li>Biaya operasional</li>
+            <li>Saldo akhir</li>
+          </ul>
+        `,
+        tax: `
+          <h1>Tax</h1>
+          <p>Laporan kewajiban pajak:</p>
+          <ul>
+            <li>Pajak Penghasilan (PPh)</li>
+            <li>Pajak Pertambahan Nilai (PPN)</li>
+            <li>Laporan SPT Tahunan</li>
+          </ul>
+        `,
+        payroll: `
+          <h1>Payroll</h1>
+          <p>Manajemen gaji & tunjangan karyawan:</p>
+          <ul>
+            <li>Data karyawan</li>
+            <li>Slip gaji bulanan</li>
+            <li>Tunjangan & bonus</li>
+          </ul>
+        `,
+        drafts: `
+          <h1>Draft Contracts</h1>
+          <p>Kontrak yang sedang dalam tahap penyusunan:</p>
+          <ul>
+            <li>Draft kontrak dengan PT ABC</li>
+            <li>Draft kontrak dengan PT XYZ</li>
+          </ul>
+        `,
+        signed: `
+          <h1>Signed Contracts</h1>
+          <p>Kontrak yang sudah ditandatangani dan aktif:</p>
+          <ul>
+            <li>Kontrak PT ABC – Konsultasi Strategi</li>
+            <li>Kontrak PT XYZ – Analisis Pasar</li>
+          </ul>
+        `,
+        archives: `
+          <h1>Archived Contracts</h1>
+          <p>Kontrak lama yang disimpan sebagai arsip:</p>
+          <ul>
+            <li>Kontrak PT Lama Jaya – Selesai 2023</li>
+          </ul>
+        `,
+        compliance: `
+          <h1>Compliance</h1>
+          <p>Monitoring kepatuhan perusahaan terhadap regulasi:</p>
+          <ul>
+            <li>Kepatuhan pajak</li>
+            <li>Kepatuhan ketenagakerjaan</li>
+            <li>Kepatuhan izin usaha</li>
+          </ul>
+        `,
+        portfolio: `
+          <h1>Investment Portfolio</h1>
+          <p>Daftar investasi yang dimiliki perusahaan:</p>
+          <ul>
+            <li>Saham PT Teknologi Maju</li>
+            <li>Obligasi Pemerintah RI</li>
+            <li>Investasi Reksadana</li>
+          </ul>
+        `,
+        opportunities: `
+          <h1>New Opportunities</h1>
+          <p>Peluang investasi baru yang sedang dianalisis:</p>
+          <ul>
+            <li>Startup Fintech Indonesia</li>
+            <li>Ekspansi pasar Asia Tenggara</li>
+          </ul>
+        `,
+        reports: `
+          <h1>Reports</h1>
+          <p>Laporan bisnis & keuangan bulanan:</p>
+          <ul>
+            <li>Laporan Keuangan Bulanan</li>
+            <li>Laporan Proyek</li>
+            <li>Laporan Evaluasi</li>
+          </ul>
+        `,
+        settings: `
+          <h1>Settings</h1>
+          <p>Pengaturan sistem & preferensi:</p>
+          <ul>
+            <li>Manajemen User</li>
+            <li>Preferensi Dashboard</li>
+            <li>Pengaturan Notifikasi</li>
+          </ul>
+        `
       };
 
       document.getElementById("mainContent").innerHTML = content[page] || "<h1>Page Not Found</h1>";
