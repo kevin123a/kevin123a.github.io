@@ -120,7 +120,7 @@
     <a onclick="showContent('settings')"><i class="fa-solid fa-gears"></i> Settings</a>
     <a href="vvip-plus.html"><i class="fa-solid fa-plus-circle"></i> VVIP Plus</a>
     <a href="vvip-pro.html"><i class="fa-solid fa-star"></i> VVIP Pro</a>
-    <a onclick="showContent('logout')"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+    <a onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
   </div>
 
   <!-- Main Content -->
@@ -137,26 +137,30 @@
 
     function showContent(page) {
       const content = {
-        overview: "<h1>Overview</h1><p>This is the dashboard overview.</p>",
-        projects: "<h1>Projects</h1><p>List of ongoing and completed projects.</p>",
-        clients: "<h1>Clients</h1><p>Manage client data and relationships.</p>",
-        cashflow: "<h1>Cashflow</h1><p>Track your company’s cash inflow and outflow.</p>",
-        tax: "<h1>Tax</h1><p>Overview of tax obligations and reports.</p>",
-        payroll: "<h1>Payroll</h1><p>Manage employee salaries and benefits.</p>",
-        drafts: "<h1>Draft Contracts</h1><p>Unfinished contract documents.</p>",
-        signed: "<h1>Signed Contracts</h1><p>Contracts that are legally signed.</p>",
-        archives: "<h1>Archived Contracts</h1><p>Older contracts stored for records.</p>",
-        compliance: "<h1>Compliance</h1><p>Monitor company compliance status.</p>",
-        portfolio: "<h1>Investment Portfolio</h1><p>Current investment holdings.</p>",
-        opportunities: "<h1>New Opportunities</h1><p>Potential investment ideas.</p>",
-        reports: "<h1>Reports</h1><p>Generate business and financial reports.</p>",
-        settings: "<h1>Settings</h1><p>Configure system preferences.</p>",
-        logout: "<h1>Logout</h1><p>You have been logged out.</p>"
+        overview: "<h1>Overview</h1><p>ketik di sini</p>",
+        projects: "<h1>Projects</h1><p>ketik di sini</p>",
+        clients: "<h1>Clients</h1><p>ketik di sini</p>",
+        cashflow: "<h1>Cashflow</h1><p>ketik di sini</p>",
+        tax: "<h1>Tax</h1><p>ketik di sini</p>",
+        payroll: "<h1>Payroll</h1><p>ketik di sini</p>",
+        drafts: "<h1>Draft Contracts</h1><p>ketik di sini</p>",
+        signed: "<h1>Signed Contracts</h1><p>ketik di sini</p>",
+        archives: "<h1>Archived Contracts</h1><p>ketik di sini</p>",
+        compliance: "<h1>Compliance</h1><p>ketik di sini</p>",
+        portfolio: "<h1>Investment Portfolio</h1><p>ketik di sini</p>",
+        opportunities: "<h1>New Opportunities</h1><p>ketik di sini</p>",
+        reports: "<h1>Reports</h1><p>ketik di sini</p>",
+        settings: "<h1>Settings</h1><p>ketik di sini</p>"
       };
 
       document.getElementById("mainContent").innerHTML = content[page] || "<h1>Page Not Found</h1>";
+    }
+
+    function logout() {
+      window.location.href = "vvip.html";
     }
   </script>
 
 </body>
 </html>
+
