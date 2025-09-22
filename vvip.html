@@ -52,6 +52,8 @@
       color: #FF7777;
       margin-top: 10px;
     }
+    /* small note area showing where to edit (non-destructive) */
+    .note {font-size:12px;color:#FFD500;margin-top:8px}
   </style>
 </head>
 <body>
@@ -61,19 +63,132 @@
     <input type="password" id="password" placeholder="Password"><br>
     <button onclick="login()">Login</button>
     <p class="error" id="error"></p>
+    <p class="note">Daftar akun ada di file (edit bagian USERS) — setiap baris diberi komentar "buat disini ya!!"</p>
   </div>
 
   <script>
-    function login() {
-      const user = document.getElementById("username").value;
-      const pass = document.getElementById("password").value;
+    // === DAFTAR AKUN (edit di sini) ===
+    // Saya sudah membuat 100 akun contoh di bawah.
+    // Setiap entri memiliki komentar: /* buat disini ya!! */
+    // Kamu bisa mengganti username/password sesuai kebutuhan.
+    const USERS = [
+      {username: "kevin", password: "12345"}, /* buat disini ya!! */
+      {username: "scelinegalak", password: "anjayslebew"}, /* buat disini ya!! */
+      {username: "vvip003", password: "pwd003"}, /* buat disini ya!! */
+      {username: "vvip004", password: "pwd004"}, /* buat disini ya!! */
+      {username: "vvip005", password: "pwd005"}, /* buat disini ya!! */
+      {username: "vvip006", password: "pwd006"}, /* buat disini ya!! */
+      {username: "vvip007", password: "pwd007"}, /* buat disini ya!! */
+      {username: "vvip008", password: "pwd008"}, /* buat disini ya!! */
+      {username: "vvip009", password: "pwd009"}, /* buat disini ya!! */
+      {username: "vvip010", password: "pwd010"}, /* buat disini ya!! */
+      {username: "vvip011", password: "pwd011"}, /* buat disini ya!! */
+      {username: "vvip012", password: "pwd012"}, /* buat disini ya!! */
+      {username: "vvip013", password: "pwd013"}, /* buat disini ya!! */
+      {username: "vvip014", password: "pwd014"}, /* buat disini ya!! */
+      {username: "vvip015", password: "pwd015"}, /* buat disini ya!! */
+      {username: "vvip016", password: "pwd016"}, /* buat disini ya!! */
+      {username: "vvip017", password: "pwd017"}, /* buat disini ya!! */
+      {username: "vvip018", password: "pwd018"}, /* buat disini ya!! */
+      {username: "vvip019", password: "pwd019"}, /* buat disini ya!! */
+      {username: "vvip020", password: "pwd020"}, /* buat disini ya!! */
+      {username: "vvip021", password: "pwd021"}, /* buat disini ya!! */
+      {username: "vvip022", password: "pwd022"}, /* buat disini ya!! */
+      {username: "vvip023", password: "pwd023"}, /* buat disini ya!! */
+      {username: "vvip024", password: "pwd024"}, /* buat disini ya!! */
+      {username: "vvip025", password: "pwd025"}, /* buat disini ya!! */
+      {username: "vvip026", password: "pwd026"}, /* buat disini ya!! */
+      {username: "vvip027", password: "pwd027"}, /* buat disini ya!! */
+      {username: "vvip028", password: "pwd028"}, /* buat disini ya!! */
+      {username: "vvip029", password: "pwd029"}, /* buat disini ya!! */
+      {username: "vvip030", password: "pwd030"}, /* buat disini ya!! */
+      {username: "vvip031", password: "pwd031"}, /* buat disini ya!! */
+      {username: "vvip032", password: "pwd032"}, /* buat disini ya!! */
+      {username: "vvip033", password: "pwd033"}, /* buat disini ya!! */
+      {username: "vvip034", password: "pwd034"}, /* buat disini ya!! */
+      {username: "vvip035", password: "pwd035"}, /* buat disini ya!! */
+      {username: "vvip036", password: "pwd036"}, /* buat disini ya!! */
+      {username: "vvip037", password: "pwd037"}, /* buat disini ya!! */
+      {username: "vvip038", password: "pwd038"}, /* buat disini ya!! */
+      {username: "vvip039", password: "pwd039"}, /* buat disini ya!! */
+      {username: "vvip040", password: "pwd040"}, /* buat disini ya!! */
+      {username: "vvip041", password: "pwd041"}, /* buat disini ya!! */
+      {username: "vvip042", password: "pwd042"}, /* buat disini ya!! */
+      {username: "vvip043", password: "pwd043"}, /* buat disini ya!! */
+      {username: "vvip044", password: "pwd044"}, /* buat disini ya!! */
+      {username: "vvip045", password: "pwd045"}, /* buat disini ya!! */
+      {username: "vvip046", password: "pwd046"}, /* buat disini ya!! */
+      {username: "vvip047", password: "pwd047"}, /* buat disini ya!! */
+      {username: "vvip048", password: "pwd048"}, /* buat disini ya!! */
+      {username: "vvip049", password: "pwd049"}, /* buat disini ya!! */
+      {username: "vvip050", password: "pwd050"}, /* buat disini ya!! */
+      {username: "vvip051", password: "pwd051"}, /* buat disini ya!! */
+      {username: "vvip052", password: "pwd052"}, /* buat disini ya!! */
+      {username: "vvip053", password: "pwd053"}, /* buat disini ya!! */
+      {username: "vvip054", password: "pwd054"}, /* buat disini ya!! */
+      {username: "vvip055", password: "pwd055"}, /* buat disini ya!! */
+      {username: "vvip056", password: "pwd056"}, /* buat disini ya!! */
+      {username: "vvip057", password: "pwd057"}, /* buat disini ya!! */
+      {username: "vvip058", password: "pwd058"}, /* buat disini ya!! */
+      {username: "vvip059", password: "pwd059"}, /* buat disini ya!! */
+      {username: "vvip060", password: "pwd060"}, /* buat disini ya!! */
+      {username: "vvip061", password: "pwd061"}, /* buat disini ya!! */
+      {username: "vvip062", password: "pwd062"}, /* buat disini ya!! */
+      {username: "vvip063", password: "pwd063"}, /* buat disini ya!! */
+      {username: "vvip064", password: "pwd064"}, /* buat disini ya!! */
+      {username: "vvip065", password: "pwd065"}, /* buat disini ya!! */
+      {username: "vvip066", password: "pwd066"}, /* buat disini ya!! */
+      {username: "vvip067", password: "pwd067"}, /* buat disini ya!! */
+      {username: "vvip068", password: "pwd068"}, /* buat disini ya!! */
+      {username: "vvip069", password: "pwd069"}, /* buat disini ya!! */
+      {username: "vvip070", password: "pwd070"}, /* buat disini ya!! */
+      {username: "vvip071", password: "pwd071"}, /* buat disini ya!! */
+      {username: "vvip072", password: "pwd072"}, /* buat disini ya!! */
+      {username: "vvip073", password: "pwd073"}, /* buat disini ya!! */
+      {username: "vvip074", password: "pwd074"}, /* buat disini ya!! */
+      {username: "vvip075", password: "pwd075"}, /* buat disini ya!! */
+      {username: "vvip076", password: "pwd076"}, /* buat disini ya!! */
+      {username: "vvip077", password: "pwd077"}, /* buat disini ya!! */
+      {username: "vvip078", password: "pwd078"}, /* buat disini ya!! */
+      {username: "vvip079", password: "pwd079"}, /* buat disini ya!! */
+      {username: "vvip080", password: "pwd080"}, /* buat disini ya!! */
+      {username: "vvip081", password: "pwd081"}, /* buat disini ya!! */
+      {username: "vvip082", password: "pwd082"}, /* buat disini ya!! */
+      {username: "vvip083", password: "pwd083"}, /* buat disini ya!! */
+      {username: "vvip084", password: "pwd084"}, /* buat disini ya!! */
+      {username: "vvip085", password: "pwd085"}, /* buat disini ya!! */
+      {username: "vvip086", password: "pwd086"}, /* buat disini ya!! */
+      {username: "vvip087", password: "pwd087"}, /* buat disini ya!! */
+      {username: "vvip088", password: "pwd088"}, /* buat disini ya!! */
+      {username: "vvip089", password: "pwd089"}, /* buat disini ya!! */
+      {username: "vvip090", password: "pwd090"}, /* buat disini ya!! */
+      {username: "vvip091", password: "pwd091"}, /* buat disini ya!! */
+      {username: "vvip092", password: "pwd092"}, /* buat disini ya!! */
+      {username: "vvip093", password: "pwd093"}, /* buat disini ya!! */
+      {username: "vvip094", password: "pwd094"}, /* buat disini ya!! */
+      {username: "vvip095", password: "pwd095"}, /* buat disini ya!! */
+      {username: "vvip096", password: "pwd096"}, /* buat disini ya!! */
+      {username: "vvip097", password: "pwd097"}, /* buat disini ya!! */
+      {username: "vvip098", password: "pwd098"}, /* buat disini ya!! */
+      {username: "vvip099", password: "pwd099"}, /* buat disini ya!! */
+      {username: "vvip100", password: "pwd100"} /* buat disini ya!! */
+    ];
 
-      // Ganti username & password sesuai kamu
-      if(user === "kevin" && pass === "12345") { window.location.href = "vvip-dashboard.html"; } 
-      if(user === "scelinegalak" && pas === "anjayslebew") {
+    // login function checks USERS array
+    function login() {
+      const user = document.getElementById("username").value.trim();
+      const pass = document.getElementById("password").value;
+      const err = document.getElementById("error");
+      err.textContent = "";
+
+      if (!user || !pass) { err.textContent = "❌ Masukkan username dan password"; return; }
+
+      const found = USERS.find(u => u.username === user && u.password === pass);
+      if (found) {
+        // sukses -> redirect ke dashboard
         window.location.href = "vvip-dashboard.html";
       } else {
-        document.getElementById("error").textContent = "❌ Username atau Password salah";
+        err.textContent = "❌ Username atau Password salah";
       }
     }
   </script>
