@@ -14,6 +14,304 @@
       height: 100vh;
       background: #f4f4f4;
     }
+
+    /* Sidebar */
+    .sidebar {
+      width: 260px;
+      background: #420D09;
+      color: #FDC12A;
+      display: flex;
+      flex-direction: column;
+      padding: 20px 0;
+      overflow-y: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-family: "Bickham Script Pro", cursive;
+    }
+
+    .sidebar a {
+      display: flex;
+      align-items: center;
+      padding: 12px 20px;
+      color: #FDC12A;
+      text-decoration: none;
+      transition: background 0.3s;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .sidebar a:hover {
+      background: rgba(253,193,42,0.2);
+    }
+
+    .sidebar a i {
+      margin-right: 10px;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    /* Submenu */
+    .submenu {
+      display: none;
+      flex-direction: column;
+      padding-left: 40px;
+      background: rgba(253,193,42,0.05);
+    }
+
+    .submenu a {
+      font-weight: normal;
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+
+    .submenu a:hover {
+      background: rgba(253,193,42,0.15);
+    }
+
+    /* Content */
+    .content {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .content h1 {
+      color: #420D09;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+
+    table th {
+      background: #420D09;
+      color: #FFD500;
+    }
+
+    /* Toggle Button */
+    .toggle-btn {
+      display: none;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 20px;
+      background: #420D09;
+      color: #FDC12A;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        transform: translateX(-100%);
+        z-index: 999;
+      }
+
+      .sidebar.active {
+        transform: translateX(0);
+      }
+
+      .toggle-btn {
+        display: block;
+      }
+
+      .content {
+        margin-top: 50px;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Toggle Button -->
+  <button class="toggle-btn" onclick="toggleSidebar()"><i class="fa fa-bars"></i></button>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <h2>VVIP Dashboard</h2>
+
+    <a onclick="showContent('overview')"><i class="fa-solid fa-chart-line"></i> Overview</a>
+    <a onclick="showContent('projects')"><i class="fa-solid fa-folder-open"></i> Projects</a>
+    <a onclick="showContent('clients')"><i class="fa-solid fa-users"></i> Clients</a>
+
+    <!-- Finance with submenu -->
+    <a onclick="toggleMenu('financeSub')"><i class="fa-solid fa-sack-dollar"></i> Finance <i class="fa-solid fa-caret-down" style="margin-left:auto;"></i></a>
+    <div class="submenu" id="financeSub">
+      <a onclick="showContent('cashflow')">💰 Cashflow</a>
+      <a onclick="showContent('tax')">📊 Tax</a>
+      <a onclick="showContent('payroll')">👥 Payroll</a>
+    </div>
+
+    <!-- Contracts with submenu -->
+    <a onclick="toggleMenu('contractsSub')"><i class="fa-solid fa-file-contract"></i> Contracts <i class="fa-solid fa-caret-down" style="margin-left:auto;"></i></a>
+    <div class="submenu" id="contractsSub">
+      <a onclick="showContent('drafts')">Drafts</a>
+      <a onclick="showContent('signed')">Signed</a>
+      <a onclick="showContent('archives')">Archives</a>
+    </div>
+
+    <a onclick="showContent('compliance')"><i class="fa-solid fa-scale-balanced"></i> Compliance</a>
+
+    <!-- Investment submenu -->
+    <a onclick="toggleMenu('investmentSub')"><i class="fa-solid fa-lightbulb"></i> Investment <i class="fa-solid fa-caret-down" style="margin-left:auto;"></i></a>
+    <div class="submenu" id="investmentSub">
+      <a onclick="showContent('portfolio')">Portfolio</a>
+      <a onclick="showContent('IHSG')">IHSG</a>
+    </div>
+
+    <a onclick="showContent('reports')"><i class="fa-solid fa-chart-pie"></i> Reports</a>
+    <a onclick="showContent('settings')"><i class="fa-solid fa-gears"></i> Settings</a>
+    <a href="vvip-plus.html"><i class="fa-solid fa-plus-circle"></i> VVIP Plus</a>
+    <a href="vvip-pro.html"><i class="fa-solid fa-star"></i> VVIP Pro</a>
+    <a onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content" id="mainContent">
+    <h1>Welcome to VVIP Dashboard</h1>
+    <p>Select a menu on the left to get started.</p>
+  </div>
+
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+  <script>
+    function toggleMenu(id) {
+      const menu = document.getElementById(id);
+      menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+    }
+
+    function showContent(page) {
+      const content = {
+        overview: `<h1>Overview</h1><p>Selamat datang di <b>PT Sinar Langit Hanoi</b>.</p>`,
+        projects: `<h1>Projects</h1><p>Daftar proyek berjalan.</p>`,
+        clients: `<h1>Clients</h1><p>Data klien perusahaan.</p>`,
+        compliance: `
+          <h1>Compliance</h1>
+          <p>Monitoring kepatuhan perusahaan terhadap regulasi:</p>
+          <div style="max-width:600px;margin:auto;">
+            <canvas id="complianceChart"></canvas>
+          </div>
+          <h2 style="margin-top:30px;">Dokumen Compliance</h2>
+          <table>
+            <tr><th>Jenis</th><th>Status</th><th>Dokumen</th></tr>
+            <tr>
+              <td>Pajak</td>
+              <td><span style="color:green;">✅ Patuh</span></td>
+              <td><a href="pajak-pdf.html" target="_blank">Lihat</a></td>
+            </tr>
+            <tr>
+              <td>Ketenagakerjaan</td>
+              <td><span style="color:orange;">⚠️ Proses</span></td>
+              <td><a href="ketenagakerjaan.html" target="_blank">Lihat</a></td>
+            </tr>
+            <tr>
+              <td>Izin Usaha</td>
+              <td><span style="color:green;">✅ Aktif</span></td>
+              <td><a href="izin-usaha.html" target="_blank">Lihat</a></td>
+            </tr>
+          </table>
+        `,
+        portfolio: `<h1>Investment Portfolio</h1><p>Daftar investasi perusahaan.</p>`,
+        IHSG: `
+          <h1>Indeks Harga Saham Gabungan (IHSG)</h1>
+          <p>Data live chart IHSG:</p>
+          <div style="height:600px;">
+            <div id="tradingview_ihsg"></div>
+          </div>
+        `,
+        opportunities: `<h1>New Opportunities</h1><p>Peluang investasi baru.</p>`,
+        reports: `<h1>Reports</h1><p>Laporan bisnis bulanan.</p>`,
+        settings: `<h1>Settings</h1><p>Pengaturan sistem.</p>`
+      };
+
+      document.getElementById("mainContent").innerHTML = content[page] || "<h1>Page Not Found</h1>";
+
+      // Render Chart kalau halaman compliance dibuka
+      if (page === "compliance") {
+        const ctx = document.getElementById('complianceChart');
+        new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels: ['Pajak', 'Ketenagakerjaan', 'Izin Usaha'],
+            datasets: [{
+              data: [85, 70, 95],
+              backgroundColor: ['#FFD500', '#FF5733', '#4CAF50'],
+            }]
+          },
+          options: { plugins: { legend: { position: 'bottom' } } }
+        });
+      }
+
+      // Render TradingView kalau IHSG dibuka
+      if (page === "IHSG") {
+        new TradingView.widget({
+          "container_id": "tradingview_ihsg",
+          "width": "100%",
+          "height": "600",
+          "symbol": "IDX:COMPOSITE",
+          "interval": "D",
+          "timezone": "Asia/Jakarta",
+          "theme": "light",
+          "style": "1",
+          "locale": "id",
+          "toolbar_bg": "#f1f3f6",
+          "enable_publishing": false,
+          "allow_symbol_change": false,
+          "hide_side_toolbar": false
+        });
+      }
+    }
+
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+
+    function logout() {
+      window.location.href = "vvip.html";
+    }
+  </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VVIP Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+      background: #f4f4f4;
+    }
     .sidebar {
       width: 260px;
       background: #420D09;
