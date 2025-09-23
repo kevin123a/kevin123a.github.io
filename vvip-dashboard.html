@@ -143,7 +143,7 @@
         portfolio: `<h1>Investment Portfolio</h1><p>Daftar investasi perusahaan.</p>`,
         IHSG: `
           <h1>IHSG Live</h1>
-          <button class="refresh-btn" onclick="refreshIHSG()">🔄 Refresh Data</button>
+          <button class="refresh-btn" onclick="refreshIHSG()">Refresh Data</button>
           <div id="ihsg-container">
             <h2>Harga IHSG Saat Ini</h2>
             <p id="ihsg-price">Loading...</p>
@@ -178,41 +178,41 @@
 
     async function loadIHSG() {
       try {
-        const response = await fetch("https://api.goapi.io/stock/idx/COMPOSITE?api_key=demo"); 
-        const data = await response.json();
+        const res = await fetch("https://query1.finance.yahoo.com/v8/finance/chart/^JKSE"); 
+        const data = await res.json();
 
-        if (data && data.data) {
-          const price = data.data.last_price;
-          document.getElementById("ihsg-price").innerText = "Rp " + price.toLocaleString("id-ID");
+        const price = data.chart.result[0].meta.regularMarketPrice;
+        const time = new Date().toLocaleTimeString();
 
-          // update chart
-          const ctx = document.getElementById("ihsgChart").getContext("2d");
-          if (!ihsgChart) {
-            ihsgChart = new Chart(ctx, {
-              type: "line",
-              data: {
-                labels: [new Date().toLocaleTimeString()],
-                datasets: [{
-                  label: "IHSG",
-                  data: [price],
-                  borderColor: "#420D09",
-                  backgroundColor: "rgba(253,193,42,0.3)",
-                  fill: true,
-                }]
-              }
-            });
-          } else {
-            ihsgChart.data.labels.push(new Date().toLocaleTimeString());
-            ihsgChart.data.datasets[0].data.push(price);
-            if (ihsgChart.data.labels.length > 10) {
-              ihsgChart.data.labels.shift();
-              ihsgChart.data.datasets[0].data.shift();
+        document.getElementById("ihsg-price").innerText = 
+          "Rp " + price.toLocaleString("id-ID") + " (" + time + ")";
+
+        const ctx = document.getElementById("ihsgChart").getContext("2d");
+        if (!ihsgChart) {
+          ihsgChart = new Chart(ctx, {
+            type: "line",
+            data: {
+              labels: [time],
+              datasets: [{
+                label: "IHSG",
+                data: [price],
+                borderColor: "#420D09",
+                backgroundColor: "rgba(253,193,42,0.3)",
+                fill: true,
+              }]
             }
-            ihsgChart.update();
+          });
+        } else {
+          ihsgChart.data.labels.push(time);
+          ihsgChart.data.datasets[0].data.push(price);
+          if (ihsgChart.data.labels.length > 10) {
+            ihsgChart.data.labels.shift();
+            ihsgChart.data.datasets[0].data.shift();
           }
+          ihsgChart.update();
         }
       } catch (err) {
-        document.getElementById("ihsg-price").innerText = "Gagal memuat data.";
+        document.getElementById("ihsg-price").innerText = "Gagal ambil data.";
       }
     }
 
