@@ -179,7 +179,7 @@
     }
 
     function loadIHSG() {
-      // Widget harga IHSG
+      // Widget harga IHSG (real-time)
       new TradingView.widget({
         "container_id": "ihsg-quote",
         "symbol": "IDX:COMPOSITE",
@@ -192,13 +192,13 @@
         "showSymbolLogo": true
       });
 
-      // Widget chart IHSG
+      // Widget chart IHSG (harian, karena intraday tidak tersedia)
       new TradingView.widget({
         "container_id": "ihsg-chart",
         "width": "100%",
         "height": 500,
         "symbol": "IDX:COMPOSITE",
-        "interval": "1",
+        "interval": "D",
         "timezone": "Asia/Jakarta",
         "theme": "light",
         "style": "1",
