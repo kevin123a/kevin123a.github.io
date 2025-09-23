@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>VVIP Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
@@ -23,6 +24,7 @@
       flex-direction: column;
       padding: 20px 0;
       overflow-y: auto;
+      transition: transform 0.3s ease;
     }
 
     .sidebar h2 {
@@ -97,12 +99,59 @@
       background: #420D09;
       color: #FFD500;
     }
+
+    /* Toggle Button */
+    .toggle-btn {
+      display: none;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 20px;
+      background: #420D09;
+      color: #FDC12A;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        transform: translateX(-100%);
+        z-index: 999;
+      }
+
+      .sidebar.active {
+        transform: translateX(0);
+      }
+
+      .toggle-btn {
+        display: block;
+      }
+
+      .content {
+        margin-top: 50px;
+        padding: 15px;
+      }
+    }
   </style>
 </head>
 <body>
 
+  <!-- Toggle Button -->
+  <button class="toggle-btn" onclick="toggleSidebar()"><i class="fa fa-bars"></i></button>
+
   <!-- Sidebar -->
-  <div class="sidebar">
+  <div class="sidebar" id="sidebar">
     <h2>VVIP Dashboard</h2>
 
     <a onclick="showContent('overview')"><i class="fa-solid fa-chart-line"></i> Overview</a>
@@ -155,51 +204,9 @@
 
     function showContent(page) {
       const content = {
-        overview: `
-          <h1>Overview</h1>
-          <p>Selamat datang di <b>PT Sinar Langit Hanoi</b>.</p>
-          <p>Kami bergerak di bidang <b>konsultasi manajemen (KBLI 70209)</b>, menyediakan layanan:</p>
-          <ul>
-            <li>Konsultasi strategi bisnis & operasional</li>
-            <li>Analisis dan pengembangan usaha</li>
-            <li>Dukungan manajemen dan tata kelola</li>
-            <li>Layanan kepatuhan regulasi</li>
-            <li>Perencanaan keuangan & investasi</li>
-          </ul>
-        `,
-        projects: `
-          <h1>Projects</h1>
-          <p>Daftar proyek yang sedang berjalan maupun yang sudah selesai:</p>
-          <ul>
-            <li>Proyek Konsultasi Strategi – PT ABC</li>
-            <li>Studi Kelayakan Pasar – PT XYZ</li>
-            <li>Restrukturisasi Organisasi – PT Maju Bersama</li>
-          </ul>
-        `,
-        clients: `
-          <h1>Clients</h1>
-          <p>Data klien yang ditangani:</p>
-          <ul>
-            <li>PT ABC – Konsultasi Manajemen</li>
-            <li>PT XYZ – Analisis Pasar</li>
-            <li>PT Maju Bersama – Restrukturisasi</li>
-          </ul>
-        `,
-        cashflow: `
-          <h1>Cashflow</h1>
-          <p>Pantau arus kas masuk dan keluar perusahaan.</p>
-        `,
-        tax: `
-          <h1>Tax</h1>
-          <p>Laporan kewajiban pajak perusahaan.</p>
-        `,
-        payroll: `
-          <h1>Payroll</h1>
-          <p>Manajemen gaji & tunjangan karyawan.</p>
-        `,
-        drafts: `<h1>Draft Contracts</h1><p>Kontrak yang sedang dalam tahap penyusunan.</p>`,
-        signed: `<h1>Signed Contracts</h1><p>Kontrak yang sudah ditandatangani dan aktif.</p>`,
-        archives: `<h1>Archived Contracts</h1><p>Kontrak lama yang disimpan sebagai arsip.</p>`,
+        overview: `<h1>Overview</h1><p>Selamat datang di <b>PT Sinar Langit Hanoi</b>.</p>`,
+        projects: `<h1>Projects</h1><p>Daftar proyek berjalan.</p>`,
+        clients: `<h1>Clients</h1><p>Data klien perusahaan.</p>`,
         compliance: `
           <h1>Compliance</h1>
           <p>Monitoring kepatuhan perusahaan terhadap regulasi:</p>
@@ -208,53 +215,39 @@
           </div>
           <h2 style="margin-top:30px;">Dokumen Compliance</h2>
           <table>
-            <tr>
-              <th>Jenis</th>
-              <th>Status</th>
-              <th>Dokumen</th>
-            </tr>
-            <tr>
-              <td>Pajak</td>
-              <td><span style="color:green;">✅ Patuh</span></td>
-              <td><a href="#">Download</a></td>
-            </tr>
-            <tr>
-              <td>Ketenagakerjaan</td>
-              <td><span style="color:orange;">⚠️ Proses</span></td>
-              <td><a href="#">Upload</a></td>
-            </tr>
-            <tr>
-              <td>Izin Usaha</td>
-              <td><span style="color:green;">✅ Aktif</span></td>
-              <td><a href="#">Lihat</a></td>
-            </tr>
+            <tr><th>Jenis</th><th>Status</th><th>Dokumen</th></tr>
+            <tr><td>Pajak</td><td><span style="color:green;">✅ Patuh</span></td><td><a href="#">Download</a></td></tr>
+            <tr><td>Ketenagakerjaan</td><td><span style="color:orange;">⚠️ Proses</span></td><td><a href="#">Upload</a></td></tr>
+            <tr><td>Izin Usaha</td><td><span style="color:green;">✅ Aktif</span></td><td><a href="#">Lihat</a></td></tr>
           </table>
-          <script>
-            const ctx = document.getElementById('complianceChart');
-            new Chart(ctx, {
-              type: 'doughnut',
-              data: {
-                labels: ['Pajak', 'Ketenagakerjaan', 'Izin Usaha'],
-                datasets: [{
-                  data: [85, 70, 95],
-                  backgroundColor: ['#FFD500', '#FF5733', '#4CAF50'],
-                }]
-              },
-              options: {
-                plugins: {
-                  legend: { position: 'bottom' }
-                }
-              }
-            });
-          </script>
         `,
         portfolio: `<h1>Investment Portfolio</h1><p>Daftar investasi perusahaan.</p>`,
-        opportunities: `<h1>New Opportunities</h1><p>Peluang investasi baru yang sedang dianalisis.</p>`,
-        reports: `<h1>Reports</h1><p>Laporan bisnis & keuangan bulanan.</p>`,
-        settings: `<h1>Settings</h1><p>Pengaturan sistem & preferensi.</p>`
+        opportunities: `<h1>New Opportunities</h1><p>Peluang investasi baru.</p>`,
+        reports: `<h1>Reports</h1><p>Laporan bisnis bulanan.</p>`,
+        settings: `<h1>Settings</h1><p>Pengaturan sistem.</p>`
       };
 
       document.getElementById("mainContent").innerHTML = content[page] || "<h1>Page Not Found</h1>";
+
+      // Render Chart kalau halaman compliance dibuka
+      if (page === "compliance") {
+        const ctx = document.getElementById('complianceChart');
+        new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels: ['Pajak', 'Ketenagakerjaan', 'Izin Usaha'],
+            datasets: [{
+              data: [85, 70, 95],
+              backgroundColor: ['#FFD500', '#FF5733', '#4CAF50'],
+            }]
+          },
+          options: { plugins: { legend: { position: 'bottom' } } }
+        });
+      }
+    }
+
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("active");
     }
 
     function logout() {
