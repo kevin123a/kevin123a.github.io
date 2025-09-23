@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sinarlangithanoi.my.id/sitemap.xml
