@@ -7,46 +7,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      display: flex;
-      height: 100vh;
-      background: #f4f4f4;
-    }
-    .sidebar {
-      width: 260px;
-      background: #420D09;
-      color: #FDC12A;
-      display: flex;
-      flex-direction: column;
-      padding: 20px 0;
-      overflow-y: auto;
-      transition: transform 0.3s ease;
-    }
-    .sidebar h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      font-family: "Bickham Script Pro", cursive;
-    }
-    .sidebar a {
-      display: flex;
-      align-items: center;
-      padding: 12px 20px;
-      color: #FDC12A;
-      text-decoration: none;
-      transition: background 0.3s;
-      font-weight: bold;
-      cursor: pointer;
-    }
+    body { margin: 0; font-family: Arial, sans-serif; display: flex; height: 100vh; background: #f4f4f4; }
+    .sidebar { width: 260px; background: #420D09; color: #FDC12A; display: flex; flex-direction: column; padding: 20px 0; overflow-y: auto; transition: transform 0.3s ease; }
+    .sidebar h2 { text-align: center; margin-bottom: 30px; font-family: "Bickham Script Pro", cursive; }
+    .sidebar a { display: flex; align-items: center; padding: 12px 20px; color: #FDC12A; text-decoration: none; font-weight: bold; cursor: pointer; }
     .sidebar a:hover { background: rgba(253,193,42,0.2); }
     .sidebar a i { margin-right: 10px; min-width: 20px; text-align: center; }
-    .submenu {
-      display: none;
-      flex-direction: column;
-      padding-left: 40px;
-      background: rgba(253,193,42,0.05);
-    }
+    .submenu { display: none; flex-direction: column; padding-left: 40px; background: rgba(253,193,42,0.05); }
     .submenu a { font-weight: normal; padding: 10px 20px; font-size: 14px; }
     .submenu a:hover { background: rgba(253,193,42,0.15); }
     .content { flex: 1; padding: 20px; overflow-y: auto; }
@@ -54,10 +21,7 @@
     table { width: 100%; border-collapse: collapse; margin-top: 20px; }
     table th, table td { border: 1px solid #ccc; padding: 10px; text-align: left; }
     table th { background: #420D09; color: #FFD500; }
-    .toggle-btn {
-      display: none; position: absolute; top: 10px; left: 10px; font-size: 20px;
-      background: #420D09; color: #FDC12A; border: none; padding: 10px; cursor: pointer; z-index: 1000;
-    }
+    .toggle-btn { display: none; position: absolute; top: 10px; left: 10px; font-size: 20px; background: #420D09; color: #FDC12A; border: none; padding: 10px; cursor: pointer; z-index: 1000; }
     @media (max-width: 768px) {
       body { flex-direction: column; }
       .sidebar { position: fixed; top: 0; left: 0; height: 100%; transform: translateX(-100%); z-index: 999; }
@@ -65,11 +29,9 @@
       .toggle-btn { display: block; }
       .content { margin-top: 50px; padding: 15px; }
     }
-    .refresh-btn {
-      background: #FFD500; color: #420D09; font-weight: bold;
-      padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; margin-bottom: 15px;
-    }
+    .refresh-btn { background: #FFD500; color: #420D09; font-weight: bold; padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; margin-bottom: 15px; }
     .refresh-btn:hover { background: #FDC12A; }
+    iframe { border: none; }
   </style>
 </head>
 <body>
@@ -80,29 +42,24 @@
     <a onclick="showContent('overview')"><i class="fa-solid fa-chart-line"></i> Overview</a>
     <a onclick="showContent('projects')"><i class="fa-solid fa-folder-open"></i> Projects</a>
     <a onclick="showContent('clients')"><i class="fa-solid fa-users"></i> Clients</a>
-
     <a onclick="toggleMenu('financeSub')"><i class="fa-solid fa-sack-dollar"></i> Finance <i class="fa-solid fa-caret-down" style="margin-left:auto;"></i></a>
     <div class="submenu" id="financeSub">
       <a onclick="showContent('cashflow')">💰 Cashflow</a>
       <a onclick="showContent('tax')">📊 Tax</a>
       <a onclick="showContent('payroll')">👥 Payroll</a>
     </div>
-
     <a onclick="toggleMenu('contractsSub')"><i class="fa-solid fa-file-contract"></i> Contracts <i class="fa-solid fa-caret-down" style="margin-left:auto;"></i></a>
     <div class="submenu" id="contractsSub">
       <a onclick="showContent('drafts')">Drafts</a>
       <a onclick="showContent('signed')">Signed</a>
       <a onclick="showContent('archives')">Archives</a>
     </div>
-
     <a onclick="showContent('compliance')"><i class="fa-solid fa-scale-balanced"></i> Compliance</a>
-
     <a onclick="toggleMenu('investmentSub')"><i class="fa-solid fa-lightbulb"></i> Investment <i class="fa-solid fa-caret-down" style="margin-left:auto;"></i></a>
     <div class="submenu" id="investmentSub">
       <a onclick="showContent('portfolio')">Portfolio</a>
       <a onclick="showContent('IHSG')">IHSG</a>
     </div>
-
     <a onclick="showContent('reports')"><i class="fa-solid fa-chart-pie"></i> Reports</a>
     <a onclick="showContent('settings')"><i class="fa-solid fa-gears"></i> Settings</a>
     <a href="vvip-plus.html"><i class="fa-solid fa-plus-circle"></i> VVIP Plus</a>
@@ -145,12 +102,8 @@
           <h1>IHSG Live</h1>
           <button class="refresh-btn" onclick="refreshIHSG()">🔄 Refresh Data</button>
           <div id="ihsg-container">
-            <!-- Harga IHSG -->
-            <div class="tradingview-widget-container" style="margin-bottom:20px;">
-              <div id="ihsg-quote"></div>
-            </div>
-            <!-- Chart IHSG -->
-            <div class="tradingview-widget-container">
+            <iframe id="google-ihsg" src="https://www.google.com/finance/quote/COMPOSITE:IDX?sa=X" width="100%" height="120" style="border:0;"></iframe>
+            <div class="tradingview-widget-container" style="margin-top:20px;">
               <div id="ihsg-chart"></div>
             </div>
           </div>
@@ -179,20 +132,6 @@
     }
 
     function loadIHSG() {
-      // Widget harga IHSG (real-time)
-      new TradingView.widget({
-        "container_id": "ihsg-quote",
-        "symbol": "IDX:COMPOSITE",
-        "width": "100%",
-        "height": 100,
-        "colorTheme": "light",
-        "locale": "id",
-        "isTransparent": false,
-        "autosize": true,
-        "showSymbolLogo": true
-      });
-
-      // Widget chart IHSG (harian, karena intraday tidak tersedia)
       new TradingView.widget({
         "container_id": "ihsg-chart",
         "width": "100%",
@@ -205,22 +144,20 @@
         "locale": "id",
         "enable_publishing": false,
         "allow_symbol_change": false,
-        "hide_top_toolbar": false,
-        "save_image": false,
-        "calendar": false,
-        "studies": []
+        "hide_top_toolbar": false
       });
+
+      // auto refresh Google Finance iframe tiap 60 detik
+      setInterval(() => {
+        const iframe = document.getElementById("google-ihsg");
+        if (iframe) {
+          iframe.src = iframe.src;
+        }
+      }, 60000);
     }
 
     function refreshIHSG() {
-      document.getElementById("ihsg-container").innerHTML = `
-        <div class="tradingview-widget-container" style="margin-bottom:20px;">
-          <div id="ihsg-quote"></div>
-        </div>
-        <div class="tradingview-widget-container">
-          <div id="ihsg-chart"></div>
-        </div>`;
-      loadIHSG();
+      showContent('IHSG');
     }
 
     function toggleSidebar() {
