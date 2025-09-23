@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>VVIP Dashboard</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
       margin: 0;
@@ -79,6 +80,23 @@
     .content h1 {
       color: #420D09;
     }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+
+    table th {
+      background: #420D09;
+      color: #FFD500;
+    }
   </style>
 </head>
 <body>
@@ -148,7 +166,6 @@
             <li>Layanan kepatuhan regulasi</li>
             <li>Perencanaan keuangan & investasi</li>
           </ul>
-          <p>Dashboard ini berfungsi sebagai pusat informasi untuk memantau proyek, klien, laporan keuangan, kontrak, serta peluang investasi perusahaan.</p>
         `,
         projects: `
           <h1>Projects</h1>
@@ -170,98 +187,71 @@
         `,
         cashflow: `
           <h1>Cashflow</h1>
-          <p>Pantau arus kas masuk dan keluar perusahaan:</p>
-          <ul>
-            <li>Pendapatan bulanan</li>
-            <li>Biaya operasional</li>
-            <li>Saldo akhir</li>
-          </ul>
+          <p>Pantau arus kas masuk dan keluar perusahaan.</p>
         `,
         tax: `
           <h1>Tax</h1>
-          <p>Laporan kewajiban pajak:</p>
-          <ul>
-            <li>Pajak Penghasilan (PPh)</li>
-            <li>Pajak Pertambahan Nilai (PPN)</li>
-            <li>Laporan SPT Tahunan</li>
-          </ul>
+          <p>Laporan kewajiban pajak perusahaan.</p>
         `,
         payroll: `
           <h1>Payroll</h1>
-          <p>Manajemen gaji & tunjangan karyawan:</p>
-          <ul>
-            <li>Data karyawan</li>
-            <li>Slip gaji bulanan</li>
-            <li>Tunjangan & bonus</li>
-          </ul>
+          <p>Manajemen gaji & tunjangan karyawan.</p>
         `,
-        drafts: `
-          <h1>Draft Contracts</h1>
-          <p>Kontrak yang sedang dalam tahap penyusunan:</p>
-          <ul>
-            <li>Draft kontrak dengan PT ABC</li>
-            <li>Draft kontrak dengan PT XYZ</li>
-          </ul>
-        `,
-        signed: `
-          <h1>Signed Contracts</h1>
-          <p>Kontrak yang sudah ditandatangani dan aktif:</p>
-          <ul>
-            <li>Kontrak PT ABC – Konsultasi Strategi</li>
-            <li>Kontrak PT XYZ – Analisis Pasar</li>
-          </ul>
-        `,
-        archives: `
-          <h1>Archived Contracts</h1>
-          <p>Kontrak lama yang disimpan sebagai arsip:</p>
-          <ul>
-            <li>Kontrak PT Lama Jaya – Selesai 2023</li>
-          </ul>
-        `,
+        drafts: `<h1>Draft Contracts</h1><p>Kontrak yang sedang dalam tahap penyusunan.</p>`,
+        signed: `<h1>Signed Contracts</h1><p>Kontrak yang sudah ditandatangani dan aktif.</p>`,
+        archives: `<h1>Archived Contracts</h1><p>Kontrak lama yang disimpan sebagai arsip.</p>`,
         compliance: `
           <h1>Compliance</h1>
           <p>Monitoring kepatuhan perusahaan terhadap regulasi:</p>
-          <ul>
-            <li>Kepatuhan pajak</li>
-            <li>Kepatuhan ketenagakerjaan</li>
-            <li>Kepatuhan izin usaha</li>
-          </ul>
+          <div style="max-width:600px;margin:auto;">
+            <canvas id="complianceChart"></canvas>
+          </div>
+          <h2 style="margin-top:30px;">Dokumen Compliance</h2>
+          <table>
+            <tr>
+              <th>Jenis</th>
+              <th>Status</th>
+              <th>Dokumen</th>
+            </tr>
+            <tr>
+              <td>Pajak</td>
+              <td><span style="color:green;">✅ Patuh</span></td>
+              <td><a href="#">Download</a></td>
+            </tr>
+            <tr>
+              <td>Ketenagakerjaan</td>
+              <td><span style="color:orange;">⚠️ Proses</span></td>
+              <td><a href="#">Upload</a></td>
+            </tr>
+            <tr>
+              <td>Izin Usaha</td>
+              <td><span style="color:green;">✅ Aktif</span></td>
+              <td><a href="#">Lihat</a></td>
+            </tr>
+          </table>
+          <script>
+            const ctx = document.getElementById('complianceChart');
+            new Chart(ctx, {
+              type: 'doughnut',
+              data: {
+                labels: ['Pajak', 'Ketenagakerjaan', 'Izin Usaha'],
+                datasets: [{
+                  data: [85, 70, 95],
+                  backgroundColor: ['#FFD500', '#FF5733', '#4CAF50'],
+                }]
+              },
+              options: {
+                plugins: {
+                  legend: { position: 'bottom' }
+                }
+              }
+            });
+          </script>
         `,
-        portfolio: `
-          <h1>Investment Portfolio</h1>
-          <p>Daftar investasi yang dimiliki perusahaan:</p>
-          <ul>
-            <li>Saham PT Teknologi Maju</li>
-            <li>Obligasi Pemerintah RI</li>
-            <li>Investasi Reksadana</li>
-          </ul>
-        `,
-        opportunities: `
-          <h1>New Opportunities</h1>
-          <p>Peluang investasi baru yang sedang dianalisis:</p>
-          <ul>
-            <li>Startup Fintech Indonesia</li>
-            <li>Ekspansi pasar Asia Tenggara</li>
-          </ul>
-        `,
-        reports: `
-          <h1>Reports</h1>
-          <p>Laporan bisnis & keuangan bulanan:</p>
-          <ul>
-            <li>Laporan Keuangan Bulanan</li>
-            <li>Laporan Proyek</li>
-            <li>Laporan Evaluasi</li>
-          </ul>
-        `,
-        settings: `
-          <h1>Settings</h1>
-          <p>Pengaturan sistem & preferensi:</p>
-          <ul>
-            <li>Manajemen User</li>
-            <li>Preferensi Dashboard</li>
-            <li>Pengaturan Notifikasi</li>
-          </ul>
-        `
+        portfolio: `<h1>Investment Portfolio</h1><p>Daftar investasi perusahaan.</p>`,
+        opportunities: `<h1>New Opportunities</h1><p>Peluang investasi baru yang sedang dianalisis.</p>`,
+        reports: `<h1>Reports</h1><p>Laporan bisnis & keuangan bulanan.</p>`,
+        settings: `<h1>Settings</h1><p>Pengaturan sistem & preferensi.</p>`
       };
 
       document.getElementById("mainContent").innerHTML = content[page] || "<h1>Page Not Found</h1>";
