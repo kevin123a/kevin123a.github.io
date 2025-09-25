@@ -450,8 +450,8 @@
     const ctxE = document.getElementById('chartETH').getContext('2d');
     if(cryptoChart && cryptoChart.btc) { cryptoChart.btc.destroy(); cryptoChart.eth.destroy(); }
     cryptoChart = {};
-    cryptoChart.btc = new Chart(ctxB, {type:'line', data:{labels:cryptoLabels, datasets:[{label:'BTC',data:cryptoSeries.bitcoin,borderColor:'#f4b400',fill:false}]}, options:{plugins:{legend:{display:false}},scales:{x:{display:false}}}});
-    cryptoChart.eth = new Chart(ctxE, {type:'line', data:{labels:cryptoLabels, datasets:[{label:'ETH',data:cryptoSeries.ethereum,borderColor:'#6f42c1',fill:false}]}, options:{plugins:{legend:{display:false}},scales:{x:{display:false}}}});
+    cryptoChart.btc = new Chart(ctxB, {type:'line', data:{labels:cryptoLabels, datasets:[{label:'BTC',data:cryptoSeries.bitcoin,borderColor:'#f4b400',fill:false}]}, options:{plugins:{legend:{display:false}}}});
+    cryptoChart.eth = new Chart(ctxE, {type:'line', data:{labels:cryptoLabels, datasets:[{label:'ETH',data:cryptoSeries.ethereum,borderColor:'#6f42c1',fill:false}]}, options:{plugins:{legend:{display:false}}}});
   }
 
   async function updateCryptoAndCharts(){
@@ -527,7 +527,7 @@
 
   function renderReports(target){
     const rows = DATA.reports.map(r=>`<tr><td>${r.month}</td><td>${r.revenue}</td><td>${r.note}</td></tr>`).join('');
-    target.innerHTML = `<h2>Reports 📋</h2><table><thead><tr><th>Bulan</th><th>Pendapatan</th><th>Catatan</th></tr></thead><tbody>${rows}</tbody></table><div class="muted">Edit DATA.reports untuk ubah tabel</div>`;
+    target.innerHTML = `<h2>Reports 📋</h2><table><thead><tr><th>Bulan</th><th>Pendapatan</th><th>Catatan</th></tr></thead><tbody>${rows}</tbody></table><div class="muted">Edit DATA.reports untuk ubah data.</div>`;
   }
 
   function renderSettings(target){
@@ -558,17 +558,6 @@
 
   // initial load
   showContent('overview');
-
-  // Make sidebar <a onclick="showContent('...')"> clickable with event listeners
-  document.querySelectorAll('.sidebar a').forEach(a=>{
-    a.addEventListener('click', (ev)=>{
-      // extract parameter from onclick attr if present
-      const onclick = a.getAttribute('onclick') || '';
-      const match = onclick.match(/showContent\('([^']+)'\)/);
-      if(match) { ev.preventDefault(); showContent(match[1]); return; }
-      // else, some links are plain href (vvip-pro/plus) or toggles - handled separately
-    });
-  });
 
   // === Crypto auto start if user visits crypto page ===
   // expose functions for console/manual control:
