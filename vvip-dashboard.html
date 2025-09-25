@@ -51,9 +51,55 @@
     .submenu a:hover { background: rgba(253,193,42,0.15); }
     .content { flex: 1; padding: 20px; overflow-y: auto; }
     .content h1 { color: #420D09; }
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+
+    /* KPI Cards */
+    .kpi-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    .kpi-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .kpi-card h2 {
+      margin: 0;
+      font-size: 20px;
+      color: #420D09;
+    }
+    .kpi-card p {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 10px 0 0;
+      color: #FDC12A;
+    }
+
+    /* Table */
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; background: #fff; border-radius: 8px; overflow: hidden; }
     table th, table td { border: 1px solid #ccc; padding: 10px; text-align: left; }
     table th { background: #420D09; color: #FFD500; }
+    
+    /* Progress bar */
+    .progress {
+      width: 100%;
+      background: #eee;
+      border-radius: 6px;
+      overflow: hidden;
+      height: 14px;
+    }
+    .progress-bar {
+      height: 100%;
+      background: #FDC12A;
+      text-align: center;
+      font-size: 12px;
+      line-height: 14px;
+      color: #420D09;
+    }
+
     .toggle-btn {
       display: none; position: absolute; top: 10px; left: 10px; font-size: 20px;
       background: #420D09; color: #FDC12A; border: none; padding: 10px; cursor: pointer; z-index: 1000;
@@ -70,9 +116,6 @@
       padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; margin-bottom: 15px;
     }
     .refresh-btn:hover { background: #FDC12A; }
-    .dark-mode { background: #222; color: #eee; }
-    .dark-mode .sidebar { background: #111; }
-    .dark-mode table th { background: #333; color: #FFD500; }
   </style>
 </head>
 <body>
@@ -103,7 +146,7 @@
     <a onclick="toggleMenu('investmentSub')"><i class="fa-solid fa-lightbulb"></i> Investment <i class="fa-solid fa-caret-down" style="margin-left:auto;"></i></a>
     <div class="submenu" id="investmentSub">
       <a onclick="showContent('portfolio')">Portfolio</a>
-      <a onclick="showContent('IHSG')">IHSG & Markets</a>
+      <a onclick="showContent('IHSG')">IHSG</a>
     </div>
 
     <a onclick="showContent('reports')"><i class="fa-solid fa-chart-pie"></i> Reports</a>
@@ -128,200 +171,100 @@
       const content = {
         overview: `
           <h1>Overview</h1>
-          <p><b>PT Sinar Langit Hanoi</b> menyediakan layanan finansial, investasi, dan konsultasi bisnis.</p>
-          <ul>
-            <li>📊 Personal Financial Management</li>
-            <li>💰 Private Lending Solutions</li>
-            <li>🌍 Immigration Document Assistance</li>
-            <li>📑 Business & SOP Management Consulting</li>
-          </ul>
-        `,
-        projects: `
-          <h1>Projects / Services</h1>
-          <p>Layanan utama perusahaan:</p>
-          <ul>
-            <li>📊 Personal Financial Management</li>
-            <li>💰 Private Lending Solutions</li>
-            <li>🌍 Immigration Document Assistance</li>
-            <li>📑 Business & SOP Management Consulting</li>
-          </ul>
-        `,
-        clients: `
-          <h1>Clients</h1>
-          <ul>
-            <li>Halora Store</li>
-            <li>Minimal K Group</li>
-            <li>Minimal Shp Indonesia</li>
-            <li>Deyuwa Silona</li>
-          </ul>
-        `,
-        cashflow: `
-          <h1>Cashflow</h1>
-          <p>Diagram arus kas (ubah persentase di JS // EDIT DISINI)</p>
-          <canvas id="cashflowChart"></canvas>
-        `,
-        tax: `
-          <h1>Tax</h1>
-          <p>Status pajak perusahaan: <b>Patuh</b>. (Edit detail di JS // EDIT DISINI)</p>
-        `,
-        payroll: `
-          <h1>Payroll</h1>
-          <p>Data gaji bersifat rahasia. (Edit konten di JS // EDIT DISINI)</p>
-        `,
-        drafts: `
-          <h1>Draft Contracts</h1>
-          <table>
-            <tr><th>Nama</th><th>Status</th></tr>
-            <tr><td>Kontrak A</td><td>Draft</td></tr>
-            <tr><td>Kontrak B</td><td>Review</td></tr>
-          </table>
-        `,
-        signed: `
-          <h1>Signed Contracts</h1>
-          <table>
-            <tr><th>Nama</th><th>Tanggal</th></tr>
-            <tr><td>Kontrak C</td><td>2024-01-15</td></tr>
-          </table>
-        `,
-        archives: `
-          <h1>Archived Contracts</h1>
-          <table>
-            <tr><th>Nama</th><th>Keterangan</th></tr>
-            <tr><td>Kontrak Lama</td><td>Selesai</td></tr>
-          </table>
-        `,
-        compliance: `
-          <h1>Compliance</h1>
-          <p>Lihat status pajak, ketenagakerjaan, dan izin usaha.</p>
-          <canvas id="complianceChart"></canvas>
-        `,
-        portfolio: `
-          <h1>Investment Portfolio</h1>
-          <table>
-            <tr><th>Saham</th><th>Jumlah (Lot)</th></tr>
-            <tr><td>BJTM</td><td>Rahasia</td></tr>
-            <tr><td>RUNS</td><td>Rahasia</td></tr>
-            <tr><td>KOCI</td><td>Rahasia</td></tr>
-            <tr><td>BCAP</td><td>Rahasia</td></tr>
-            <tr><td>LPKR</td><td>Rahasia</td></tr>
-          </table>
-        `,
-        IHSG: `
-          <h1>Markets</h1>
-          <button class="refresh-btn" onclick="refreshMarkets()">🔄 Refresh</button>
-          <div id="markets-container">
-            <h2>IHSG (Indonesia)</h2>
-            <div id="ihsgChart"></div>
-            <h2>VN Index (Vietnam)</h2>
-            <div id="vnChart"></div>
-            <h2>SET (Thailand)</h2>
-            <div id="thaiChart"></div>
-            <h2>STI (Singapore)</h2>
-            <div id="sgChart"></div>
-            <h2>Gold</h2>
-            <div id="goldChart"></div>
-            <h2>Crypto (BTC/USD)</h2>
-            <div id="cryptoChart"></div>
+          <div class="kpi-container">
+            <div class="kpi-card"><h2>Clients</h2><p>120+</p></div>
+            <div class="kpi-card"><h2>Projects</h2><p>8 Ongoing</p></div>
+            <div class="kpi-card"><h2>Revenue Growth</h2><p>+15%</p></div>
+            <div class="kpi-card"><h2>Compliance Score</h2><p>92%</p></div>
+          </div>
+          <div style="max-width:600px;margin:auto;">
+            <canvas id="overviewChart"></canvas>
           </div>
         `,
-        reports: `
-          <h1>Reports</h1>
+        projects: `
+          <h1>Projects & Services</h1>
+          <p>Daftar layanan & progress:</p>
           <table>
-            <tr><th>Bulan</th><th>Pendapatan</th><th>Catatan</th></tr>
-            <tr><td>Jan</td><td>Rp xxx</td><td>// EDIT DISINI</td></tr>
-            <tr><td>Feb</td><td>Rp xxx</td><td>// EDIT DISINI</td></tr>
+            <tr><th>Service</th><th>Status</th><th>Progress</th><th>Deadline</th></tr>
+            <tr><td>Personal Financial Management</td><td>Active</td><td><div class="progress"><div class="progress-bar" style="width:80%">80%</div></div></td><td>2025-12</td></tr>
+            <tr><td>Private Lending Solutions</td><td>On Hold</td><td><div class="progress"><div class="progress-bar" style="width:40%">40%</div></div></td><td>2026-01</td></tr>
+            <tr><td>Immigration Document Assistance</td><td>Active</td><td><div class="progress"><div class="progress-bar" style="width:65%">65%</div></div></td><td>2025-11</td></tr>
+            <tr><td>Business & SOP Consulting</td><td>Planning</td><td><div class="progress"><div class="progress-bar" style="width:25%">25%</div></div></td><td>2026-03</td></tr>
           </table>
         `,
-        settings: `
-          <h1>Settings</h1>
-          <label>Font Size: <input type="number" id="fontSizeInput" value="16" onchange="changeFontSize(this.value)"></label>
-          <br><br>
-          <button onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
-        `
+        clients: `<h1>Clients</h1><ul><li>Halora Store</li><li>Minimal K Group</li><li>Minimal SHP Indonesia</li><li>Deyuwa Silona</li></ul>`,
+        compliance: `<h1>Compliance</h1><p>Dokumen & regulasi dipantau disini.</p>`,
+        portfolio: `<h1>Investment Portfolio</h1><p>Daftar investasi perusahaan.</p>`,
+        IHSG: `
+          <h1>IHSG Live</h1>
+          <button class="refresh-btn" onclick="refreshIHSG()">🔄 Refresh Data</button>
+          <div id="ihsg-container">
+            <div class="tradingview-widget-container" style="margin-bottom:20px;">
+              <div id="ihsg-quote"></div>
+            </div>
+            <div class="tradingview-widget-container">
+              <div id="ihsg-chart"></div>
+            </div>
+          </div>
+        `,
+        reports: `<h1>Reports</h1><p>Laporan bisnis bulanan.</p>`,
+        settings: `<h1>Settings</h1><p>Pengaturan sistem.</p>`
       };
 
       document.getElementById("mainContent").innerHTML = content[page] || "<h1>Page Not Found</h1>";
 
-      if (page === "cashflow") {
-        const ctx = document.getElementById('cashflowChart');
+      if (page === "overview") {
+        const ctx = document.getElementById('overviewChart');
         new Chart(ctx, {
           type: 'pie',
           data: {
-            labels: ['Income', 'Expense', 'Saving'],
-            datasets: [{ data: [60, 30, 10], backgroundColor: ['#4CAF50','#FF5733','#FFD500'] }] // EDIT DISINI
-          }
-        });
-      }
-
-      if (page === "compliance") {
-        const ctx = document.getElementById('complianceChart');
-        new Chart(ctx, {
-          type: 'doughnut',
-          data: {
-            labels: ['Pajak', 'Ketenagakerjaan', 'Izin Usaha'],
-            datasets: [{ data: [85, 70, 95], backgroundColor: ['#FFD500', '#FF5733', '#4CAF50'] }]
+            labels: ['Financial Mgmt', 'Lending', 'Immigration', 'Consulting'],
+            datasets: [{ data: [35, 25, 20, 20], backgroundColor: ['#FFD500', '#FF5733', '#4CAF50', '#2196F3'] }]
           },
           options: { plugins: { legend: { position: 'bottom' } } }
         });
       }
 
-      if (page === "IHSG") {
-        loadMarkets();
-      }
+      if (page === "IHSG") { loadIHSG(); }
     }
 
-    function loadMarkets() {
-      const widgets = [
-        { id: "ihsgChart", symbol: "IDX:COMPOSITE" },
-        { id: "vnChart", symbol: "HOSE:VNINDEX" },
-        { id: "thaiChart", symbol: "SET:SET50" },
-        { id: "sgChart", symbol: "SGX:STI" },
-        { id: "goldChart", symbol: "OANDA:XAUUSD" },
-        { id: "cryptoChart", symbol: "BINANCE:BTCUSDT" }
-      ];
-      widgets.forEach(w => {
-        new TradingView.widget({
-          "container_id": w.id,
-          "width": "100%",
-          "height": 400,
-          "symbol": w.symbol,
-          "interval": "1",
-          "timezone": "Asia/Jakarta",
-          "theme": "light",
-          "style": "1",
-          "locale": "id",
-          "enable_publishing": false,
-          "allow_symbol_change": false,
-        });
+    function loadIHSG() {
+      new TradingView.widget({
+        "container_id": "ihsg-quote",
+        "symbol": "IDX:COMPOSITE",
+        "width": "100%",
+        "height": 100,
+        "colorTheme": "light",
+        "locale": "id"
+      });
+      new TradingView.widget({
+        "container_id": "ihsg-chart",
+        "width": "100%",
+        "height": 500,
+        "symbol": "IDX:COMPOSITE",
+        "interval": "1",
+        "timezone": "Asia/Jakarta",
+        "theme": "light",
+        "style": "1",
+        "locale": "id"
       });
     }
 
-    function refreshMarkets() {
-      document.getElementById("markets-container").innerHTML = `
-        <h2>IHSG (Indonesia)</h2><div id="ihsgChart"></div>
-        <h2>VN Index (Vietnam)</h2><div id="vnChart"></div>
-        <h2>SET (Thailand)</h2><div id="thaiChart"></div>
-        <h2>STI (Singapore)</h2><div id="sgChart"></div>
-        <h2>Gold</h2><div id="goldChart"></div>
-        <h2>Crypto (BTC/USD)</h2><div id="cryptoChart"></div>`;
-      loadMarkets();
+    function refreshIHSG() {
+      document.getElementById("ihsg-container").innerHTML = `
+        <div class="tradingview-widget-container" style="margin-bottom:20px;">
+          <div id="ihsg-quote"></div>
+        </div>
+        <div class="tradingview-widget-container">
+          <div id="ihsg-chart"></div>
+        </div>`;
+      loadIHSG();
     }
 
     function toggleSidebar() {
       document.getElementById("sidebar").classList.toggle("active");
     }
-
-    function logout() {
-      window.location.href = "vvip.html";
-    }
-
-    function changeFontSize(size) {
-      document.body.style.fontSize = size + "px";
-    }
-
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark-mode");
-    }
+    function logout() { window.location.href = "vvip.html"; }
   </script>
   <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
 </body>
