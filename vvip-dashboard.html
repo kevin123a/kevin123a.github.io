@@ -4,122 +4,146 @@
   <meta charset="utf-8" />
   <title>VVIP Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Font Awesome & Chart.js -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- Chart.js financial plugin (untuk candlestick) -->
   <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial"></script>
-
   <style>
-    :root{--bg:#f7f7f9;--sidebar:#420D09;--accent:#FDC12A;--text:#222;}
-    body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;}
-    .sidebar{width:260px;background:var(--sidebar);color:var(--accent);display:flex;flex-direction:column;padding:18px 0;gap:6px}
-    .sidebar .logo{display:flex;flex-direction:column;align-items:center;margin-bottom:10px}
-    .sidebar .logo img{width:44px;height:44px;border-radius:6px;margin-bottom:6px}
-    .sidebar h2{margin:0;color:var(--accent);font-size:18px}
-    .sidebar a{display:flex;align-items:center;padding:10px 18px;gap:10px;color:var(--accent);text-decoration:none;font-weight:600}
+    :root{
+      --bg:#f7f7f9; --sidebar:#420D09; --accent:#FDC12A; --text:#222;
+    }
+    body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;}
+    .sidebar{width:260px;background:var(--sidebar);color:var(--accent);display:flex;flex-direction:column;padding:18px 0;gap:6px;box-shadow:2px 0 8px rgba(0,0,0,0.08);position:relative}
+    .sidebar h2{margin:0;color:var(--accent);font-size:20px}
+    .sidebar a{display:flex;align-items:center;padding:10px 18px;gap:10px;color:var(--accent);text-decoration:none;cursor:pointer;font-weight:600}
     .sidebar a:hover{background:rgba(253,193,42,0.12)}
     .submenu{display:none;flex-direction:column;padding-left:34px;background:rgba(253,193,42,0.03)}
     .submenu a{font-weight:500;padding:8px 18px;font-size:14px}
     .content{flex:1;padding:22px;overflow:auto}
-    header.small{margin-bottom:18px;display:flex;justify-content:space-between;align-items:center}
-    header.small h1{margin:0;color:var(--sidebar);font-size:20px}
-    .btn{background:var(--accent);color:var(--sidebar);padding:8px 12px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
+    header.small{margin-bottom:18px}
+    header.small h1{margin:0;color:var(--sidebar)}
     .muted{color:#666;font-size:14px}
+    .btn{background:var(--accent);color:var(--sidebar);padding:6px 12px;border-radius:6px;border:none;cursor:pointer;font-weight:600}
     .dark{--bg:#111;--sidebar:#111;--accent:#FFD559;--text:#eee}
+    .sidebar-footer{margin-top:auto;padding:12px;text-align:center}
+    .sidebar-footer img{width:20px;height:20px;vertical-align:middle;margin-right:6px}
   </style>
 </head>
 <body>
+  <button class="toggle-mobile" onclick="document.getElementById('sidebar').classList.toggle('active')"><i class="fa fa-bars"></i></button>
+
   <!-- SIDEBAR -->
   <div class="sidebar" id="sidebar">
-    <div class="logo">
-      <img src="logo.png" alt="logo">
+    <div style="text-align:center;margin-bottom:14px">
       <h2>VVIP Dashboard</h2>
     </div>
 
     <a onclick="showContent('overview')"><i class="fa-solid fa-gauge-high"></i> Overview</a>
-    <a onclick="toggleMenu('investmentSub')"><i class="fa-solid fa-lightbulb"></i> Investment <i class="fa fa-caret-down" style="margin-left:auto"></i></a>
-    <div class="submenu" id="investmentSub">
-      <a onclick="showContent('IHSG')">📈 IHSG</a>
-      <a onclick="showContent('markets')">🌍 Markets (Regional)</a>
+    <a onclick="showContent('projects')"><i class="fa-solid fa-briefcase"></i> Projects</a>
+    <a onclick="showContent('clients')"><i class="fa-solid fa-users"></i> Clients</a>
+
+    <a onclick="toggleMenu('financeSub')"><i class="fa-solid fa-sack-dollar"></i> Finance <i class="fa fa-caret-down" style="margin-left:auto"></i></a>
+    <div class="submenu" id="financeSub">
+      <a onclick="showContent('cashflow')">💰 Cashflow</a>
+      <a onclick="showContent('tax')">📊 Tax</a>
+      <a onclick="showContent('payroll')">👥 Payroll</a>
     </div>
 
-    <div style="margin-top:auto;padding:12px;text-align:center" class="muted">
-      <div style="font-weight:700"><img src="logo.png" style="width:16px;height:16px;margin-right:6px;vertical-align:middle"> PT Sinar Langit Hanoi</div>
+    <a onclick="toggleMenu('contractsSub')"><i class="fa-solid fa-file-contract"></i> Contracts <i class="fa fa-caret-down" style="margin-left:auto"></i></a>
+    <div class="submenu" id="contractsSub">
+      <a onclick="showContent('drafts')">✏️ Drafts</a>
+      <a onclick="showContent('signed')">✅ Signed</a>
+      <a onclick="showContent('archives')">📦 Archives</a>
+    </div>
+
+    <a onclick="showContent('compliance')"><i class="fa-solid fa-scale-balanced"></i> Compliance</a>
+
+    <a onclick="toggleMenu('investmentSub')"><i class="fa-solid fa-lightbulb"></i> Investment <i class="fa fa-caret-down" style="margin-left:auto"></i></a>
+    <div class="submenu" id="investmentSub">
+      <a onclick="showContent('portfolio')">📋 Portfolio</a>
+      <a onclick="showContent('IHSG')">📈 IHSG & Markets</a>
+    </div>
+
+    <a onclick="showContent('reports')"><i class="fa-solid fa-chart-pie"></i> Reports</a>
+    <a onclick="showContent('settings')"><i class="fa-solid fa-gears"></i> Settings</a>
+
+    <hr style="margin:10px 0;border:0;border-top:1px solid rgba(255,255,255,0.2)">
+    <a href="vvip-pro.html"><i class="fa-solid fa-crown"></i> VVIP Pro</a>
+    <a href="vvip-plus.html"><i class="fa-solid fa-gem"></i> VVIP Plus</a>
+
+    <div class="sidebar-footer muted">
+      <div style="font-weight:700"><img src="logo.png" alt="Logo"> PT Sinar Langit Hanoi</div>
       <div style="font-size:12px">Jl. Nakula, Tanjunganom, Nganjuk</div>
-      <div style="margin-top:8px"><button class="btn" onclick="logout()"><img src="logo.png" style="width:16px;height:16px;margin-right:8px;vertical-align:middle"> Logout</button></div>
+      <div style="margin-top:8px"><button class="btn" onclick="logout()">Logout</button></div>
     </div>
   </div>
 
-  <!-- MAIN -->
+  <!-- MAIN CONTENT -->
   <div class="content" id="mainContent">
     <header class="small">
-      <h1>VVIP Dashboard</h1>
-      <button class="btn" onclick="toggleDark()">🌙</button>
+      <h1>Welcome, PT Sinar Langit Hanoi</h1>
     </header>
     <div id="viewArea"></div>
   </div>
 
   <script>
-  function toggleMenu(id){ 
-    const el=document.getElementById(id); 
-    el.style.display=(el.style.display==='flex')?'none':'flex'; 
-  }
-  function toggleDark(){ document.documentElement.classList.toggle('dark'); }
-  function logout(){ window.location.href='vvip.html'; }
-  function showContent(menu){
-    const view=document.getElementById('viewArea'); 
-    view.innerHTML='';
-    if(menu==='overview'){ view.innerHTML='<h2>Overview</h2><p class="muted">Konten overview aman (tidak diubah).</p>'; }
-    if(menu==='IHSG'){ renderIHSG(view); }
-    if(menu==='markets'){ renderMarkets(view); }
-  }
-
-  /* ========== IHSG dengan Candlestick & Data Publik (gratis) ========== */
-  let ihsgChart;
-  async function fetchIHSG(){
-    try{
-      // sumber publik dummy OHLC dari GitHub (update berkala, gratis)
-      const res=await fetch("https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.json");
-      const data=await res.json();
-      // mapping ke IHSG simulasi
-      return data.slice(0,30).map(d=>({
-        x:new Date(d.Date),
-        o:d.AAPL.Open,
-        h:d.AAPL.High,
-        l:d.AAPL.Low,
-        c:d.AAPL.Close
-      }));
-    }catch(e){
-      console.error("fetch IHSG error",e);
-      return [];
+    function toggleMenu(id){
+      document.getElementById(id).style.display =
+        document.getElementById(id).style.display === "flex" ? "none" : "flex";
     }
-  }
-  async function renderIHSG(target){
-    target.innerHTML='<h2>IHSG (Candlestick)</h2><canvas id="ihsgChart" height="300"></canvas><div class="muted">Data gratis publik (simulasi Apple → IHSG). Auto refresh tiap ±60 detik.</div>';
-    const ctx=document.getElementById('ihsgChart').getContext('2d');
-    const ohlc=await fetchIHSG();
-    if(ihsgChart) ihsgChart.destroy();
-    ihsgChart=new Chart(ctx,{
-      type:'candlestick',
-      data:{datasets:[{label:'IHSG',data:ohlc,borderColor:'#420D09'}]},
-      options:{responsive:true}
-    });
-    if(window._ihsgInterval) clearInterval(window._ihsgInterval);
-    window._ihsgInterval=setInterval(()=>renderIHSG(document.getElementById('viewArea')),60000);
-  }
+    function logout(){ alert("Logout berhasil!"); }
 
-  /* ========== Markets (dummy line chart) ========== */
-  let mCharts={};
-  function renderMarkets(target){
-    target.innerHTML='<h2>Markets Regional</h2><canvas id="mChart"></canvas><div class="muted">Data simulasi. (Belum real-time)</div>';
-    const ctx=document.getElementById('mChart').getContext('2d');
-    if(mCharts.m) mCharts.m.destroy();
-    mCharts.m=new Chart(ctx,{type:'line',data:{labels:[1,2,3,4,5],datasets:[{label:"VN-Index",data:[1200,1210,1220,1215,1230],borderColor:"#2196F3"}]}});
-  }
+    function showContent(page){
+      const area = document.getElementById("viewArea");
+      area.innerHTML = "";
+      if(page==="IHSG"){ renderIHSG(area); }
+      else{ area.innerHTML="<h2>"+page+"</h2><p class='muted'>Konten "+page+" masih kosong.</p>"; }
+    }
 
-  // default
-  showContent('overview');
+    // === IHSG CANDLESTICK REAL ===
+    let ihsgChart;
+    async function fetchIHSGData(){
+      try{
+        const url="https://query1.finance.yahoo.com/v8/finance/chart/^JKSE?range=5d&interval=1d";
+        const res=await fetch(url);
+        const data=await res.json();
+        const result=data.chart.result[0];
+        const quotes=result.indicators.quote[0];
+        const timestamps=result.timestamp;
+        return timestamps.map((t,i)=>({
+          x:new Date(t*1000),
+          o:quotes.open[i],
+          h:quotes.high[i],
+          l:quotes.low[i],
+          c:quotes.close[i]
+        }));
+      }catch(e){
+        console.error("IHSG fetch error",e);
+        return [];
+      }
+    }
+
+    async function renderIHSG(target){
+      target.innerHTML=`
+        <h2>IHSG (Real dari Yahoo Finance)</h2>
+        <p class="muted">Candlestick · Auto refresh tiap 60 detik</p>
+        <div style="max-width:900px"><canvas id="chartIHSG"></canvas></div>
+      `;
+      const data=await fetchIHSGData();
+      const ctx=document.getElementById("chartIHSG").getContext("2d");
+      if(ihsgChart) ihsgChart.destroy();
+      ihsgChart=new Chart(ctx,{
+        type:"candlestick",
+        data:{datasets:[{label:"IHSG",data:data,borderColor:"#420D09"}]},
+        options:{responsive:true}
+      });
+    }
+
+    // auto refresh IHSG tiap 60 detik
+    setInterval(()=>{
+      if(document.getElementById("chartIHSG")){
+        renderIHSG(document.getElementById("viewArea"));
+      }
+    },60000);
   </script>
 </body>
 </html>
