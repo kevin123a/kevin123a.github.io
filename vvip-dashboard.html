@@ -4,233 +4,244 @@
   <meta charset="UTF-8">
   <title>VVIP Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      display: flex;
-      height: 100vh;
-      background: #f4f4f4;
+      margin: 0; padding: 0;
+      background: #f4f4f4; color: #333;
     }
-    .sidebar {
-      width: 260px;
-      background: #420D09;
-      color: #FDC12A;
-      display: flex;
-      flex-direction: column;
-      padding: 20px 0;
-      overflow-y: auto;
-      transition: transform 0.3s ease;
+    header {
+      background: #420D09; color: #fff;
+      padding: 15px; text-align: center;
     }
-    .sidebar h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      font-family: "Bickham Script Pro", cursive;
+    nav {
+      display: flex; flex-wrap: wrap;
+      background: #333;
     }
-    .sidebar a {
-      display: flex;
-      align-items: center;
-      padding: 12px 20px;
-      color: #FDC12A;
-      text-decoration: none;
-      transition: background 0.3s;
-      font-weight: bold;
+    nav button {
+      flex: 1; padding: 12px;
+      border: none; background: #333; color: #fff;
       cursor: pointer;
     }
-    .sidebar a:hover { background: rgba(253,193,42,0.2); }
-    .sidebar a i { margin-right: 10px; min-width: 20px; text-align: center; }
-    .submenu {
-      display: none;
-      flex-direction: column;
-      padding-left: 40px;
-      background: rgba(253,193,42,0.05);
+    nav button:hover, nav button.active {
+      background: #420D09;
     }
-    .submenu a { font-weight: normal; padding: 10px 20px; font-size: 14px; }
-    .submenu a:hover { background: rgba(253,193,42,0.15); }
-    .content { flex: 1; padding: 20px; overflow-y: auto; }
-    .content h1 { color: #420D09; }
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    table th, table td { border: 1px solid #ccc; padding: 10px; text-align: left; }
-    table th { background: #420D09; color: #FFD500; }
-    .toggle-btn {
-      display: none; position: absolute; top: 10px; left: 10px; font-size: 20px;
-      background: #420D09; color: #FDC12A; border: none; padding: 10px; cursor: pointer; z-index: 1000;
+    section {
+      display: none; padding: 20px;
     }
-    @media (max-width: 768px) {
-      body { flex-direction: column; }
-      .sidebar { position: fixed; top: 0; left: 0; height: 100%; transform: translateX(-100%); z-index: 999; }
-      .sidebar.active { transform: translateX(0); }
-      .toggle-btn { display: block; }
-      .content { margin-top: 50px; padding: 15px; }
+    section.active {
+      display: block;
     }
-    .refresh-btn {
-      background: #FFD500; color: #420D09; font-weight: bold;
-      padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; margin-bottom: 15px;
+    table {
+      width: 100%; border-collapse: collapse; margin: 10px 0;
     }
-    .refresh-btn:hover { background: #FDC12A; }
+    table, th, td {
+      border: 1px solid #ccc; padding: 8px; text-align: left;
+    }
+    .settings {
+      margin: 20px 0;
+    }
+    .dark-mode {
+      background: #111; color: #eee;
+    }
   </style>
 </head>
 <body>
-  <button class="toggle-btn" onclick="toggleSidebar()"><i class="fa fa-bars"></i></button>
+<header>
+  <h1>VVIP Dashboard</h1>
+</header>
+<nav>
+  <button onclick="showSection('overview')" class="active">Overview</button>
+  <button onclick="showSection('projects')">Projects</button>
+  <button onclick="showSection('services')">Our Services</button>
+  <button onclick="showSection('clients')">Clients</button>
+  <button onclick="showSection('finance')">Finance</button>
+  <button onclick="showSection('contracts')">Contracts</button>
+  <button onclick="showSection('compliance')">Compliance</button>
+  <button onclick="showSection('investment')">Investment</button>
+  <button onclick="showSection('reports')">Reports</button>
+  <button onclick="showSection('settings')">Settings</button>
+</nav>
 
-  <div class="sidebar" id="sidebar">
-    <h2>VVIP Dashboard</h2>
-    <a onclick="showContent('overview')"><i class="fa-solid fa-chart-line"></i> Overview</a>
-    <a onclick="showContent('projects')"><i class="fa-solid fa-folder-open"></i> Projects</a>
-    <a onclick="showContent('clients')"><i class="fa-solid fa-users"></i> Clients</a>
+<!-- Overview -->
+<section id="overview" class="active">
+  <h2>Overview</h2>
+  <p>// EDIT DISINI isi ringkasan bisnis, misalnya revenue, growth, highlights.</p>
+</section>
 
-    <a onclick="toggleMenu('financeSub')"><i class="fa-solid fa-sack-dollar"></i> Finance <i class="fa-solid fa-caret-down" style="margin-left:auto;"></i></a>
-    <div class="submenu" id="financeSub">
-      <a onclick="showContent('cashflow')">💰 Cashflow</a>
-      <a onclick="showContent('tax')">📊 Tax</a>
-      <a onclick="showContent('payroll')">👥 Payroll</a>
-    </div>
+<!-- Projects -->
+<section id="projects">
+  <h2>Projects</h2>
+  <ul>
+    <li>Financial Management System</li>
+    <li>Private Lending Platform</li>
+    <li>Immigration Document Hub</li>
+    <li>Business SOP Automation</li>
+  </ul>
+</section>
 
-    <a onclick="toggleMenu('contractsSub')"><i class="fa-solid fa-file-contract"></i> Contracts <i class="fa-solid fa-caret-down" style="margin-left:auto;"></i></a>
-    <div class="submenu" id="contractsSub">
-      <a onclick="showContent('drafts')">Drafts</a>
-      <a onclick="showContent('signed')">Signed</a>
-      <a onclick="showContent('archives')">Archives</a>
-    </div>
+<!-- Services -->
+<section id="services">
+  <h2>Our Services</h2>
+  <ul>
+    <li><b>Personal Financial Management:</b> Tailored financial planning solutions.</li>
+    <li><b>Private Lending Solutions:</b> Flexible and discreet funding options.</li>
+    <li><b>Immigration Document Assistance:</b> Professional guidance for global mobility.</li>
+    <li><b>Business & SOP Management Consulting:</b> Strategic consulting services.</li>
+  </ul>
+</section>
 
-    <a onclick="showContent('compliance')"><i class="fa-solid fa-scale-balanced"></i> Compliance</a>
+<!-- Clients -->
+<section id="clients">
+  <h2>Clients</h2>
+  <ul>
+    <li>Halora Store</li>
+    <li>Minimal K Group</li>
+    <li>Minimal SHP Indonesia</li>
+    <li>Deyuwa Silona</li>
+  </ul>
+</section>
 
-    <a onclick="toggleMenu('investmentSub')"><i class="fa-solid fa-lightbulb"></i> Investment <i class="fa-solid fa-caret-down" style="margin-left:auto;"></i></a>
-    <div class="submenu" id="investmentSub">
-      <a onclick="showContent('portfolio')">Portfolio</a>
-      <a onclick="showContent('IHSG')">IHSG</a>
-    </div>
-
-    <a onclick="showContent('reports')"><i class="fa-solid fa-chart-pie"></i> Reports</a>
-    <a onclick="showContent('settings')"><i class="fa-solid fa-gears"></i> Settings</a>
-    <a href="vvip-plus.html"><i class="fa-solid fa-plus-circle"></i> VVIP Plus</a>
-    <a href="vvip-pro.html"><i class="fa-solid fa-star"></i> VVIP Pro</a>
-    <a onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
-  </div>
-
-  <div class="content" id="mainContent">
-    <h1>Welcome to VVIP Dashboard</h1>
-    <p>Select a menu on the left to get started.</p>
-  </div>
-
+<!-- Finance -->
+<section id="finance">
+  <h2>Finance</h2>
+  <h3>Cashflow</h3>
+  <canvas id="cashflowChart"></canvas>
   <script>
-    function toggleMenu(id) {
-      const menu = document.getElementById(id);
-      menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
-    }
-
-    function showContent(page) {
-      const content = {
-        overview: `<h1>Overview</h1><p>Selamat datang di <b>PT Sinar Langit Hanoi</b>.</p>`,
-        projects: `<h1>Projects</h1><p>Daftar proyek berjalan.</p>`,
-        clients: `<h1>Clients</h1><p>Data klien perusahaan.</p>`,
-        compliance: `
-          <h1>Compliance</h1>
-          <p>Monitoring kepatuhan perusahaan terhadap regulasi:</p>
-          <div style="max-width:600px;margin:auto;">
-            <canvas id="complianceChart"></canvas>
-          </div>
-          <h2 style="margin-top:30px;">Dokumen Compliance</h2>
-          <table>
-            <tr><th>Jenis</th><th>Status</th><th>Dokumen</th></tr>
-            <tr><td>Pajak</td><td><span style="color:green;">✅ Patuh</span></td><td><a href="pajak-pdf.html" target="_blank">Lihat</a></td></tr>
-            <tr><td>Ketenagakerjaan</td><td><span style="color:orange;">⚠️ Proses</span></td><td><a href="ketenagakerjaan.html" target="_blank">Lihat</a></td></tr>
-            <tr><td>Izin Usaha</td><td><span style="color:green;">✅ Aktif</span></td><td><a href="izin-usaha.html" target="_blank">Lihat</a></td></tr>
-          </table>
-        `,
-        portfolio: `<h1>Investment Portfolio</h1><p>Daftar investasi perusahaan.</p>`,
-        IHSG: `
-          <h1>IHSG Live</h1>
-          <button class="refresh-btn" onclick="refreshIHSG()">🔄 Refresh Data</button>
-          <div id="ihsg-container">
-            <!-- Harga IHSG -->
-            <div class="tradingview-widget-container" style="margin-bottom:20px;">
-              <div id="ihsg-quote"></div>
-            </div>
-            <!-- Chart IHSG -->
-            <div class="tradingview-widget-container">
-              <div id="ihsg-chart"></div>
-            </div>
-          </div>
-        `,
-        reports: `<h1>Reports</h1><p>Laporan bisnis bulanan.</p>`,
-        settings: `<h1>Settings</h1><p>Pengaturan sistem.</p>`
-      };
-
-      document.getElementById("mainContent").innerHTML = content[page] || "<h1>Page Not Found</h1>";
-
-      if (page === "compliance") {
-        const ctx = document.getElementById('complianceChart');
-        new Chart(ctx, {
-          type: 'doughnut',
-          data: {
-            labels: ['Pajak', 'Ketenagakerjaan', 'Izin Usaha'],
-            datasets: [{ data: [85, 70, 95], backgroundColor: ['#FFD500', '#FF5733', '#4CAF50'] }]
-          },
-          options: { plugins: { legend: { position: 'bottom' } } }
-        });
+    const cashflowCtx = document.getElementById('cashflowChart');
+    new Chart(cashflowCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Income', 'Expense', 'Savings'],
+        datasets: [{
+          data: [50, 30, 20], // EDIT DISINI persentase cashflow
+          backgroundColor: ['#4caf50','#f44336','#2196f3']
+        }]
       }
-
-      if (page === "IHSG") {
-        loadIHSG();
-      }
-    }
-
-    function loadIHSG() {
-      // Widget harga IHSG
-      new TradingView.widget({
-        "container_id": "ihsg-quote",
-        "symbol": "IDX:COMPOSITE",
-        "width": "100%",
-        "height": 100,
-        "colorTheme": "light",
-        "locale": "id",
-        "isTransparent": false,
-        "autosize": true,
-        "showSymbolLogo": true
-      });
-
-      // Widget chart IHSG
-      new TradingView.widget({
-        "container_id": "ihsg-chart",
-        "width": "100%",
-        "height": 500,
-        "symbol": "IDX:COMPOSITE",
-        "interval": "1",
-        "timezone": "Asia/Jakarta",
-        "theme": "light",
-        "style": "1",
-        "locale": "id",
-        "enable_publishing": false,
-        "allow_symbol_change": false,
-        "hide_top_toolbar": false,
-        "save_image": false,
-        "calendar": false,
-        "studies": []
-      });
-    }
-
-    function refreshIHSG() {
-      document.getElementById("ihsg-container").innerHTML = `
-        <div class="tradingview-widget-container" style="margin-bottom:20px;">
-          <div id="ihsg-quote"></div>
-        </div>
-        <div class="tradingview-widget-container">
-          <div id="ihsg-chart"></div>
-        </div>`;
-      loadIHSG();
-    }
-
-    function toggleSidebar() {
-      document.getElementById("sidebar").classList.toggle("active");
-    }
-
-    function logout() {
-      window.location.href = "vvip.html";
-    }
+    });
   </script>
-  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+
+  <h3>Tax</h3>
+  <p>// EDIT DISINI misalnya: Corporate Tax 15%, VAT 11%.</p>
+
+  <h3>Payroll</h3>
+  <p>Payroll data confidential. // EDIT DISINI isi aturan gaji, tunjangan, dsb.</p>
+</section>
+
+<!-- Contracts -->
+<section id="contracts">
+  <h2>Contracts</h2>
+  <h3>Drafts</h3>
+  <table>
+    <tr><th>Contract Name</th><th>Status</th></tr>
+    <tr><td>// EDIT DISINI draft kontrak</td><td>Pending</td></tr>
+  </table>
+  <h3>Signed</h3>
+  <table>
+    <tr><th>Contract Name</th><th>Date</th></tr>
+    <tr><td>// EDIT DISINI kontrak signed</td><td>2025-09-25</td></tr>
+  </table>
+  <h3>Archives</h3>
+  <table>
+    <tr><th>Contract Name</th><th>Archived On</th></tr>
+    <tr><td>// EDIT DISINI kontrak arsip</td><td>2025-01-01</td></tr>
+  </table>
+</section>
+
+<!-- Compliance -->
+<section id="compliance">
+  <h2>Compliance</h2>
+  <p>No updates yet.</p>
+</section>
+
+<!-- Investment -->
+<section id="investment">
+  <h2>Investment Portfolio</h2>
+  <table>
+    <tr><th>Stock</th><th>Lots</th></tr>
+    <tr><td>BJTM</td><td>Confidential</td></tr>
+    <tr><td>RUNS</td><td>Confidential</td></tr>
+    <tr><td>KOCI</td><td>Confidential</td></tr>
+    <tr><td>BCAP</td><td>Confidential</td></tr>
+    <tr><td>LPKR</td><td>Confidential</td></tr>
+  </table>
+  <h3>Market Index (IHSG, etc.)</h3>
+  <canvas id="marketChart"></canvas>
+  <h3>Crypto Prices</h3>
+  <canvas id="cryptoChart"></canvas>
+  <h3>Gold & International Stocks</h3>
+  <canvas id="goldChart"></canvas>
+  <script>
+    // IHSG dummy chart
+    new Chart(document.getElementById('marketChart'), {
+      type: 'line',
+      data: {
+        labels: ['Jan','Feb','Mar','Apr','May'],
+        datasets: [{ label:'IHSG', data:[6900,7000,7100,7050,7200], borderColor:'#420D09'}] // EDIT DISINI data IHSG
+      }
+    });
+    // Crypto dummy
+    new Chart(document.getElementById('cryptoChart'), {
+      type: 'line',
+      data: {
+        labels: ['BTC','ETH','BNB','SOL','DOGE'],
+        datasets: [{ label:'Crypto', data:[60000,3000,400,150,0.1], borderColor:'#2196f3'}] // EDIT DISINI crypto
+      }
+    });
+    // Gold & Intl stocks dummy
+    new Chart(document.getElementById('goldChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Gold','IDX SG','IDX TH','IDX VN'],
+        datasets: [{ label:'Value', data:[2000,3200,1500,1200], backgroundColor:'#f4b400'}] // EDIT DISINI
+      }
+    });
+  </script>
+</section>
+
+<!-- Reports -->
+<section id="reports">
+  <h2>Reports</h2>
+  <table>
+    <tr><th>Report Name</th><th>Date</th><th>Notes</th></tr>
+    <tr><td>// EDIT DISINI</td><td>2025-09-25</td><td>Initial draft</td></tr>
+  </table>
+</section>
+
+<!-- Settings -->
+<section id="settings">
+  <h2>Settings</h2>
+  <div class="settings">
+    <label>Font Size:
+      <select onchange="changeFontSize(this.value)">
+        <option value="14px">Small</option>
+        <option value="16px" selected>Medium</option>
+        <option value="18px">Large</option>
+      </select>
+    </label>
+  </div>
+  <div class="settings">
+    <label>
+      <input type="checkbox" onchange="toggleDarkMode(this)"> Dark Mode
+    </label>
+  </div>
+</section>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+  }
+  function changeFontSize(size) {
+    document.body.style.fontSize = size;
+  }
+  function toggleDarkMode(cb) {
+    document.body.classList.toggle('dark-mode', cb.checked);
+  }
+</script>
 </body>
 </html>
