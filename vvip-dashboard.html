@@ -63,7 +63,6 @@
   <!-- SIDEBAR -->
   <div class="sidebar" id="sidebar">
     <div class="logo">
-      <img src="logo.png" alt="logo"> <!-- small logo -->
       <h2>VVIP Dashboard</h2>
     </div>
 
@@ -146,10 +145,10 @@
 
     // Service distribution (pie)
     servicesDistribution: [ // EDIT DISINI
-      {name: 'Personal Financial Management', value: 35},
-      {name: 'Private Lending Solutions', value: 25},
-      {name: 'Immigration Assistance', value: 20},
-      {name: 'Business & SOP Consulting', value: 20}
+      {name: 'Personal Financial Management', value: 1},
+      {name: 'Private Lending Solutions', value: 2},
+      {name: 'Immigration Assistance', value: 3},
+      {name: 'Business & SOP Consulting', value: 24}
     ],
 
     // Projects (EDIT DISINI)
@@ -259,7 +258,7 @@
           <div class="card" style="padding:12px;">
             <h3 style="margin:6px 0">Service Distribution</h3>
             <div style="max-width:700px;margin:auto"><canvas id="overviewPie"></canvas></div>
-            <div style="margin-top:12px;text-align:center" class="muted">(Edit data di <b>DATA.servicesDistribution</b>)</div>
+            <div style="margin-top:12px;text-align:center" class="muted"></div>
           </div>
         </div>
       </div>
@@ -290,7 +289,7 @@
 
     target.innerHTML = `
       <h2>Projects & Services</h2>
-      <p class="muted">Daftar layanan & progress (EDIT DISINI -> DATA.projects)</p>
+      <p class="muted">Daftar layanan & progress </p>
       <table><thead><tr><th>Service</th><th>Status</th><th>Progress</th><th>Deadline</th></tr></thead><tbody>${rows}</tbody></table>
     `;
   }
@@ -303,7 +302,7 @@
   function renderCashflow(target){
     target.innerHTML = `
       <h2>Cashflow 💰</h2>
-      <p class="muted">Diagram arus kas (EDIT DISINI -> DATA.finance.cashflow)</p>
+      <p class="muted">Diagram arus kas </p>
       <div style="max-width:600px"><canvas id="cashChart"></canvas></div>
     `;
     const ctx = document.getElementById('cashChart').getContext('2d');
@@ -319,7 +318,7 @@
       <h2>Tax 📊</h2>
       <p class="muted">Status pajak: <strong>${DATA.finance.taxStatus}</strong></p>
       <p>Biasanya berisi: jenis pajak terdaftar, tanggal pelaporan terakhir, PIC akuntansi, link SPT / bukti setor.</p>
-      <div class="muted">(Edit DATA.finance.taxStatus)</div>
+      <div class="muted"></div>
     `;
   }
 
@@ -327,7 +326,7 @@
     target.innerHTML = `
       <h2>Payroll 👥</h2>
       <p class="muted">${DATA.finance.payrollNote}</p>
-      <p>Biasanya berisi: jadwal pembayaran, slip gaji, potongan & tunjangan. (Data sensitif => simpan di server aman)</p>
+      <p>Biasanya berisi: jadwal pembayaran, slip gaji, potongan & tunjangan. </p>
     `;
   }
 
@@ -370,7 +369,7 @@
   function renderIHSG(target){
     target.innerHTML = `
       <h2>IHSG (Simulasi)</h2>
-      <p class="muted">Untuk data IHSG real-time: butuh data provider / API (lihat komentar di JS). Edit DATA.markets.IHSG untuk simulasi.</p>
+      <p class="muted">Untuk data IHSG real-time: butuh data provider / API (lihat komentar di JS). .</p>
       <button class="btn" onclick="refreshIHSG()">Refresh (simulasi)</button>
       <div style="max-width:900px;margin-top:12px"><canvas id="chartIHSG"></canvas></div>
     `;
