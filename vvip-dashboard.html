@@ -104,15 +104,11 @@
     <a href="vvip-plus.html"><i class="fa-solid fa-gem emoji-elite"></i> VVIP Plus</a>
 
     <div style="margin-top:auto;padding:12px;text-align:center" class="muted">
-  <div style="font-weight:700">
-    <img src="logo.png" style="width:18px;height:18px;margin-right:6px;vertical-align:middle">
-    PT Sinar Langit Hanoi
+      <div style="font-weight:700">✨ PT Sinar Langit Hanoi</div>
+      <div style="font-size:12px">Jl. Nakula, Tanjunganom, Nganjuk</div>
+      <div style="margin-top:8px"><button class="btn" onclick="logout()"><img src="logo.png" style="width:16px;height:16px;margin-right:8px;vertical-align:middle"> Logout</button></div>
+    </div>
   </div>
-  <div style="font-size:12px">Jl. Nakula, Tanjunganom, Nganjuk</div>
-  <div style="margin-top:8px">
-    <button class="btn" onclick="logout()">Logout</button>
-  </div>
-</div>
 
   <!-- MAIN CONTENT -->
   <div class="content" id="mainContent">
@@ -450,8 +446,8 @@
     const ctxE = document.getElementById('chartETH').getContext('2d');
     if(cryptoChart && cryptoChart.btc) { cryptoChart.btc.destroy(); cryptoChart.eth.destroy(); }
     cryptoChart = {};
-    cryptoChart.btc = new Chart(ctxB, {type:'line', data:{labels:cryptoLabels, datasets:[{label:'BTC',data:cryptoSeries.bitcoin,borderColor:'#f4b400',fill:false}]}, options:{plugins:{legend:{display:false}}}});
-    cryptoChart.eth = new Chart(ctxE, {type:'line', data:{labels:cryptoLabels, datasets:[{label:'ETH',data:cryptoSeries.ethereum,borderColor:'#6f42c1',fill:false}]}, options:{plugins:{legend:{display:false}}}});
+    cryptoChart.btc = new Chart(ctxB, {type:'line', data:{labels:cryptoLabels, datasets:[{label:'BTC',data:cryptoSeries.bitcoin,borderColor:'#f4b400',fill:false}]}, options:{plugins:{legend:{display:false}},scales:{x:{display:false}}}});
+    cryptoChart.eth = new Chart(ctxE, {type:'line', data:{labels:cryptoLabels, datasets:[{label:'ETH',data:cryptoSeries.ethereum,borderColor:'#6f42c1',fill:false}]}, options:{plugins:{legend:{display:false}},scales:{x:{display:false}}}});
   }
 
   async function updateCryptoAndCharts(){
@@ -527,7 +523,7 @@
 
   function renderReports(target){
     const rows = DATA.reports.map(r=>`<tr><td>${r.month}</td><td>${r.revenue}</td><td>${r.note}</td></tr>`).join('');
-    target.innerHTML = `<h2>Reports 📋</h2><table><thead><tr><th>Bulan</th><th>Pendapatan</th><th>Catatan</th></tr></thead><tbody>${rows}</tbody></table><div class="muted">Edit DATA.reports untuk ubah data.</div>`;
+    target.innerHTML = `<h2>Reports 📋</h2><table><thead><tr><th>Bulan</th><th>Pendapatan</th><th>Catatan</th></tr></thead><tbody>${rows}</tbody></table><div class="muted">Edit DATA.reports untuk ubah tabel</div>`;
   }
 
   function renderSettings(target){
@@ -558,6 +554,17 @@
 
   // initial load
   showContent('overview');
+
+  // Make sidebar <a onclick="showContent('...')"> clickable with event listeners
+  document.querySelectorAll('.sidebar a').forEach(a=>{
+    a.addEventListener('click', (ev)=>{
+      // extract parameter from onclick attr if present
+      const onclick = a.getAttribute('onclick') || '';
+      const match = onclick.match(/showContent\('([^']+)'\)/);
+      if(match) { ev.preventDefault(); showContent(match[1]); return; }
+      // else, some links are plain href (vvip-pro/plus) or toggles - handled separately
+    });
+  });
 
   // === Crypto auto start if user visits crypto page ===
   // expose functions for console/manual control:
