@@ -15,225 +15,92 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=EB+Garamond&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css">
-
-  <style>
-    /* Layout dasar agar footer selalu di bawah */
-    html, body {
-      height: 100%;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-    }
-
-    body {
-      font-family: 'EB Garamond', serif;
-      background-color: #8B0000;
-      color: #FFD500;
-      text-align: center;
-    }
-
-    /* Header & Nav */
-    header {
-      background-color: rgba(0,0,0,0.3);
-      padding: 15px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo {
-      height: 40px;
-      width: auto;
-    }
-
-    .logo-title {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 22px;
-    }
-
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      gap: 30px;
-    }
-
-    nav ul li {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 18px;
-    }
-
-    nav ul li a {
-      text-decoration: none;
-      color: #FFD500;
-      transition: 0.3s;
-    }
-
-    nav ul li a:hover,
-    nav ul li a.active {
-      color: white;
-      text-shadow: 0 0 10px #FFD500;
-    }
-
-    /* Hamburger */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 5px;
-    }
-
-    .hamburger div {
-      width: 25px;
-      height: 3px;
-      background-color: #FFD500;
-      transition: 0.3s;
-    }
-
-    /* Responsive Menu */
-    @media (max-width: 768px) {
-      nav ul {
-        display: none;
-        flex-direction: column;
-        background-color: rgba(0,0,0,0.9);
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        padding: 20px;
-        border-radius: 10px;
-      }
-
-      nav ul.active {
-        display: flex;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-    }
-
-    /* Home Section */
-    .home {
-      padding: 100px 20px;
-      animation: fadeIn 2s ease-in-out;
-    }
-
-    .home h1 {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 42px;
-      margin-bottom: 20px;
-    }
-
-    .home p {
-      font-size: 18px;
-      max-width: 800px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-
-    /* Fade in animation */
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-
-    /* Footer */
-    footer {
-      margin-top: auto; /* dorong footer ke paling bawah */
-      padding: 20px 10px;
-      background-color: rgba(0,0,0,0.4);
-      font-size: 14px;
-    }
-
-    .footer-contact {
-      margin-top: 10px;
-    }
-
-    .whatsapp-btn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 20px;
-      background-color: #25D366;
-      color: white;
-      text-decoration: none;
-      border-radius: 25px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .whatsapp-btn:hover {
-      background-color: #1ebe57;
-      box-shadow: 0 0 10px #25D366;
-    }
-
-    /* Konten utama agar mendorong footer */
-    main {
-      flex: 1;
-    }
-  </style>
 </head>
 <body>
   <!-- Header -->
   <header>
-    <div class="logo-area">
+    <div class="logo-container">
       <img src="logo.png" alt="PT Sinar Langit Hanoi" class="logo">
-      <div class="logo-title">PT Sinar Langit Hanoi</div>
+      <h1 class="brand">PT Sinar Langit Hanoi</h1>
     </div>
+
+    <!-- Navigation -->
     <nav>
       <ul id="nav-links">
         <li><a href="aboutus.html">About Us</a></li>
         <li><a href="service.html">Service</a></li>
         <li><a href="vvip.html">VVIP</a></li>
         <li><a href="contact.html">Contact</a></li>
-        <li><a href="business-sop.html">Bussines</a></li>
+        <li><a href="business-sop.html">Business</a></li>
       </ul>
     </nav>
-    <div class="hamburger" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+
+    <!-- Hamburger (Mobile) -->
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
   </header>
 
+  <!-- Sidebar (Mobile Navigation) -->
+  <aside class="sidebar" id="sidebar">
+    <ul>
+      <li><a href="aboutus.html">About Us</a></li>
+      <li><a href="service.html">Service</a></li>
+      <li><a href="vvip.html">VVIP</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="business-sop.html">Business</a></li>
+    </ul>
+  </aside>
+
+  <!-- Overlay for Sidebar -->
+  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+  <!-- Main Content -->
   <main>
-    <!-- Home Section -->
-    <section class="home" id="home">
-      <h1>Welcome to PT Sinar Langit Hanoi</h1>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <h2>Welcome to PT Sinar Langit Hanoi</h2>
       <p>
         PT Sinar Langit Hanoi is here as a strategic transformation partner 
         to help your business grow faster, more efficiently, 
         and more competitively in Southeast Asia.
       </p>
     </section>
+
+    <!-- Example Container Section -->
+    <section class="container services">
+      <h3>Our Services</h3>
+      <a href="service.html">Business Consulting</a>
+      <a href="vvip.html">VVIP Services</a>
+      <a href="contact.html">Document Assistance</a>
+    </section>
   </main>
 
   <!-- Footer -->
   <footer>
-    <div class="footer-contact">
+    <div class="footer-contact contact-info">
       <p><strong>Address:</strong> Jl. Nakula, Kampungbaru, Tanjunganom, Nganjuk, East Java, Indonesia</p>
-      <a href="https://wa.me/628977546561" target="_blank" class="whatsapp-btn">💬 WhatsApp Us</a>
+      <p>
+        <a href="https://wa.me/628977546561" target="_blank" class="whatsapp-btn">💬 WhatsApp Us</a>
+      </p>
     </div>
     <p>© 2025 PT Sinar Langit Hanoi. All rights reserved.</p>
   </footer>
 
+  <!-- Scripts -->
   <script>
     function toggleMenu() {
-      document.getElementById("nav-links").classList.toggle("active");
+      document.getElementById("sidebar").classList.toggle("active");
+      document.getElementById("overlay").classList.toggle("show");
+    }
+    function closeMenu() {
+      document.getElementById("sidebar").classList.remove("active");
+      document.getElementById("overlay").classList.remove("show");
     }
 
-    // kasih class 'active' ke menu sesuai halaman
-    const navLinks = document.querySelectorAll("nav ul li a");
+    // Tambahkan class 'active' ke menu sesuai halaman
+    const navLinks = document.querySelectorAll("nav ul li a, .sidebar ul li a");
     navLinks.forEach(link => {
       if (link.href === window.location.href) {
         link.classList.add("active");
