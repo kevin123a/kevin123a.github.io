@@ -52,6 +52,7 @@
       padding: 0;
       display: flex;
       gap: 30px;
+      align-items: center;
     }
 
     nav ul li {
@@ -69,6 +70,18 @@
     nav ul li a.active {
       color: white;
       text-shadow: 0 0 10px #FFD500;
+    }
+
+    /* Google Translate dropdown style */
+    #google_translate_element select {
+      background: #FFD500;
+      color: #8B0000;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 8px;
+      font-size: 14px;
+      font-family: 'EB Garamond', serif;
+      cursor: pointer;
     }
 
     .hamburger {
@@ -157,6 +170,7 @@
         <li><a href="service.html">Service</a></li>
         <li><a href="vvip.html">VVIP</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li><div id="google_translate_element"></div></li>
       </ul>
     </nav>
     <div class="hamburger" onclick="toggleMenu()">
@@ -226,6 +240,16 @@
         link.classList.add("active");
       }
     });
+
+    // Google Translate init
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'id',
+        includedLanguages: 'en,vi,id',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
   </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
