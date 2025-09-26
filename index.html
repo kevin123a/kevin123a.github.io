@@ -10,174 +10,9 @@
   <meta name="keywords" content="PT Sinar Langit Hanoi, solusi bisnis, jasa konsultasi, pengurusan dokumen, VVIP service, bisnis Asia Tenggara">
   <meta name="author" content="PT Sinar Langit Hanoi">
 
-  <!-- Favicon -->
-  <link rel="icon" href="logo.png" type="image/png">
-
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=EB+Garamond&display=swap" rel="stylesheet">
-
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      font-family: 'EB Garamond', serif;
-      background-color: #8B0000;
-      color: #FFD500;
-      text-align: center;
-    }
-
-    /* HEADER */
-    header {
-      background-color: rgba(0,0,0,0.3);
-      padding: 15px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo {
-      height: 40px;
-      width: auto;
-    }
-
-    .logo-title {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 22px;
-      font-weight: bold;
-    }
-
-    /* NAVIGATION */
-    nav {
-      position: relative;
-    }
-
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      gap: 30px;
-    }
-
-    nav ul li a {
-      text-decoration: none;
-      color: #FFD500;
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 18px;
-      transition: 0.3s;
-    }
-
-    nav ul li a:hover,
-    nav ul li a.active {
-      color: white;
-      text-shadow: 0 0 10px #FFD500;
-    }
-
-    /* HAMBURGER */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 5px;
-    }
-
-    .hamburger div {
-      width: 25px;
-      height: 3px;
-      background-color: #FFD500;
-      transition: 0.3s;
-    }
-
-    /* RESPONSIVE NAV */
-    @media (max-width: 768px) {
-      nav ul {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        background-color: rgba(0,0,0,0.95);
-        width: 200px;
-        padding: 20px;
-        border-radius: 8px;
-        text-align: right;
-      }
-
-      nav ul.active {
-        display: flex;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-    }
-
-    /* HOME */
-    .home {
-      padding: 100px 20px;
-      animation: fadeIn 2s ease-in-out;
-    }
-
-    .home h1 {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 42px;
-      margin-bottom: 20px;
-    }
-
-    .home p {
-      font-size: 18px;
-      max-width: 800px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-
-    /* FOOTER */
-    footer {
-      margin-top: auto;
-      padding: 20px 10px;
-      background-color: rgba(0,0,0,0.4);
-      font-size: 14px;
-    }
-
-    .footer-contact {
-      margin-top: 10px;
-    }
-
-    .whatsapp-btn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 20px;
-      background-color: #25D366;
-      color: white;
-      text-decoration: none;
-      border-radius: 25px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .whatsapp-btn:hover {
-      background-color: #1ebe57;
-      box-shadow: 0 0 10px #25D366;
-    }
-
-    main { flex: 1; }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <!-- Header -->
@@ -186,6 +21,7 @@
       <img src="logo.png" alt="PT Sinar Langit Hanoi" class="logo">
       <div class="logo-title">PT Sinar Langit Hanoi</div>
     </div>
+
     <nav>
       <ul id="nav-links">
         <li><a href="aboutus.html">About Us</a></li>
@@ -193,8 +29,13 @@
         <li><a href="vvip.html">VVIP</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="business-sop.html">Business</a></li>
+        <li class="lang-switch">
+          <button onclick="setLanguage('en')">EN</button>
+          <button onclick="setLanguage('id')">ID</button>
+        </li>
       </ul>
     </nav>
+
     <div class="hamburger" onclick="toggleMenu()">
       <div></div>
       <div></div>
@@ -202,9 +43,9 @@
     </div>
   </header>
 
+  <!-- Hero -->
   <main>
-    <!-- Home Section -->
-    <section class="home" id="home">
+    <section class="hero">
       <h1>Welcome to PT Sinar Langit Hanoi</h1>
       <p>
         PT Sinar Langit Hanoi is here as a strategic transformation partner 
@@ -224,17 +65,29 @@
   </footer>
 
   <script>
+    // Hamburger toggle
     function toggleMenu() {
       document.getElementById("nav-links").classList.toggle("active");
     }
 
-    // aktifkan menu sesuai halaman
+    // Highlight active menu
     const navLinks = document.querySelectorAll("nav ul li a");
     navLinks.forEach(link => {
       if (link.href === window.location.href) {
         link.classList.add("active");
       }
     });
+
+    // Simple language switcher (dummy)
+    function setLanguage(lang) {
+      if(lang === "id") {
+        document.querySelector(".hero h1").innerText = "Selamat Datang di PT Sinar Langit Hanoi";
+        document.querySelector(".hero p").innerText = "PT Sinar Langit Hanoi hadir sebagai mitra transformasi strategis untuk membantu bisnis Anda tumbuh lebih cepat, lebih efisien, dan lebih kompetitif di Asia Tenggara.";
+      } else {
+        document.querySelector(".hero h1").innerText = "Welcome to PT Sinar Langit Hanoi";
+        document.querySelector(".hero p").innerText = "PT Sinar Langit Hanoi is here as a strategic transformation partner to help your business grow faster, more efficiently, and more competitively in Southeast Asia.";
+      }
+    }
   </script>
 </body>
 </html>
