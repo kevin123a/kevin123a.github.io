@@ -9,11 +9,7 @@
     /* ========================
        Global Theme
        ======================== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: "EB Garamond", serif;
       background: #fff;
@@ -38,15 +34,8 @@
       top: 0;
       z-index: 1000;
     }
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .logo {
-      height: 42px;
-      width: auto;
-    }
+    .logo-area { display: flex; align-items: center; gap: 10px; }
+    .logo { height: 42px; width: auto; }
     .logo-title {
       font-family: "Cinzel Decorative", serif;
       font-size: 22px;
@@ -54,6 +43,22 @@
       color: #800000;
       letter-spacing: 1.5px;
       white-space: nowrap;
+    }
+
+    /* ========================
+       Language Selector
+       ======================== */
+    .translate-box {
+      margin-left: 12px;
+    }
+    #google_translate_element select {
+      border: 1px solid #d4af37;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 14px;
+      color: #800000;
+      background: #fff;
+      cursor: pointer;
     }
 
     /* ========================
@@ -100,11 +105,7 @@
       from { opacity: 0; transform: translateY(-8px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .nav-popup ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
+    .nav-popup ul { list-style: none; margin: 0; padding: 0; }
     .nav-popup li { margin: 12px 0; }
     .nav-popup a {
       font-family: "Cinzel Decorative", serif;
@@ -168,6 +169,7 @@
       .hero h1 { font-size: 24px; }
       .hero .tagline { font-size: 15px; }
       .logo-title { font-size: 16px; }
+      #google_translate_element select { font-size: 12px; padding: 3px 6px; }
     }
   </style>
 </head>
@@ -179,6 +181,11 @@
       <img src="logo.png" alt="Logo PT Sinar Langit" class="logo">
       <h1 class="logo-title">Sinar Langit Hanoi</h1>
     </div>
+
+    <!-- Language Selector -->
+    <div class="translate-box" id="google_translate_element"></div>
+
+    <!-- Hamburger -->
     <button class="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -236,6 +243,16 @@
         navPopup.classList.remove('open');
       }
     });
+
+    // Google Translate
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'id',
+        includedLanguages: 'id,en,vi',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
   </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
