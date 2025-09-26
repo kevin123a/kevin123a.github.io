@@ -1,31 +1,34 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us - PT Sinar Langit Hanoi</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="logo.png" type="image/png">
+
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=EB+Garamond&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 
   <style>
     body {
       margin: 0;
       font-family: 'EB Garamond', serif;
-      background: #fff;
-      color: #800000;
-      line-height: 1.7;
+      background-color: #8B0000;
+      color: #FFD500;
+      text-align: center;
     }
 
+    /* Header */
     header {
+      background-color: rgba(0,0,0,0.3);
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 24px;
-      border-bottom: 1.5px solid #d4af37;
-      position: sticky;
-      top: 0;
-      background: #fff;
-      z-index: 1000;
     }
 
     .logo-area {
@@ -40,106 +43,102 @@
     }
 
     .logo-title {
-      font-family: "Cinzel Decorative", serif;
+      font-family: 'Cinzel Decorative', serif;
       font-size: 22px;
-      font-weight: bold;
-      color: #800000;
     }
 
     /* Hamburger */
     .hamburger {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      width: 28px;
-      height: 20px;
       cursor: pointer;
-      background: none;
-      border: none;
-    }
-    .hamburger span {
-      display: block;
-      height: 3px;
-      background: #800000;
-      border-radius: 2px;
+      gap: 5px;
+      z-index: 1100;
     }
 
-    /* Overlay Navigation */
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background-color: #FFD500;
+      transition: 0.3s;
+    }
+
+    /* Navigation Overlay */
     .nav-overlay {
       position: fixed;
       top: 0;
-      left: 0;
-      width: 100%;
+      right: -100%;
+      width: 70%;
       height: 100%;
-      background: rgba(255,255,255,0.97);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 2000;
+      background: rgba(0,0,0,0.95);
+      padding: 80px 20px;
+      transition: right 0.3s ease-in-out;
+      z-index: 1050;
     }
+
     .nav-overlay.open {
-      display: flex;
+      right: 0;
     }
+
     .nav-overlay ul {
       list-style: none;
       padding: 0;
       margin: 0;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      text-align: right;
     }
-    .nav-overlay ul li {
-      margin: 14px 0;
-    }
+
     .nav-overlay ul li a {
-      font-family: "Cinzel Decorative", serif;
-      font-size: 22px;
       text-decoration: none;
-      color: #800000;
-      border: 2px solid #d4af37;
-      padding: 8px 18px;
-      border-radius: 10px;
+      color: #FFD500;
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 20px;
       transition: 0.3s;
     }
+
     .nav-overlay ul li a:hover,
     .nav-overlay ul li a.active {
-      background: #d4af37;
-      color: #fff;
+      color: white;
+      text-shadow: 0 0 10px #FFD500;
     }
 
     /* Content */
     .content {
+      padding: 100px 20px;
+      animation: fadeIn 1.5s ease-in-out;
       max-width: 900px;
-      margin: 60px auto;
-      padding: 0 20px 60px 20px;
+      margin: auto;
+      text-align: left;
     }
+
     .content h1 {
-      font-family: "Cinzel Decorative", serif;
+      font-family: 'Cinzel Decorative', serif;
       font-size: 42px;
-      margin-bottom: 30px; /* lebih longgar */
       text-align: center;
-      color: #800000;
+      margin-bottom: 30px;
     }
+
     .content p {
-      margin-bottom: 22px;
       font-size: 18px;
-      text-align: justify;
-    }
-    .content ol {
-      margin: 12px 0 22px 24px;
+      line-height: 1.7;
+      margin-bottom: 20px;
     }
 
+    /* Animation */
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* Footer */
     footer {
-      background: #fff;
-      color: #800000;
+      margin-top: 50px;
+      padding: 15px 0;
+      background-color: rgba(0,0,0,0.4);
+      font-size: 14px;
       text-align: center;
-      padding: 18px 8px;
-      border-top: 1.5px solid #d4af37;
-      font-size: 15px;
-    }
-
-    @media (max-width: 600px) {
-      .content h1 { font-size: 28px; margin-bottom: 22px; }
-      .content p { font-size: 16px; }
-      .nav-overlay ul li a { font-size: 20px; padding: 6px 14px; }
     }
   </style>
 </head>
@@ -171,33 +170,17 @@
   <section class="content">
     <h1>About Us</h1>
     <p>
-      Sejak awal berdiri, <b>PT Sinar Langit Hanoi</b> lahir dari sebuah mimpi besar. 
-      Mimpi untuk menghadirkan layanan konsultasi manajemen yang tidak hanya memberikan arahan, 
-      tetapi juga menjadi pendamping nyata bagi dunia usaha yang ingin terus berkembang.
+      PT Sinar Langit Hanoi is a trusted partner in Southeast Asia, dedicated to driving strategic business transformation. 
+      We believe that success is built on strong foundations of trust, innovation, and efficiency.
     </p>
     <p>
-      Perusahaan ini didirikan oleh <b>Immanuel Eucherius de Yuwa (Kevin)</b> sejak tahun 2019 
-      dan resmi berbadan hukum pada <b>13 Juli 2025</b>, berlokasi di 
-      <b>Jl. Nakula, Tanjunganom, Nganjuk, Jawa Timur, Indonesia</b>.
+      Our mission is to provide high-value services in financial management, business consulting, and international mobility, 
+      empowering clients to grow faster and more competitively in the region.
     </p>
     <p>
-      Dengan penuh dedikasi, kami telah dipercaya untuk mendukung mitra dari 
-      <b>Vietnam, Thailand, Singapura, Myanmar, hingga Filipina</b>. 
-      Setiap langkah kami selalu dilandasi kepercayaan, profesionalisme, 
-      serta keberlanjutan dalam kerjasama.
+      With years of experience and a commitment to excellence, PT Sinar Langit Hanoi stands as your reliable partner 
+      in navigating challenges and unlocking opportunities for sustainable growth.
     </p>
-    <p><b>Visi:</b><br>
-      Menjadi perusahaan konsultasi manajemen terpercaya yang membawa transformasi 
-      dan keberlanjutan bagi dunia usaha di Indonesia dan Asia Tenggara.
-    </p>
-    <p><b>Misi:</b></p>
-    <ol>
-      <li>Menyediakan layanan konsultasi manajemen yang inovatif dan berbasis solusi.</li>
-      <li>Membantu klien meningkatkan efisiensi, profitabilitas, dan daya saing bisnis.</li>
-      <li>Menjadi mitra strategis bagi startup, UMKM, hingga perusahaan besar.</li>
-      <li>Mendorong pengembangan SDM melalui pelatihan dan budaya kerja.</li>
-      <li>Menjaga integritas dan transparansi dalam seluruh proses bisnis.</li>
-    </ol>
   </section>
 
   <!-- Footer -->
@@ -205,27 +188,16 @@
     <p>&copy; <span id="year"></span> PT Sinar Langit Hanoi. All rights reserved.</p>
   </footer>
 
-  <!-- Script -->
   <script>
     const hamburger = document.querySelector('.hamburger');
     const nav = document.querySelector('.nav-overlay');
 
-    // Toggle buka/tutup menu
     hamburger.addEventListener('click', (e) => {
       e.stopPropagation();
       nav.classList.toggle('open');
       hamburger.classList.toggle('open');
     });
 
-    // Klik luar = tutup menu
-    document.addEventListener('click', (e) => {
-      if (nav.classList.contains('open') && !nav.contains(e.target) && !hamburger.contains(e.target)) {
-        nav.classList.remove('open');
-        hamburger.classList.remove('open');
-      }
-    });
-
-    // Klik link = tutup menu
     document.querySelectorAll('.nav-overlay a').forEach(link => {
       link.addEventListener('click', () => {
         nav.classList.remove('open');
@@ -233,15 +205,14 @@
       });
     });
 
-    // ESC = tutup menu
-    document.addEventListener('keydown', (e) => {
-      if (e.key === "Escape") {
+    document.addEventListener('click', (e) => {
+      if (nav.classList.contains('open') && !nav.contains(e.target) && !hamburger.contains(e.target)) {
         nav.classList.remove('open');
         hamburger.classList.remove('open');
       }
     });
 
-    // Tahun otomatis
+    // update tahun otomatis
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
