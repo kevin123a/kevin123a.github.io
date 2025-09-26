@@ -1,161 +1,192 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us - PT Sinar Langit Hanoi</title>
-  <link rel="icon" href="logo.png" type="image/png">
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=EB+Garamond&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      margin: 0;
-      font-family: 'EB Garamond', serif;
-      background-color: #8B0000;
-      color: #FFD500;
-      text-align: center;
+      font-family: "EB Garamond", serif;
+      background: #fff;
+      color: #800000;
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
-    /* Header */
     header {
-      background-color: rgba(0,0,0,0.3);
-      padding: 15px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      background: #fff;
+      padding: 16px 22px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      border-bottom: 1.5px solid #d4af37;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo {
-      height: 40px;
-      width: auto;
-    }
-
+    .logo-area { display: flex; align-items: center; gap: 10px; }
+    .logo { height: 42px; width: auto; }
     .logo-title {
-      font-family: 'Cinzel Decorative', serif;
+      font-family: "Cinzel Decorative", serif;
       font-size: 22px;
+      font-weight: bold;
+      color: #800000;
+      letter-spacing: 1.5px;
+      white-space: nowrap;
     }
 
-    /* Hamburger */
     .hamburger {
       display: flex;
       flex-direction: column;
       cursor: pointer;
       gap: 5px;
-      z-index: 1100;
+      border: none;
+      background: none;
+      width: 32px;
+      height: 32px;
+      justify-content: center;
+      z-index: 1201;
     }
-
     .hamburger span {
-      width: 25px;
       height: 3px;
-      background-color: #FFD500;
+      width: 28px;
+      background: #d4af37;
+      border-radius: 2px;
       transition: 0.3s;
     }
 
-    /* Navigation Overlay */
-    .nav-overlay {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 70%;
-      height: 100%;
-      background: rgba(0,0,0,0.95);
-      padding: 80px 20px;
-      transition: right 0.3s ease-in-out;
-      z-index: 1050;
+    .nav-popup {
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      background: #fff;
+      border: 2px solid #d4af37;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      padding: 16px 22px;
+      display: none;
+      z-index: 1200;
+      animation: fadeIn 0.25s ease-out;
     }
-
-    .nav-overlay.open {
-      right: 0;
+    .nav-popup.open { display: block; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-
-    .nav-overlay ul {
-      list-style: none;
+    .nav-popup ul { list-style: none; margin: 0; padding: 0; }
+    .nav-popup li { margin: 12px 0; }
+    .nav-popup a,
+    .nav-popup .translate-nav-item {
+      font-family: "Cinzel Decorative", serif;
+      font-size: 17px;
+      color: #800000;
+      padding: 6px 10px;
+      border-radius: 8px;
+      display: block;
+      transition: background 0.3s, color 0.3s;
+      text-decoration: none;
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+    }
+    .nav-popup a:hover,
+    .nav-popup a.active,
+    .nav-popup .translate-nav-item:focus {
+      background: #d4af37;
+      color: #fff;
+    }
+    .nav-popup .translate-box {
+      margin: 0 !important;
+      padding: 0;
+    }
+    #google_translate_element select {
+      border: 1px solid #d4af37;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 14px;
+      color: #800000;
+      background: #fff;
+      cursor: pointer;
+    }
+    .nav-popup .translate-box {
+      margin: 0;
+      padding: 0;
+    }
+    .nav-popup .translate-nav-item {
       padding: 0;
       margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-      text-align: right;
+      background: none;
+      border: none;
+      cursor: default;
     }
 
-    .nav-overlay ul li a {
-      text-decoration: none;
-      color: #FFD500;
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 20px;
-      transition: 0.3s;
-    }
-
-    .nav-overlay ul li a:hover,
-    .nav-overlay ul li a.active {
-      color: white;
-      text-shadow: 0 0 10px #FFD500;
-    }
-
-    /* Content */
-    .content {
-      padding: 100px 20px;
-      animation: fadeIn 1.5s ease-in-out;
+    .about-section {
+      flex: 1;
       max-width: 900px;
-      margin: auto;
+      margin: 0 auto;
+      padding: 70px 6vw 50px 6vw;
+    }
+    .about-section h1 {
+      font-family: "Cinzel Decorative", serif;
+      font-size: 34px;
+      margin-bottom: 24px;
+      color: #800000;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-align: center;
+    }
+    .about-section p, .about-section ol {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #800000;
       text-align: left;
     }
-
-    .content h1 {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 42px;
-      text-align: center;
-      margin-bottom: 30px;
+    .about-section ol {
+      padding-left: 22px;
+      margin-top: -10px;
+    }
+    .about-section li {
+      margin-bottom: 7px;
     }
 
-    .content p {
-      font-size: 18px;
-      line-height: 1.7;
-      margin-bottom: 20px;
-    }
-
-    /* Animation */
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-
-    /* Footer */
     footer {
-      margin-top: 50px;
-      padding: 15px 0;
-      background-color: rgba(0,0,0,0.4);
-      font-size: 14px;
+      background: #fff;
+      color: #800000;
       text-align: center;
+      padding: 18px 8px;
+      font-size: 15px;
+      border-top: 1.5px solid #d4af37;
+      margin-top: auto;
+    }
+
+    @media (max-width: 600px) {
+      .about-section h1 { font-size: 24px; }
+      .about-section p, .about-section ol { font-size: 15px; }
+      .logo-title { font-size: 16px; }
+      #google_translate_element select { font-size: 12px; padding: 3px 6px; }
     }
   </style>
 </head>
 <body>
+
   <!-- Header -->
   <header>
     <div class="logo-area">
-      <img src="logo.png" alt="PT Sinar Langit Hanoi" class="logo">
-      <div class="logo-title">PT Sinar Langit Hanoi</div>
+      <img src="logo.png" alt="Logo PT Sinar Langit" class="logo">
+      <h1 class="logo-title">Sinar Langit Hanoi</h1>
     </div>
     <button class="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
   </header>
 
-  <!-- Navigation Overlay -->
-  <nav class="nav-overlay">
+  <!-- Navigation Popup -->
+  <nav class="nav-popup">
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="aboutus.html" class="active">About Us</a></li>
@@ -163,57 +194,85 @@
       <li><a href="vvip.html">VVIP</a></li>
       <li><a href="business-sop.html">Business</a></li>
       <li><a href="contact.html">Contact</a></li>
+      <li>
+        <div class="translate-box translate-nav-item" id="google_translate_element"></div>
+      </li>
     </ul>
   </nav>
 
-  <!-- Content -->
-  <section class="content">
+  <!-- About Section -->
+  <section class="about-section">
     <h1>About Us</h1>
     <p>
-      PT Sinar Langit Hanoi is a trusted partner in Southeast Asia, dedicated to driving strategic business transformation. 
-      We believe that success is built on strong foundations of trust, innovation, and efficiency.
+      Sejak awal berdiri, <b>PT Sinar Langit Hanoi</b> lahir dari sebuah mimpi besar. 
+      Mimpi untuk menghadirkan layanan konsultasi manajemen yang tidak hanya memberikan arahan, 
+      tetapi juga menjadi pendamping nyata bagi dunia usaha yang ingin terus berkembang.
     </p>
     <p>
-      Our mission is to provide high-value services in financial management, business consulting, and international mobility, 
-      empowering clients to grow faster and more competitively in the region.
+      Perusahaan ini didirikan oleh <b>Immanuel Eucherius de Yuwa (Kevin)</b> sejak tahun 2019 
+      dan resmi berbadan hukum pada <b>13 Juli 2025</b>, berlokasi di 
+      <b>Jl. Nakula, Tanjunganom, Nganjuk, Jawa Timur, Indonesia</b>.
     </p>
     <p>
-      With years of experience and a commitment to excellence, PT Sinar Langit Hanoi stands as your reliable partner 
-      in navigating challenges and unlocking opportunities for sustainable growth.
+      Dengan penuh dedikasi, kami telah dipercaya untuk mendukung mitra dari 
+      <b>Vietnam, Thailand, Singapura, Myanmar, hingga Filipina</b>. 
+      Setiap langkah kami selalu dilandasi kepercayaan, profesionalisme, 
+      serta keberlanjutan dalam kerjasama.
     </p>
+    <p><b>Visi:</b><br>
+      Menjadi perusahaan konsultasi manajemen terpercaya yang membawa transformasi 
+      dan keberlanjutan bagi dunia usaha di Indonesia dan Asia Tenggara.
+    </p>
+    <p><b>Misi:</b></p>
+    <ol>
+      <li>Menyediakan layanan konsultasi manajemen yang inovatif dan berbasis solusi.</li>
+      <li>Membantu klien meningkatkan efisiensi, profitabilitas, dan daya saing bisnis.</li>
+      <li>Menjadi mitra strategis bagi startup, UMKM, hingga perusahaan besar.</li>
+      <li>Mendorong pengembangan SDM melalui pelatihan dan budaya kerja.</li>
+      <li>Menjaga integritas dan transparansi dalam seluruh proses bisnis.</li>
+    </ol>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; <span id="year"></span> PT Sinar Langit Hanoi. All rights reserved.</p>
+    <p>&copy; <span id="year"></span> PT Sinar Langit Hanoi. All Rights Reserved.</p>
   </footer>
 
+  <!-- Script -->
   <script>
     const hamburger = document.querySelector('.hamburger');
-    const nav = document.querySelector('.nav-overlay');
+    const navPopup = document.querySelector('.nav-popup');
 
+    // Toggle popup saat klik hamburger
     hamburger.addEventListener('click', (e) => {
       e.stopPropagation();
-      nav.classList.toggle('open');
-      hamburger.classList.toggle('open');
+      navPopup.classList.toggle('open');
     });
 
-    document.querySelectorAll('.nav-overlay a').forEach(link => {
+    // Tutup popup saat klik link
+    document.querySelectorAll('.nav-popup a').forEach(link => {
       link.addEventListener('click', () => {
-        nav.classList.remove('open');
-        hamburger.classList.remove('open');
+        navPopup.classList.remove('open');
       });
     });
 
+    // Tutup popup saat klik di luar
     document.addEventListener('click', (e) => {
-      if (nav.classList.contains('open') && !nav.contains(e.target) && !hamburger.contains(e.target)) {
-        nav.classList.remove('open');
-        hamburger.classList.remove('open');
+      if (navPopup.classList.contains('open') && !navPopup.contains(e.target) && !hamburger.contains(e.target)) {
+        navPopup.classList.remove('open');
       }
     });
 
-    // update tahun otomatis
+    // Google Translate
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'id',
+        includedLanguages: 'id,en,vi',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
