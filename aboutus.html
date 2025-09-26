@@ -14,14 +14,13 @@
     body {
       margin: 0;
       font-family: 'EB Garamond', serif;
-      background-color: #8B0000;
-      color: #FFD500;
-      text-align: center;
+      background-color: #8B0000; /* merah elegan */
+      color: #FFD500; /* emas */
     }
 
     header {
-      background-color: rgba(0,0,0,0.3);
-      padding: 15px 20px;
+      background-color: rgba(0,0,0,0.4);
+      padding: 12px 20px;
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -43,21 +42,22 @@
 
     .logo-title {
       font-family: 'Cinzel Decorative', serif;
-      font-size: 22px;
+      font-size: 20px;
+      color: #FFD500;
     }
 
+    /* Nav */
     nav ul {
       list-style: none;
       margin: 0;
       padding: 0;
       display: flex;
-      gap: 30px;
-      align-items: center;
+      gap: 25px;
     }
 
     nav ul li {
       font-family: 'Cinzel Decorative', serif;
-      font-size: 18px;
+      font-size: 17px;
     }
 
     nav ul li a {
@@ -72,18 +72,7 @@
       text-shadow: 0 0 10px #FFD500;
     }
 
-    /* Google Translate dropdown style */
-    #google_translate_element select {
-      background: #FFD500;
-      color: #8B0000;
-      border: none;
-      border-radius: 5px;
-      padding: 5px 8px;
-      font-size: 14px;
-      font-family: 'EB Garamond', serif;
-      cursor: pointer;
-    }
-
+    /* Hamburger */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -92,22 +81,24 @@
     }
 
     .hamburger div {
-      width: 25px;
+      width: 26px;
       height: 3px;
       background-color: #FFD500;
       transition: 0.3s;
     }
 
+    /* Responsive Nav */
     @media (max-width: 768px) {
       nav ul {
         display: none;
         flex-direction: column;
-        background-color: rgba(0,0,0,0.9);
+        background-color: rgba(0,0,0,0.95);
         position: absolute;
         top: 60px;
         right: 20px;
         padding: 20px;
-        border-radius: 10px;
+        border-radius: 8px;
+        width: 200px;
       }
 
       nav ul.active {
@@ -119,40 +110,60 @@
       }
     }
 
+    /* Content */
     .content {
-      padding: 120px 20px;
+      padding: 100px 20px;
       max-width: 900px;
       margin: auto;
-      text-align: left;
+      color: #fff8dc;
       line-height: 1.8;
-      animation: fadeIn 2s ease-in-out; /* animasi masuk */
+      animation: fadeIn 1.5s ease-in-out;
     }
 
     .content h1 {
       font-family: 'Cinzel Decorative', serif;
-      font-size: 48px;
+      font-size: 42px;
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
+      color: #FFD500;
     }
 
     .content p {
-      margin-bottom: 20px;
+      margin-bottom: 18px;
+      font-size: 18px;
     }
 
     .content ol {
-      margin: 10px 0 20px 20px;
+      margin: 10px 0 20px 25px;
     }
 
     /* Fade in animation */
     @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
+      from {opacity: 0; transform: translateY(15px);}
       to {opacity: 1; transform: translateY(0);}
     }
 
+    /* Footer */
     footer {
       margin-top: 50px;
       padding: 15px 0;
-      background-color: rgba(0,0,0,0.4);
+      background-color: rgba(0,0,0,0.5);
+      font-size: 14px;
+      color: #FFD500;
+      text-align: center;
+    }
+
+    /* Translate selector styling */
+    #google_translate_element {
+      margin-left: 15px;
+    }
+    .goog-te-gadget {
+      font-size: 0 !important;
+    }
+    .goog-te-gadget .goog-te-combo {
+      padding: 4px;
+      border-radius: 5px;
+      border: none;
       font-size: 14px;
     }
   </style>
@@ -169,10 +180,12 @@
         <li><a href="aboutus.html" class="active">About Us</a></li>
         <li><a href="service.html">Service</a></li>
         <li><a href="vvip.html">VVIP</a></li>
+        <li><a href="business-sop.html">Business</a></li>
         <li><a href="contact.html">Contact</a></li>
-        <li><div id="google_translate_element"></div></li>
       </ul>
     </nav>
+    <!-- Language selector -->
+    <div id="google_translate_element"></div>
     <div class="hamburger" onclick="toggleMenu()">
       <div></div>
       <div></div>
@@ -227,6 +240,7 @@
     <p>&copy; <span id="year"></span> PT Sinar Langit Hanoi. All rights reserved.</p>
   </footer>
 
+  <!-- Scripts -->
   <script>
     function toggleMenu() {
       document.getElementById("nav-links").classList.toggle("active");
@@ -234,10 +248,26 @@
 
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    // Highlight current page
     const navLinks = document.querySelectorAll("nav ul li a");
     navLinks.forEach(link => {
       if(link.href === window.location.href){
         link.classList.add("active");
+      }
+      // close menu on link click (mobile)
+      link.addEventListener("click", () => {
+        document.getElementById("nav-links").classList.remove("active");
+      });
+    });
+
+    // Close menu if clicking outside
+    document.addEventListener("click", function(e) {
+      const nav = document.getElementById("nav-links");
+      const hamburger = document.querySelector(".hamburger");
+      if (nav.classList.contains("active") &&
+          !nav.contains(e.target) &&
+          !hamburger.contains(e.target)) {
+        nav.classList.remove("active");
       }
     });
 
