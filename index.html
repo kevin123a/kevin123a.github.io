@@ -6,6 +6,12 @@
   <title>PT Sinar Langit Hanoi</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+  <style>
+    /* Hilangkan garis bawah menu */
+    nav ul li a {
+      text-decoration: none !important;
+    }
+  </style>
 </head>
 <body>
 
@@ -32,6 +38,10 @@
         <li><a href="vvip.html">VVIP</a></li>
         <li><a href="business-sop.html">Business</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li>
+          <!-- Language Switcher -->
+          <div id="google_translate_element"></div>
+        </li>
       </ul>
     </nav>
   </header>
@@ -42,12 +52,11 @@
     <p>Kami hadir memberikan layanan terbaik dengan elegansi dan profesionalisme.</p>
   </section>
 
-  <!-- Sample Section -->
+  <!-- Company Section -->
   <section class="section-card">
-    <h2>Profil Perusahaan</h2>
+    <h2>Company Profile</h2>
     <p>
-      PT Sinar Langit Hanoi bergerak di bidang layanan premium dan konsultasi bisnis.
-      Kami berkomitmen memberikan pengalaman luar biasa kepada setiap klien.
+      PT Sinar Langit Hanoi is here as a strategic transformation partner to help your business grow faster, more efficiently, and more competitively in Southeast Asia.
     </p>
   </section>
 
@@ -66,13 +75,22 @@
       nav.classList.toggle('menu-open');
     });
 
-    // Tutup menu saat klik link
     document.querySelectorAll('nav ul li a').forEach(link => {
       link.addEventListener('click', () => {
         nav.classList.remove('menu-open');
       });
     });
+
+    // Google Translate
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'id',
+        includedLanguages: 'en,vi,id',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
   </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>
