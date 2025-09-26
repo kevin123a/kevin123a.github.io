@@ -1,93 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PT Sinar Langit Hanoi</title>
-
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="PT Sinar Langit Hanoi adalah mitra strategis untuk mendukung pertumbuhan bisnis Anda di Asia Tenggara dengan layanan konsultasi, solusi bisnis, dan pengurusan dokumen.">
-  <meta name="keywords" content="PT Sinar Langit Hanoi, solusi bisnis, jasa konsultasi, pengurusan dokumen, VVIP service, bisnis Asia Tenggara">
-  <meta name="author" content="PT Sinar Langit Hanoi">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=EB+Garamond&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
+
   <!-- Header -->
   <header>
     <div class="logo-area">
-      <img src="logo.png" alt="PT Sinar Langit Hanoi" class="logo">
-      <div class="logo-title">PT Sinar Langit Hanoi</div>
+      <img src="logo.png" alt="Logo PT Sinar Langit" class="logo">
+      <h1 class="logo-title">Sinar Langit</h1>
     </div>
 
+    <!-- Hamburger -->
+    <button class="hamburger" aria-label="Menu">
+      <div></div>
+      <div></div>
+      <div></div>
+    </button>
+
+    <!-- Navigation -->
     <nav>
-      <ul id="nav-links">
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
         <li><a href="aboutus.html">About Us</a></li>
         <li><a href="service.html">Service</a></li>
         <li><a href="vvip.html">VVIP</a></li>
-        <li><a href="contact.html">Contact</a></li>
         <li><a href="business-sop.html">Business</a></li>
-        <li class="lang-switch">
-          <button onclick="setLanguage('en')">EN</button>
-          <button onclick="setLanguage('id')">ID</button>
-        </li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
-
-    <div class="hamburger" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
   </header>
 
-  <!-- Hero -->
-  <main>
-    <section class="hero">
-      <h1>Welcome to PT Sinar Langit Hanoi</h1>
-      <p>
-        PT Sinar Langit Hanoi is here as a strategic transformation partner 
-        to help your business grow faster, more efficiently, 
-        and more competitively in Southeast Asia.
-      </p>
-    </section>
-  </main>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Selamat Datang di PT Sinar Langit Hanoi</h1>
+    <p>Kami hadir memberikan layanan terbaik dengan elegansi dan profesionalisme.</p>
+  </section>
+
+  <!-- Sample Section -->
+  <section class="section-card">
+    <h2>Profil Perusahaan</h2>
+    <p>
+      PT Sinar Langit Hanoi bergerak di bidang layanan premium dan konsultasi bisnis.
+      Kami berkomitmen memberikan pengalaman luar biasa kepada setiap klien.
+    </p>
+  </section>
 
   <!-- Footer -->
   <footer>
-    <div class="footer-contact">
-      <p><strong>Address:</strong> Jl. Nakula, Kampungbaru, Tanjunganom, Nganjuk, East Java, Indonesia</p>
-      <a href="https://wa.me/628977546561" target="_blank" class="whatsapp-btn"> WhatsApp Us</a>
-    </div>
-    <p>© 2025 PT Sinar Langit Hanoi. All rights reserved.</p>
+    <p>&copy; 2025 PT Sinar Langit Hanoi. All Rights Reserved.</p>
+    <div class="footer-contact">Hubungi kami: info@sinarlangit.com</div>
   </footer>
 
+  <!-- Script -->
   <script>
-    // Hamburger toggle
-    function toggleMenu() {
-      document.getElementById("nav-links").classList.toggle("active");
-    }
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('nav');
 
-    // Highlight active menu
-    const navLinks = document.querySelectorAll("nav ul li a");
-    navLinks.forEach(link => {
-      if (link.href === window.location.href) {
-        link.classList.add("active");
-      }
+    hamburger.addEventListener('click', () => {
+      nav.classList.toggle('menu-open');
     });
 
-    // Simple language switcher (dummy)
-    function setLanguage(lang) {
-      if(lang === "id") {
-        document.querySelector(".hero h1").innerText = "Selamat Datang di PT Sinar Langit Hanoi";
-        document.querySelector(".hero p").innerText = "PT Sinar Langit Hanoi hadir sebagai mitra transformasi strategis untuk membantu bisnis Anda tumbuh lebih cepat, lebih efisien, dan lebih kompetitif di Asia Tenggara.";
-      } else {
-        document.querySelector(".hero h1").innerText = "Welcome to PT Sinar Langit Hanoi";
-        document.querySelector(".hero p").innerText = "PT Sinar Langit Hanoi is here as a strategic transformation partner to help your business grow faster, more efficiently, and more competitively in Southeast Asia.";
-      }
-    }
+    // Tutup menu saat klik link
+    document.querySelectorAll('nav ul li a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('menu-open');
+      });
+    });
   </script>
+
 </body>
 </html>
