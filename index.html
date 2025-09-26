@@ -6,9 +6,6 @@
   <title>PT Sinar Langit Hanoi</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=EB+Garamond&display=swap" rel="stylesheet">
   <style>
-    /* ========================
-       Global Theme
-       ======================== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: "EB Garamond", serif;
@@ -20,9 +17,6 @@
       flex-direction: column;
     }
 
-    /* ========================
-       Header
-       ======================== */
     header {
       background: #fff;
       padding: 16px 22px;
@@ -43,22 +37,6 @@
       color: #800000;
       letter-spacing: 1.5px;
       white-space: nowrap;
-    }
-
-    /* ========================
-       Language Selector
-       ======================== */
-    .translate-box {
-      margin-left: 12px;
-    }
-    #google_translate_element select {
-      border: 1px solid #d4af37;
-      border-radius: 6px;
-      padding: 4px 8px;
-      font-size: 14px;
-      color: #800000;
-      background: #fff;
-      cursor: pointer;
     }
 
     /* ========================
@@ -107,7 +85,8 @@
     }
     .nav-popup ul { list-style: none; margin: 0; padding: 0; }
     .nav-popup li { margin: 12px 0; }
-    .nav-popup a {
+    .nav-popup a,
+    .nav-popup .translate-nav-item {
       font-family: "Cinzel Decorative", serif;
       font-size: 17px;
       color: #800000;
@@ -115,11 +94,43 @@
       border-radius: 8px;
       display: block;
       transition: background 0.3s, color 0.3s;
+      text-decoration: none;
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
     }
     .nav-popup a:hover,
-    .nav-popup a.active {
+    .nav-popup a.active,
+    .nav-popup .translate-nav-item:focus {
       background: #d4af37;
       color: #fff;
+    }
+    .nav-popup .translate-box {
+      margin: 0 !important;
+      padding: 0;
+    }
+    #google_translate_element select {
+      border: 1px solid #d4af37;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 14px;
+      color: #800000;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .nav-popup .translate-box {
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-popup .translate-nav-item {
+      padding: 0;
+      margin: 0;
+      background: none;
+      border: none;
+      cursor: default;
     }
 
     /* ========================
@@ -149,9 +160,6 @@
       color: #333;
     }
 
-    /* ========================
-       Footer
-       ======================== */
     footer {
       background: #fff;
       color: #800000;
@@ -162,9 +170,6 @@
       margin-top: auto;
     }
 
-    /* ========================
-       Responsive
-       ======================== */
     @media (max-width: 600px) {
       .hero h1 { font-size: 24px; }
       .hero .tagline { font-size: 15px; }
@@ -182,9 +187,6 @@
       <h1 class="logo-title">Sinar Langit Hanoi</h1>
     </div>
 
-    <!-- Language Selector -->
-    <div class="translate-box" id="google_translate_element"></div>
-
     <!-- Hamburger -->
     <button class="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -200,6 +202,10 @@
       <li><a href="vvip.html">VVIP</a></li>
       <li><a href="business-sop.html">Business</a></li>
       <li><a href="contact.html">Contact</a></li>
+      <li>
+        <!-- Language Selector moved into navigation menu -->
+        <div class="translate-box translate-nav-item" id="google_translate_element"></div>
+      </li>
     </ul>
   </nav>
 
