@@ -6,17 +6,151 @@
   <title>About Us - PT Sinar Langit Hanoi</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=EB+Garamond&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'EB Garamond', serif;
+      background: #fff;
+      color: #800000;
+      line-height: 1.7;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      border-bottom: 1.5px solid #d4af37;
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 1000;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      height: 40px;
+      width: auto;
+    }
+
+    .logo-title {
+      font-family: "Cinzel Decorative", serif;
+      font-size: 22px;
+      font-weight: bold;
+      color: #800000;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 28px;
+      height: 20px;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      height: 3px;
+      background: #800000;
+      border-radius: 2px;
+    }
+
+    /* Overlay Navigation */
+    .nav-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.97);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 2000;
+    }
+    .nav-overlay.open {
+      display: flex;
+    }
+    .nav-overlay ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
+    .nav-overlay ul li {
+      margin: 14px 0;
+    }
+    .nav-overlay ul li a {
+      font-family: "Cinzel Decorative", serif;
+      font-size: 22px;
+      text-decoration: none;
+      color: #800000;
+      border: 2px solid #d4af37;
+      padding: 8px 18px;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+    .nav-overlay ul li a:hover,
+    .nav-overlay ul li a.active {
+      background: #d4af37;
+      color: #fff;
+    }
+
+    /* Content */
+    .content {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 20px 60px 20px;
+    }
+    .content h1 {
+      font-family: "Cinzel Decorative", serif;
+      font-size: 42px;
+      margin-bottom: 30px; /* spasi longgar */
+      text-align: center;
+      color: #800000;
+    }
+    .content p {
+      margin-bottom: 22px;
+      font-size: 18px;
+      text-align: justify;
+    }
+    .content ol {
+      margin: 12px 0 22px 24px;
+    }
+
+    footer {
+      background: #fff;
+      color: #800000;
+      text-align: center;
+      padding: 18px 8px;
+      border-top: 1.5px solid #d4af37;
+      font-size: 15px;
+    }
+
+    @media (max-width: 600px) {
+      .content h1 { font-size: 28px; margin-bottom: 22px; }
+      .content p { font-size: 16px; }
+      .nav-overlay ul li a { font-size: 20px; padding: 6px 14px; }
+    }
+  </style>
 </head>
 <body>
-
   <!-- Header -->
   <header>
     <div class="logo-area">
-      <img src="logo.png" alt="Logo PT Sinar Langit" class="logo">
-      <h1 class="logo-title">Sinar Langit Hanoi</h1>
+      <img src="logo.png" alt="PT Sinar Langit Hanoi" class="logo">
+      <div class="logo-title">PT Sinar Langit Hanoi</div>
     </div>
-
-    <!-- Hamburger -->
     <button class="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -31,60 +165,45 @@
       <li><a href="vvip.html">VVIP</a></li>
       <li><a href="business-sop.html">Business</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li>
-        <!-- Google Translate -->
-        <div id="google_translate_element"></div>
-      </li>
     </ul>
   </nav>
 
-  <!-- About Section -->
+  <!-- Content -->
   <section class="content">
     <h1>About Us</h1>
     <p>
       Sejak awal berdiri, <b>PT Sinar Langit Hanoi</b> lahir dari sebuah mimpi besar. 
       Mimpi untuk menghadirkan layanan konsultasi manajemen yang tidak hanya memberikan arahan, 
-      tetapi juga menjadi pendamping nyata bagi dunia usaha yang ingin terus berkembang. 
-      Perusahaan ini didirikan oleh <b>Immanuel Eucherius de Yuwa (Kevin)</b> 
-      sejak tahun 2019 dan resmi berbadan hukum pada <b>13 Juli 2025</b>. 
-      Berlokasi di <b>Jl. Nakula, Tanjunganom, Nganjuk, Jawa Timur, Indonesia</b>, 
-      PT Sinar Langit Hanoi berkomitmen menjadi bagian dari perjalanan bisnis setiap klien.
+      tetapi juga menjadi pendamping nyata bagi dunia usaha yang ingin terus berkembang.
     </p>
     <p>
-      Dalam perjalanannya, kami tidak hanya berfokus pada pasar lokal, 
-      namun juga memperluas jangkauan hingga ke negara-negara di Asia Tenggara. 
+      Perusahaan ini didirikan oleh <b>Immanuel Eucherius de Yuwa (Kevin)</b> sejak tahun 2019 
+      dan resmi berbadan hukum pada <b>13 Juli 2025</b>, berlokasi di 
+      <b>Jl. Nakula, Tanjunganom, Nganjuk, Jawa Timur, Indonesia</b>.
+    </p>
+    <p>
       Dengan penuh dedikasi, kami telah dipercaya untuk mendukung mitra dari 
       <b>Vietnam, Thailand, Singapura, Myanmar, hingga Filipina</b>. 
-      Setiap langkah yang kami ambil selalu dilandasi oleh keinginan untuk membangun kepercayaan, 
-      profesionalisme, serta keberlanjutan dalam setiap kerjasama yang terjalin.
+      Setiap langkah kami selalu dilandasi kepercayaan, profesionalisme, 
+      serta keberlanjutan dalam kerjasama.
     </p>
-    <p>
-      Kami percaya bahwa sebuah perusahaan bukan hanya tentang strategi, laporan, atau angka. 
-      Lebih dari itu, perusahaan adalah tentang <i>manusia</i> di dalamnya—tentang visi, 
-      semangat, dan perjuangan untuk terus tumbuh. Oleh karena itu, PT Sinar Langit Hanoi hadir 
-      untuk memberikan solusi nyata, membantu mitra meningkatkan efisiensi, profitabilitas, 
-      serta daya saing di tengah dinamika global yang terus berubah.
-    </p>
-    <p>
-      <b>Visi:</b><br>
-      Menjadikan perusahaan konsultasi manajemen terpercaya yang membawa transformasi 
+    <p><b>Visi:</b><br>
+      Menjadi perusahaan konsultasi manajemen terpercaya yang membawa transformasi 
       dan keberlanjutan bagi dunia usaha di Indonesia dan Asia Tenggara.
     </p>
-    <p>
-      <b>Misi:</b>
-      <ol>
-        <li>Menyediakan layanan konsultasi manajemen yang inovatif, profesional, dan berbasis solusi.</li>
-        <li>Membantu klien dalam meningkatkan efisiensi, profitabilitas, dan daya saing bisnis.</li>
-        <li>Menjadi mitra strategis bagi startup, UMKM, hingga perusahaan besar.</li>
-        <li>Mendorong pengembangan SDM melalui pelatihan dan penguatan budaya kerja.</li>
-        <li>Menjaga integritas dan transparansi dalam seluruh proses bisnis.</li>
-      </ol>
-    </p>
+    <p><b>Misi:</b></p>
+    <ol>
+      <li>Menyediakan layanan konsultasi manajemen yang inovatif dan berbasis solusi.</li>
+      <li>Membantu klien meningkatkan efisiensi, profitabilitas, dan daya saing bisnis.</li>
+      <li>Menjadi mitra strategis bagi startup, UMKM, hingga perusahaan besar.</li>
+      <li>Mendorong pengembangan SDM melalui pelatihan dan budaya kerja.</li>
+      <li>Menjaga integritas dan transparansi dalam seluruh proses bisnis.</li>
+    </ol>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 PT Sinar Langit Hanoi. All Rights Reserved.</p>
+    <p>&copy; <span id="year"></span> PT Sinar Langit Hanoi. All rights reserved.</p>
   </footer>
 
   <!-- Script -->
@@ -95,40 +214,22 @@
     hamburger.addEventListener('click', (e) => {
       e.stopPropagation();
       nav.classList.toggle('open');
-      hamburger.classList.toggle('open');
     });
 
-    document.querySelectorAll('.nav-overlay a').forEach(link => {
-      link.addEventListener('click', () => {
-        nav.classList.remove('open');
-        hamburger.classList.remove('open');
-      });
-    });
-
+    // Tutup jika klik di luar menu
     document.addEventListener('click', (e) => {
       if (nav.classList.contains('open') && !nav.contains(e.target) && !hamburger.contains(e.target)) {
         nav.classList.remove('open');
-        hamburger.classList.remove('open');
       }
     });
 
+    // Tutup dengan ESC
     document.addEventListener('keydown', (e) => {
-      if (e.key === "Escape" && nav.classList.contains('open')) {
-        nav.classList.remove('open');
-        hamburger.classList.remove('open');
-      }
+      if (e.key === "Escape") nav.classList.remove('open');
     });
 
-    // Google Translate
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-        pageLanguage: 'id',
-        includedLanguages: 'id,en,vi',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-      }, 'google_translate_element');
-    }
+    // Tahun dinamis
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
-  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
 </body>
 </html>
