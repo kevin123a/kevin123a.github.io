@@ -1,55 +1,158 @@
-/* Global Theme untuk PT Sinar Langit Hanoi */
+/* ======================================================
+   Global Theme (Eucherius + Sinar Langit Style Combined)
+   ====================================================== */
 
-body {
-  font-family: Garamond, serif;
+/* Reset & Font */
+* {
   margin: 0;
   padding: 0;
-  background: #420D09; /* maroon gelap */
-  color: #FDC12A; /* emas terang */
+  box-sizing: border-box;
+  font-family: Garamond, serif;
 }
 
-/* Header */
+body {
+  background: #fff;              /* default putih (Eucherius) */
+  color: #420D09;                /* maroon */
+  line-height: 1.6;
+}
+
+/* ======================================================
+   HEADER
+   ====================================================== */
 header {
-  background: #420D09;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 15px 20px;
-  text-align: center;
+  border-bottom: 2px solid #420D09;
+  background: #420D09;           /* maroon (Sinar Langit) */
+  color: #FDC12A;                /* emas */
+  position: relative;
+  z-index: 1001;
 }
 
 header h1 {
   font-family: "Bickham Script Pro", cursive;
   font-size: 36px;
-  margin: 10px 0 0;
+  margin: 0;
+  color: #FDC12A;
 }
 
 header p {
   font-style: italic;
-  margin: 5px 0 15px;
+  font-size: 14px;
+  margin: 5px 0 0;
+  color: #FFD500;
 }
 
-/* Navigasi */
-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.logo-container {
+  display: flex;
+  align-items: center;
 }
 
-nav ul li {
-  display: inline-block;
-  margin: 0 15px;
+.logo {
+  height: 75px;
+  margin-right: 10px;
 }
 
-nav ul li a {
-  color: #FDC12A;
-  text-decoration: none;
+.brand {
+  font-size: 1.8rem;
   font-weight: bold;
-  transition: 0.3s;
+  color: #FDC12A; /* diseragamkan emas */
 }
 
-nav ul li a:hover {
-  text-decoration: underline;
+/* ======================================================
+   NAVIGATION / SIDEBAR
+   ====================================================== */
+.menu-toggle {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #FDC12A;
+  z-index: 1002;
 }
 
-/* Container umum */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -250px;
+  width: 250px;
+  height: 100%;
+  background: #420D09;
+  color: #fff;
+  padding-top: 60px;
+  transition: right 0.3s ease;
+  z-index: 1001;
+}
+
+.sidebar.active {
+  right: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  margin: 20px 0;
+}
+
+.sidebar ul li a {
+  color: #FDC12A;                /* emas */
+  text-decoration: none;
+  font-size: 1.2rem;
+  display: block;
+  padding: 10px 20px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.sidebar ul li a:hover {
+  background: rgba(255, 213, 0, 0.2);
+  color: #FFD500;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  z-index: 1000;
+}
+
+.overlay.show {
+  display: block;
+}
+
+/* ======================================================
+   HERO SECTION
+   ====================================================== */
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.hero h2 {
+  font-family: "Bickham Script Pro", cursive;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #420D09;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  color: #333;
+}
+
+/* ======================================================
+   CONTAINER BOX (Sinar Langit style)
+   ====================================================== */
 .container {
   max-width: 900px;
   margin: 30px auto;
@@ -60,31 +163,19 @@ nav ul li a:hover {
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
-/* Judul */
 h2, h3 {
   color: #420D09;
   font-family: Garamond, serif;
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  margin-top: 40px;
-  padding: 20px;
-  background: #420D09;
-  color: #FDC12A;
-  font-size: 14px;
-  border-top: 1px solid #FDC12A;
-}
-
-/* =========================
-   Service Box Klikable
-   ========================= */
+/* ======================================================
+   SERVICE BOX KLIKABLE
+   ====================================================== */
 .services a {
-  display: block;                /* biar kotak penuh bisa diklik */
-  background: rgba(0,0,0,0.4);  /* transparan gelap seperti sebelumnya */
-  color: #FFD500;                /* warna teks emas terang */
-  text-decoration: none;         /* hapus garis bawah link */
+  display: block;
+  background: rgba(0,0,0,0.4);
+  color: #FFD500;
+  text-decoration: none;
   padding: 25px;
   border-radius: 12px;
   margin-bottom: 20px;
@@ -93,24 +184,55 @@ footer {
 
 .services a:hover {
   transform: translateY(-5px);
-  box-shadow: 0 0 20px rgba(255,213,0,0.7); /* efek hover tetap sama */
+  box-shadow: 0 0 20px rgba(255,213,0,0.7);
 }
+
+/* ======================================================
+   CONTACT INFO
+   ====================================================== */
 .contact-info p,
 .contact-info p a {
   font-size: 18px;
   line-height: 1.8;
   max-width: 600px;
   margin: 0 auto;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* bayangan halus */
-  color: #FFD500; /* pastikan link tetap emas terang */
-  text-decoration: none; /* optional: hapus garis bawah link */
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  color: #FFD500;
+  text-decoration: none;
 }
 
 .contact-info p a:hover {
-  text-decoration: underline; /* tetap ada efek hover underline */
+  text-decoration: underline;
 }
 
-.contact-info p,
-.contact-info p a {
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+/* ======================================================
+   FOOTER
+   ====================================================== */
+footer {
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  background: #420D09;
+  color: #FDC12A;
+  font-size: 14px;
+  border-top: 1px solid #FDC12A;
+}
+
+/* ======================================================
+   LANGUAGE SWITCH
+   ====================================================== */
+.lang-switch button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: 1px solid #FDC12A;
+  background: #fff;
+  color: #420D09;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.lang-switch button:hover {
+  background: #420D09;
+  color: #FDC12A;
 }
