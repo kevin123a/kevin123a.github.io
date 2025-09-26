@@ -75,7 +75,6 @@
       display: none;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
       z-index: 2000;
     }
     .nav-overlay.open {
@@ -115,7 +114,7 @@
     .content h1 {
       font-family: "Cinzel Decorative", serif;
       font-size: 42px;
-      margin-bottom: 30px; /* spasi longgar */
+      margin-bottom: 30px; /* lebih longgar */
       text-align: center;
       color: #800000;
     }
@@ -211,24 +210,38 @@
     const hamburger = document.querySelector('.hamburger');
     const nav = document.querySelector('.nav-overlay');
 
+    // Toggle buka/tutup menu
     hamburger.addEventListener('click', (e) => {
       e.stopPropagation();
       nav.classList.toggle('open');
+      hamburger.classList.toggle('open');
     });
 
-    // Tutup jika klik di luar menu
+    // Klik luar = tutup menu
     document.addEventListener('click', (e) => {
       if (nav.classList.contains('open') && !nav.contains(e.target) && !hamburger.contains(e.target)) {
         nav.classList.remove('open');
+        hamburger.classList.remove('open');
       }
     });
 
-    // Tutup dengan ESC
-    document.addEventListener('keydown', (e) => {
-      if (e.key === "Escape") nav.classList.remove('open');
+    // Klik link = tutup menu
+    document.querySelectorAll('.nav-overlay a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('open');
+        hamburger.classList.remove('open');
+      });
     });
 
-    // Tahun dinamis
+    // ESC = tutup menu
+    document.addEventListener('keydown', (e) => {
+      if (e.key === "Escape") {
+        nav.classList.remove('open');
+        hamburger.classList.remove('open');
+      }
+    });
+
+    // Tahun otomatis
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
