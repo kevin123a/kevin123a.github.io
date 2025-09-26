@@ -1,238 +1,196 @@
-/* ======================================================
-   Global Theme (Eucherius + Sinar Langit Style Combined)
-   ====================================================== */
-
-/* Reset & Font */
+/* ========================
+   Global Theme
+   ======================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Garamond, serif;
 }
 
 body {
-  background: #fff;              /* default putih (Eucherius) */
-  color: #420D09;                /* maroon */
+  font-family: "EB Garamond", serif;
+  background-color: #420D09; /* maroon gelap */
+  color: #FFD500; /* emas terang */
   line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-/* ======================================================
-   HEADER
-   ====================================================== */
+/* ========================
+   Header & Navigation
+   ======================== */
 header {
+  background: #420D09;
+  color: #FFD500;
+  padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;
-  border-bottom: 2px solid #420D09;
-  background: #420D09;           /* maroon (Sinar Langit) */
-  color: #FDC12A;                /* emas */
-  position: relative;
-  z-index: 1001;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
-header h1 {
-  font-family: "Bickham Script Pro", cursive;
-  font-size: 36px;
-  margin: 0;
-  color: #FDC12A;
-}
-
-header p {
-  font-style: italic;
-  font-size: 14px;
-  margin: 5px 0 0;
-  color: #FFD500;
-}
-
-.logo-container {
+.logo-area {
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 
 .logo {
-  height: 75px;
-  margin-right: 10px;
+  height: 45px;
+  width: auto;
 }
 
-.brand {
-  font-size: 1.8rem;
+.logo-title {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 22px;
   font-weight: bold;
-  color: #FDC12A; /* diseragamkan emas */
 }
 
-/* ======================================================
-   NAVIGATION / SIDEBAR
-   ====================================================== */
-.menu-toggle {
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #FDC12A;
-  z-index: 1002;
-}
-
-.sidebar {
-  position: fixed;
-  top: 0;
-  right: -250px;
-  width: 250px;
-  height: 100%;
-  background: #420D09;
-  color: #fff;
-  padding-top: 60px;
-  transition: right 0.3s ease;
-  z-index: 1001;
-}
-
-.sidebar.active {
-  right: 0;
-}
-
-.sidebar ul {
+/* Navigation */
+nav ul {
   list-style: none;
+  display: flex;
+  gap: 25px;
 }
 
-.sidebar ul li {
-  margin: 20px 0;
-}
-
-.sidebar ul li a {
-  color: #FDC12A;                /* emas */
+nav ul li a {
   text-decoration: none;
-  font-size: 1.2rem;
-  display: block;
-  padding: 10px 20px;
-  transition: background 0.2s, color 0.2s;
-}
-
-.sidebar ul li a:hover {
-  background: rgba(255, 213, 0, 0.2);
+  font-family: "Cinzel Decorative", serif;
   color: #FFD500;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
-/* Overlay */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.4);
-  display: none;
-  z-index: 1000;
+nav ul li a:hover,
+nav ul li a.active {
+  color: white;
+  text-shadow: 0 0 8px #FFD500;
 }
 
-.overlay.show {
-  display: block;
+/* Language Switch */
+.lang-switch {
+  margin-left: 20px;
 }
 
-/* ======================================================
-   HERO SECTION
-   ====================================================== */
-.hero {
-  text-align: center;
-  padding: 60px 20px;
-}
-
-.hero h2 {
-  font-family: "Bickham Script Pro", cursive;
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #420D09;
-}
-
-.hero p {
-  font-size: 1.2rem;
-  max-width: 700px;
-  margin: 0 auto;
-  color: #333;
-}
-
-/* ======================================================
-   CONTAINER BOX (Sinar Langit style)
-   ====================================================== */
-.container {
-  max-width: 900px;
-  margin: 30px auto;
-  padding: 20px;
-  background: #fff;
-  color: #333;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
-
-h2, h3 {
-  color: #420D09;
-  font-family: Garamond, serif;
-}
-
-/* ======================================================
-   SERVICE BOX KLIKABLE
-   ====================================================== */
-.services a {
-  display: block;
-  background: rgba(0,0,0,0.4);
-  color: #FFD500;
-  text-decoration: none;
-  padding: 25px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.services a:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 20px rgba(255,213,0,0.7);
-}
-
-/* ======================================================
-   CONTACT INFO
-   ====================================================== */
-.contact-info p,
-.contact-info p a {
-  font-size: 18px;
-  line-height: 1.8;
-  max-width: 600px;
-  margin: 0 auto;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-  color: #FFD500;
-  text-decoration: none;
-}
-
-.contact-info p a:hover {
-  text-decoration: underline;
-}
-
-/* ======================================================
-   FOOTER
-   ====================================================== */
-footer {
-  text-align: center;
-  padding: 20px;
-  margin-top: 40px;
-  background: #420D09;
-  color: #FDC12A;
-  font-size: 14px;
-  border-top: 1px solid #FDC12A;
-}
-
-/* ======================================================
-   LANGUAGE SWITCH
-   ====================================================== */
 .lang-switch button {
-  margin: 0 5px;
+  background: transparent;
+  border: 1px solid #FFD500;
+  color: #FFD500;
   padding: 5px 10px;
-  border: 1px solid #FDC12A;
-  background: #fff;
-  color: #420D09;
-  cursor: pointer;
   border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
   transition: 0.3s;
 }
 
 .lang-switch button:hover {
-  background: #420D09;
-  color: #FDC12A;
+  background: #FFD500;
+  color: #420D09;
+}
+
+/* Hamburger Menu (mobile) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background: #FFD500;
+  transition: 0.3s;
+}
+
+/* Mobile Menu */
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 65px;
+    right: 20px;
+    background: rgba(0,0,0,0.95);
+    padding: 20px;
+    border-radius: 8px;
+    gap: 15px;
+    width: 200px;
+    text-align: right;
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* ========================
+   Hero Section
+   ======================== */
+.hero {
+  flex: 1;
+  text-align: center;
+  padding: 100px 20px;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.hero h1 {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 42px;
+  margin-bottom: 20px;
+  color: #FFD500;
+}
+
+.hero p {
+  font-size: 18px;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #fff;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========================
+   Footer
+   ======================== */
+footer {
+  background: rgba(0,0,0,0.4);
+  color: #FFD500;
+  text-align: center;
+  padding: 20px 10px;
+  font-size: 14px;
+  margin-top: auto;
+}
+
+footer .footer-contact {
+  margin-top: 10px;
+}
+
+.whatsapp-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #25D366;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.whatsapp-btn:hover {
+  background-color: #1ebe57;
+  box-shadow: 0 0 10px #25D366;
 }
