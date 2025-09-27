@@ -1,196 +1,325 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VVIP Login - PT Sinar Langit Hanoi</title>
+  <title>VVIP - PT Sinar Langit Hanoi</title>
+  <link rel="icon" href="logo.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=EB+Garamond&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      margin: 0;
-      font-family: 'EB Garamond', serif;
-      background-color: #8B0000;
-      color: #FFD500;
-      text-align: center;
-      height: 100vh;
+      font-family: "EB Garamond", serif;
+      background: #fff;
+      color: #800000;
+      min-height: 100vh;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+    }
+
+    /* Header */
+    header {
+      background: #fff;
+      padding: 16px 22px;
+      display: flex;
+      justify-content: space-between;
       align-items: center;
+      border-bottom: 1.5px solid #d4af37;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-    .login-box {
-      background: rgba(0,0,0,0.6);
-      padding: 30px;
-      border-radius: 15px;
-      width: 320px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    }
-    .login-box h2 {
-      font-family: 'Cinzel Decorative', serif;
-      margin-bottom: 20px;
-    }
-    input {
-      width: 90%;
-      padding: 10px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 8px;
-    }
-    button {
-      background: #FFD500;
-      color: #8B0000;
+    .logo-area { display: flex; align-items: center; gap: 10px; }
+    .logo { height: 42px; width: auto; }
+    .logo-title {
+      font-family: "Cinzel Decorative", serif;
+      font-size: 22px;
       font-weight: bold;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
+      color: #800000;
+      letter-spacing: 1.5px;
+      white-space: nowrap;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: flex;
+      flex-direction: column;
       cursor: pointer;
+      gap: 5px;
+      border: none;
+      background: none;
+      width: 32px;
+      height: 32px;
+      justify-content: center;
+      z-index: 1201;
+    }
+    .hamburger span {
+      height: 3px;
+      width: 28px;
+      background: #d4af37;
+      border-radius: 2px;
       transition: 0.3s;
     }
-    button:hover {
-      background: white;
+
+    /* Nav Popup */
+    .nav-popup {
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      background: #fff;
+      border: 2px solid #d4af37;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      padding: 16px 22px;
+      display: none;
+      z-index: 1200;
+      animation: fadeIn 0.25s ease-out;
     }
-    .error {
-      color: #FF7777;
-      margin-top: 10px;
+    .nav-popup.open { display: block; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    /* small note area showing where to edit (non-destructive) */
-    .note {font-size:12px;color:#FFD500;margin-top:8px}
+    .nav-popup ul { list-style: none; margin: 0; padding: 0; }
+    .nav-popup li { margin: 12px 0; }
+    .nav-popup a,
+    .nav-popup .translate-nav-item {
+      font-family: "Cinzel Decorative", serif;
+      font-size: 17px;
+      color: #800000;
+      padding: 6px 10px;
+      border-radius: 8px;
+      display: block;
+      transition: background 0.3s, color 0.3s;
+      text-decoration: none;
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+    }
+    .nav-popup a:hover,
+    .nav-popup a.active {
+      background: #d4af37;
+      color: #fff;
+    }
+    #google_translate_element select {
+      border: 1px solid #d4af37;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 14px;
+      color: #800000;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    /* Content */
+    .content {
+      flex: 1;
+      padding: 50px 6vw;
+      text-align: center;
+    }
+    .content h1 {
+      font-family: "Cinzel Decorative", serif;
+      font-size: 32px;
+      margin-bottom: 30px;
+      font-weight: 900;
+    }
+    .chart-container {
+      margin: 30px auto;
+      max-width: 800px;
+      background: #fafafa;
+      border: 1.5px solid #d4af37;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .chart-container h2 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      font-family: "Cinzel Decorative", serif;
+      color: #800000;
+    }
+
+    /* Footer */
+    footer {
+      background: #fff;
+      color: #800000;
+      text-align: center;
+      padding: 18px 8px;
+      font-size: 15px;
+      border-top: 1.5px solid #d4af37;
+      margin-top: auto;
+    }
+
+    @media (max-width: 600px) {
+      .content h1 { font-size: 24px; }
+      .chart-container { padding: 15px; }
+      .chart-container h2 { font-size: 18px; }
+    }
   </style>
 </head>
 <body>
-  <div class="login-box">
-    <h2>VVIP Login</h2>
-    <input type="text" id="username" placeholder="Username"><br>
-    <input type="password" id="password" placeholder="Password"><br>
-    <button onclick="login()">Login</button>
-    <p class="error" id="error"></p>
-    <p class="note"</p>
-  </div>
 
+  <!-- Header -->
+  <header>
+    <div class="logo-area">
+      <img src="logo.png" alt="Logo PT Sinar Langit" class="logo">
+      <h1 class="logo-title">Sinar Langit Hanoi</h1>
+    </div>
+    <button class="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Navigation Popup -->
+  <nav class="nav-popup">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="aboutus.html">About Us</a></li>
+      <li><a href="service.html">Service</a></li>
+      <li><a href="vvip.html" class="active">VVIP</a></li>
+      <li><a href="business-sop.html">Business</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><div id="google_translate_element"></div></li>
+      <li><a href="index.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Content -->
+  <section class="content">
+    <h1>VVIP Financial Dashboard</h1>
+
+    <div class="chart-container">
+      <h2>Crypto Market (BTC & ETH)</h2>
+      <canvas id="cryptoChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+      <h2>Forex Market (USD/IDR, USD/EUR)</h2>
+      <canvas id="forexChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+      <h2>Stock Index (S&P 500 & NASDAQ)</h2>
+      <canvas id="stockChart"></canvas>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 PT Sinar Langit Hanoi. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Script -->
   <script>
-    // === DAFTAR AKUN (edit di sini) ===
-    // Saya sudah membuat 100 akun contoh di bawah.
-    // Setiap entri memiliki komentar: /* buat disini ya!! */
-    // Kamu bisa mengganti username/password sesuai kebutuhan.
-    const USERS = [
-      {username: "kevin", password: "12345"}, /* buat disini ya!! */
-      {username: "scelinegalak", password: "anjayslebew"}, /* buat disini ya!! */
-      {username: "vvip003", password: "pwd003"}, /* buat disini ya!! */
-      {username: "vvip004", password: "pwd004"}, /* buat disini ya!! */
-      {username: "vvip005", password: "pwd005"}, /* buat disini ya!! */
-      {username: "vvip006", password: "pwd006"}, /* buat disini ya!! */
-      {username: "vvip007", password: "pwd007"}, /* buat disini ya!! */
-      {username: "vvip008", password: "pwd008"}, /* buat disini ya!! */
-      {username: "vvip009", password: "pwd009"}, /* buat disini ya!! */
-      {username: "vvip010", password: "pwd010"}, /* buat disini ya!! */
-      {username: "vvip011", password: "pwd011"}, /* buat disini ya!! */
-      {username: "vvip012", password: "pwd012"}, /* buat disini ya!! */
-      {username: "vvip013", password: "pwd013"}, /* buat disini ya!! */
-      {username: "vvip014", password: "pwd014"}, /* buat disini ya!! */
-      {username: "vvip015", password: "pwd015"}, /* buat disini ya!! */
-      {username: "vvip016", password: "pwd016"}, /* buat disini ya!! */
-      {username: "vvip017", password: "pwd017"}, /* buat disini ya!! */
-      {username: "vvip018", password: "pwd018"}, /* buat disini ya!! */
-      {username: "vvip019", password: "pwd019"}, /* buat disini ya!! */
-      {username: "vvip020", password: "pwd020"}, /* buat disini ya!! */
-      {username: "vvip021", password: "pwd021"}, /* buat disini ya!! */
-      {username: "vvip022", password: "pwd022"}, /* buat disini ya!! */
-      {username: "vvip023", password: "pwd023"}, /* buat disini ya!! */
-      {username: "vvip024", password: "pwd024"}, /* buat disini ya!! */
-      {username: "vvip025", password: "pwd025"}, /* buat disini ya!! */
-      {username: "vvip026", password: "pwd026"}, /* buat disini ya!! */
-      {username: "vvip027", password: "pwd027"}, /* buat disini ya!! */
-      {username: "vvip028", password: "pwd028"}, /* buat disini ya!! */
-      {username: "vvip029", password: "pwd029"}, /* buat disini ya!! */
-      {username: "vvip030", password: "pwd030"}, /* buat disini ya!! */
-      {username: "vvip031", password: "pwd031"}, /* buat disini ya!! */
-      {username: "vvip032", password: "pwd032"}, /* buat disini ya!! */
-      {username: "vvip033", password: "pwd033"}, /* buat disini ya!! */
-      {username: "vvip034", password: "pwd034"}, /* buat disini ya!! */
-      {username: "vvip035", password: "pwd035"}, /* buat disini ya!! */
-      {username: "vvip036", password: "pwd036"}, /* buat disini ya!! */
-      {username: "vvip037", password: "pwd037"}, /* buat disini ya!! */
-      {username: "vvip038", password: "pwd038"}, /* buat disini ya!! */
-      {username: "vvip039", password: "pwd039"}, /* buat disini ya!! */
-      {username: "vvip040", password: "pwd040"}, /* buat disini ya!! */
-      {username: "vvip041", password: "pwd041"}, /* buat disini ya!! */
-      {username: "vvip042", password: "pwd042"}, /* buat disini ya!! */
-      {username: "vvip043", password: "pwd043"}, /* buat disini ya!! */
-      {username: "vvip044", password: "pwd044"}, /* buat disini ya!! */
-      {username: "vvip045", password: "pwd045"}, /* buat disini ya!! */
-      {username: "vvip046", password: "pwd046"}, /* buat disini ya!! */
-      {username: "vvip047", password: "pwd047"}, /* buat disini ya!! */
-      {username: "vvip048", password: "pwd048"}, /* buat disini ya!! */
-      {username: "vvip049", password: "pwd049"}, /* buat disini ya!! */
-      {username: "vvip050", password: "pwd050"}, /* buat disini ya!! */
-      {username: "vvip051", password: "pwd051"}, /* buat disini ya!! */
-      {username: "vvip052", password: "pwd052"}, /* buat disini ya!! */
-      {username: "vvip053", password: "pwd053"}, /* buat disini ya!! */
-      {username: "vvip054", password: "pwd054"}, /* buat disini ya!! */
-      {username: "vvip055", password: "pwd055"}, /* buat disini ya!! */
-      {username: "vvip056", password: "pwd056"}, /* buat disini ya!! */
-      {username: "vvip057", password: "pwd057"}, /* buat disini ya!! */
-      {username: "vvip058", password: "pwd058"}, /* buat disini ya!! */
-      {username: "vvip059", password: "pwd059"}, /* buat disini ya!! */
-      {username: "vvip060", password: "pwd060"}, /* buat disini ya!! */
-      {username: "vvip061", password: "pwd061"}, /* buat disini ya!! */
-      {username: "vvip062", password: "pwd062"}, /* buat disini ya!! */
-      {username: "vvip063", password: "pwd063"}, /* buat disini ya!! */
-      {username: "vvip064", password: "pwd064"}, /* buat disini ya!! */
-      {username: "vvip065", password: "pwd065"}, /* buat disini ya!! */
-      {username: "vvip066", password: "pwd066"}, /* buat disini ya!! */
-      {username: "vvip067", password: "pwd067"}, /* buat disini ya!! */
-      {username: "vvip068", password: "pwd068"}, /* buat disini ya!! */
-      {username: "vvip069", password: "pwd069"}, /* buat disini ya!! */
-      {username: "vvip070", password: "pwd070"}, /* buat disini ya!! */
-      {username: "vvip071", password: "pwd071"}, /* buat disini ya!! */
-      {username: "vvip072", password: "pwd072"}, /* buat disini ya!! */
-      {username: "vvip073", password: "pwd073"}, /* buat disini ya!! */
-      {username: "vvip074", password: "pwd074"}, /* buat disini ya!! */
-      {username: "vvip075", password: "pwd075"}, /* buat disini ya!! */
-      {username: "vvip076", password: "pwd076"}, /* buat disini ya!! */
-      {username: "vvip077", password: "pwd077"}, /* buat disini ya!! */
-      {username: "vvip078", password: "pwd078"}, /* buat disini ya!! */
-      {username: "vvip079", password: "pwd079"}, /* buat disini ya!! */
-      {username: "vvip080", password: "pwd080"}, /* buat disini ya!! */
-      {username: "vvip081", password: "pwd081"}, /* buat disini ya!! */
-      {username: "vvip082", password: "pwd082"}, /* buat disini ya!! */
-      {username: "vvip083", password: "pwd083"}, /* buat disini ya!! */
-      {username: "vvip084", password: "pwd084"}, /* buat disini ya!! */
-      {username: "vvip085", password: "pwd085"}, /* buat disini ya!! */
-      {username: "vvip086", password: "pwd086"}, /* buat disini ya!! */
-      {username: "vvip087", password: "pwd087"}, /* buat disini ya!! */
-      {username: "vvip088", password: "pwd088"}, /* buat disini ya!! */
-      {username: "vvip089", password: "pwd089"}, /* buat disini ya!! */
-      {username: "vvip090", password: "pwd090"}, /* buat disini ya!! */
-      {username: "vvip091", password: "pwd091"}, /* buat disini ya!! */
-      {username: "vvip092", password: "pwd092"}, /* buat disini ya!! */
-      {username: "vvip093", password: "pwd093"}, /* buat disini ya!! */
-      {username: "vvip094", password: "pwd094"}, /* buat disini ya!! */
-      {username: "vvip095", password: "pwd095"}, /* buat disini ya!! */
-      {username: "vvip096", password: "pwd096"}, /* buat disini ya!! */
-      {username: "vvip097", password: "pwd097"}, /* buat disini ya!! */
-      {username: "vvip098", password: "pwd098"}, /* buat disini ya!! */
-      {username: "vvip099", password: "pwd099"}, /* buat disini ya!! */
-      {username: "vvip100", password: "pwd100"} /* buat disini ya!! */
-    ];
-
-    // login function checks USERS array
-    function login() {
-      const user = document.getElementById("username").value.trim();
-      const pass = document.getElementById("password").value;
-      const err = document.getElementById("error");
-      err.textContent = "";
-
-      if (!user || !pass) { err.textContent = "❌ Masukkan username dan password"; return; }
-
-      const found = USERS.find(u => u.username === user && u.password === pass);
-      if (found) {
-        // sukses -> redirect ke dashboard
-        window.location.href = "vvip-dashboard.html";
-      } else {
-        err.textContent = "❌ Username atau Password salah";
+    const hamburger = document.querySelector('.hamburger');
+    const navPopup = document.querySelector('.nav-popup');
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navPopup.classList.toggle('open');
+    });
+    document.addEventListener('click', (e) => {
+      if (navPopup.classList.contains('open') && !navPopup.contains(e.target) && !hamburger.contains(e.target)) {
+        navPopup.classList.remove('open');
       }
+    });
+
+    // Google Translate
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'id',
+        includedLanguages: 'id,en,vi',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
     }
+
+    // Chart setup
+    const cryptoChart = new Chart(document.getElementById('cryptoChart'), {
+      type: 'line',
+      data: { labels: [], datasets: [
+        { label: 'BTC (USD)', data: [], borderColor: '#d4af37', fill: false },
+        { label: 'ETH (USD)', data: [], borderColor: '#800000', fill: false }
+      ]},
+      options: { responsive: true, scales: { x: { display: true }, y: { beginAtZero: false }}}
+    });
+
+    const forexChart = new Chart(document.getElementById('forexChart'), {
+      type: 'line',
+      data: { labels: [], datasets: [
+        { label: 'USD/IDR', data: [], borderColor: '#d4af37', fill: false },
+        { label: 'USD/EUR', data: [], borderColor: '#800000', fill: false }
+      ]},
+      options: { responsive: true }
+    });
+
+    const stockChart = new Chart(document.getElementById('stockChart'), {
+      type: 'line',
+      data: { labels: [], datasets: [
+        { label: 'S&P 500', data: [], borderColor: '#d4af37', fill: false },
+        { label: 'NASDAQ', data: [], borderColor: '#800000', fill: false }
+      ]},
+      options: { responsive: true }
+    });
+
+    // Fetch Crypto (CoinGecko) - refresh tiap 60s
+    async function fetchCrypto() {
+      try {
+        const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd');
+        const data = await res.json();
+        const now = new Date().toLocaleTimeString();
+        cryptoChart.data.labels.push(now);
+        cryptoChart.data.datasets[0].data.push(data.bitcoin.usd);
+        cryptoChart.data.datasets[1].data.push(data.ethereum.usd);
+        if (cryptoChart.data.labels.length > 10) {
+          cryptoChart.data.labels.shift();
+          cryptoChart.data.datasets.forEach(d => d.data.shift());
+        }
+        cryptoChart.update();
+      } catch (err) { console.error(err); }
+    }
+    fetchCrypto();
+    setInterval(fetchCrypto, 60000);
+
+    // Fetch Forex (exchangerate.host) - refresh tiap 5 menit
+    async function fetchForex() {
+      try {
+        const res = await fetch('https://api.exchangerate.host/latest?base=USD&symbols=IDR,EUR');
+        const data = await res.json();
+        const now = new Date().toLocaleTimeString();
+        forexChart.data.labels.push(now);
+        forexChart.data.datasets[0].data.push(data.rates.IDR);
+        forexChart.data.datasets[1].data.push(data.rates.EUR);
+        if (forexChart.data.labels.length > 10) {
+          forexChart.data.labels.shift();
+          forexChart.data.datasets.forEach(d => d.data.shift());
+        }
+        forexChart.update();
+      } catch (err) { console.error(err); }
+    }
+    fetchForex();
+    setInterval(fetchForex, 300000);
+
+    // Fetch Stock (placeholder Yahoo Finance API) - refresh tiap 10 menit
+    async function fetchStock() {
+      try {
+        // Placeholder data sementara (karena beberapa API butuh key)
+        const sp500 = 5000 + Math.random() * 100; 
+        const nasdaq = 15000 + Math.random() * 200;
+        const now = new Date().toLocaleTimeString();
+        stockChart.data.labels.push(now);
+        stockChart.data.datasets[0].data.push(sp500);
+        stockChart.data.datasets[1].data.push(nasdaq);
+        if (stockChart.data.labels.length > 10) {
+          stockChart.data.labels.shift();
+          stockChart.data.datasets.forEach(d => d.data.shift());
+        }
+        stockChart.update();
+      } catch (err) { console.error(err); }
+    }
+    fetchStock();
+    setInterval(fetchStock, 600000);
   </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
