@@ -1,325 +1,256 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VVIP - PT Sinar Langit Hanoi</title>
+  <title>Contact - PT Sinar Langit Hanoi</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=EB+Garamond&display=swap" rel="stylesheet">
+
+  <!-- Chart.js & Financial Plugin -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial"></script>
+
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: "EB Garamond", serif;
-      background: #fff;
-      color: #800000;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      margin: 0;
+      font-family: 'EB Garamond', serif;
+      background-color: #8B0000;
+      color: #FFD500;
     }
 
     /* Header */
     header {
-      background: #fff;
-      padding: 16px 22px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1.5px solid #d4af37;
+      background-color: rgba(0,0,0,0.4);
+      padding: 15px 20px;
       position: sticky;
       top: 0;
       z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .logo-area { display: flex; align-items: center; gap: 10px; }
-    .logo { height: 42px; width: auto; }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo { height: 40px; }
     .logo-title {
-      font-family: "Cinzel Decorative", serif;
+      font-family: 'Cinzel Decorative', serif;
       font-size: 22px;
-      font-weight: bold;
-      color: #800000;
-      letter-spacing: 1.5px;
-      white-space: nowrap;
+    }
+
+    /* Nav */
+    nav {
+      position: fixed;
+      top: 0; right: -250px;
+      width: 250px; height: 100%;
+      background: rgba(0,0,0,0.95);
+      transition: right 0.3s ease;
+      padding-top: 60px;
+      z-index: 2000;
+    }
+    nav.active { right: 0; }
+    nav ul {
+      list-style: none;
+      padding: 0; margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      text-align: center;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #FFD500;
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 18px;
+      transition: 0.3s;
+    }
+    nav ul li a:hover, nav ul li a.active {
+      color: white;
+      text-shadow: 0 0 10px #FFD500;
     }
 
     /* Hamburger */
     .hamburger {
+      cursor: pointer;
       display: flex;
       flex-direction: column;
-      cursor: pointer;
       gap: 5px;
-      border: none;
-      background: none;
-      width: 32px;
-      height: 32px;
-      justify-content: center;
-      z-index: 1201;
+      z-index: 2100;
     }
-    .hamburger span {
-      height: 3px;
-      width: 28px;
-      background: #d4af37;
-      border-radius: 2px;
-      transition: 0.3s;
+    .hamburger div {
+      width: 25px; height: 3px;
+      background: #FFD500;
     }
 
-    /* Nav Popup */
-    .nav-popup {
-      position: absolute;
-      top: 70px;
-      right: 20px;
-      background: #fff;
-      border: 2px solid #d4af37;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      padding: 16px 22px;
+    /* Overlay */
+    .overlay {
       display: none;
-      z-index: 1200;
-      animation: fadeIn 0.25s ease-out;
+      position: fixed;
+      top:0; left:0;
+      width:100%; height:100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1500;
     }
-    .nav-popup.open { display: block; }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .nav-popup ul { list-style: none; margin: 0; padding: 0; }
-    .nav-popup li { margin: 12px 0; }
-    .nav-popup a,
-    .nav-popup .translate-nav-item {
-      font-family: "Cinzel Decorative", serif;
-      font-size: 17px;
-      color: #800000;
-      padding: 6px 10px;
-      border-radius: 8px;
-      display: block;
-      transition: background 0.3s, color 0.3s;
-      text-decoration: none;
-      background: none;
-      border: none;
-      text-align: left;
-      cursor: pointer;
-    }
-    .nav-popup a:hover,
-    .nav-popup a.active {
-      background: #d4af37;
-      color: #fff;
-    }
-    #google_translate_element select {
-      border: 1px solid #d4af37;
-      border-radius: 6px;
-      padding: 4px 8px;
-      font-size: 14px;
-      color: #800000;
-      background: #fff;
-      cursor: pointer;
-    }
+    .overlay.active { display: block; }
 
-    /* Content */
-    .content {
-      flex: 1;
-      padding: 50px 6vw;
+    /* Contact */
+    .contact {
+      padding: 100px 20px 40px;
       text-align: center;
-    }
-    .content h1 {
-      font-family: "Cinzel Decorative", serif;
-      font-size: 32px;
-      margin-bottom: 30px;
-      font-weight: 900;
-    }
-    .chart-container {
-      margin: 30px auto;
       max-width: 800px;
-      background: #fafafa;
-      border: 1.5px solid #d4af37;
+      margin: auto;
+    }
+    .contact h1 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 38px;
+      margin-bottom: 20px;
+    }
+    .contact-info p {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+    .contact-info a { color: #FFD500; }
+
+    /* Finance Section */
+    .finance {
+      padding: 40px 20px;
+      background: rgba(0,0,0,0.3);
+    }
+    .finance h2 {
+      text-align: center;
+      font-family: 'Cinzel Decorative', serif;
+      margin-bottom: 30px;
+    }
+    .charts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    .chart-box {
+      background: rgba(0,0,0,0.5);
+      padding: 15px;
       border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
-    .chart-container h2 {
-      font-size: 20px;
-      margin-bottom: 15px;
-      font-family: "Cinzel Decorative", serif;
-      color: #800000;
-    }
+    canvas { width: 100% !important; height: 300px !important; }
 
     /* Footer */
     footer {
-      background: #fff;
-      color: #800000;
+      margin-top: 40px;
+      padding: 15px;
       text-align: center;
-      padding: 18px 8px;
-      font-size: 15px;
-      border-top: 1.5px solid #d4af37;
-      margin-top: auto;
-    }
-
-    @media (max-width: 600px) {
-      .content h1 { font-size: 24px; }
-      .chart-container { padding: 15px; }
-      .chart-container h2 { font-size: 18px; }
+      background: rgba(0,0,0,0.4);
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
-
   <!-- Header -->
   <header>
     <div class="logo-area">
-      <img src="logo.png" alt="Logo PT Sinar Langit" class="logo">
-      <h1 class="logo-title">Sinar Langit Hanoi</h1>
+      <img src="logo.png" class="logo" alt="logo">
+      <div class="logo-title">PT Sinar Langit Hanoi</div>
     </div>
-    <button class="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div><div></div><div></div>
+    </div>
   </header>
 
-  <!-- Navigation Popup -->
-  <nav class="nav-popup">
+  <!-- Nav -->
+  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+  <nav id="sideNav">
     <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="aboutus.html">About Us</a></li>
-      <li><a href="service.html">Service</a></li>
-      <li><a href="vvip.html" class="active">VVIP</a></li>
-      <li><a href="business-sop.html">Business</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><div id="google_translate_element"></div></li>
-      <li><a href="index.html">Logout</a></li>
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="aboutus.html">📖 About Us</a></li>
+      <li><a href="service.html">💼 Service</a></li>
+      <li><a href="vvip.html">⭐ VVIP</a></li>
+      <li><a href="contact.html" class="active">☎ Contact</a></li>
+      <li><hr style="border:1px solid #FFD500; margin:10px 40px;"></li>
+      <li><a href="?lang=id">🇮🇩 Bahasa</a></li>
+      <li><a href="?lang=en">🇬🇧 English</a></li>
+      <li><a href="index.html">🚪 Logout</a></li>
     </ul>
   </nav>
 
-  <!-- Content -->
-  <section class="content">
-    <h1>VVIP Financial Dashboard</h1>
-
-    <div class="chart-container">
-      <h2>Crypto Market (BTC & ETH)</h2>
-      <canvas id="cryptoChart"></canvas>
+  <!-- Contact -->
+  <section class="contact">
+    <h1>Contact Us</h1>
+    <div class="contact-info">
+      <p><strong>Email:</strong> <a href="mailto:slh.co@outlook.com">slh.co@outlook.com</a></p>
+      <p><strong>Phone:</strong> <a href="https://wa.me/628977546561" target="_blank">WhatsApp</a></p>
+      <p><strong>Instagram:</strong> <a href="https://instagram.com/silona_id" target="_blank">@silona_id</a></p>
+      <p><strong>Facebook:</strong> <a href="https://www.facebook.com/profile.php?id=61579223475557" target="_blank">PT Sinar Langit Hanoi</a></p>
     </div>
+  </section>
 
-    <div class="chart-container">
-      <h2>Forex Market (USD/IDR, USD/EUR)</h2>
-      <canvas id="forexChart"></canvas>
-    </div>
-
-    <div class="chart-container">
-      <h2>Stock Index (S&P 500 & NASDAQ)</h2>
-      <canvas id="stockChart"></canvas>
+  <!-- Finance Section -->
+  <section class="finance">
+    <h2>Market Overview</h2>
+    <div class="charts">
+      <div class="chart-box"><canvas id="btcChart"></canvas></div>
+      <div class="chart-box"><canvas id="ethChart"></canvas></div>
+      <div class="chart-box"><canvas id="ihsgChart"></canvas></div>
+      <div class="chart-box"><canvas id="goldChart"></canvas></div>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 PT Sinar Langit Hanoi. All Rights Reserved.</p>
+    <p>© <span id="year"></span> PT Sinar Langit Hanoi. All rights reserved.</p>
   </footer>
 
-  <!-- Script -->
   <script>
-    const hamburger = document.querySelector('.hamburger');
-    const navPopup = document.querySelector('.nav-popup');
-    hamburger.addEventListener('click', (e) => {
-      e.stopPropagation();
-      navPopup.classList.toggle('open');
-    });
-    document.addEventListener('click', (e) => {
-      if (navPopup.classList.contains('open') && !navPopup.contains(e.target) && !hamburger.contains(e.target)) {
-        navPopup.classList.remove('open');
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function toggleMenu(){
+      document.getElementById("sideNav").classList.toggle("active");
+      document.getElementById("overlay").classList.toggle("active");
+    }
+
+    // Candlestick Chart Config
+    function createCandleChart(ctx, label, data){
+      return new Chart(ctx, {
+        type: 'candlestick',
+        data: { datasets: [{ label, data }] },
+        options: {
+          responsive: true,
+          plugins: { legend: { display: false } },
+          scales: { x: { ticks: { color: '#FFD500' } }, y: { ticks: { color: '#FFD500' } } }
+        }
+      });
+    }
+
+    // Dummy OHLC generator
+    function generateDummyData(days, base){
+      let data = [];
+      let date = new Date();
+      for(let i=days; i>0; i--){
+        let d = new Date(date);
+        d.setDate(date.getDate()-i);
+        let o = base + Math.random()*100;
+        let h = o + Math.random()*50;
+        let l = o - Math.random()*50;
+        let c = l + Math.random()*(h-l);
+        data.push({ t: d, o, h, l, c });
       }
-    });
-
-    // Google Translate
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-        pageLanguage: 'id',
-        includedLanguages: 'id,en,vi',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-      }, 'google_translate_element');
+      return data;
     }
 
-    // Chart setup
-    const cryptoChart = new Chart(document.getElementById('cryptoChart'), {
-      type: 'line',
-      data: { labels: [], datasets: [
-        { label: 'BTC (USD)', data: [], borderColor: '#d4af37', fill: false },
-        { label: 'ETH (USD)', data: [], borderColor: '#800000', fill: false }
-      ]},
-      options: { responsive: true, scales: { x: { display: true }, y: { beginAtZero: false }}}
-    });
+    // Init Charts
+    let btcChart = createCandleChart(document.getElementById("btcChart"), "BTC/USDT", generateDummyData(20, 60000));
+    let ethChart = createCandleChart(document.getElementById("ethChart"), "ETH/USDT", generateDummyData(20, 3000));
+    let ihsgChart = createCandleChart(document.getElementById("ihsgChart"), "IHSG", generateDummyData(20, 7000));
+    let goldChart = createCandleChart(document.getElementById("goldChart"), "Gold", generateDummyData(20, 2000));
 
-    const forexChart = new Chart(document.getElementById('forexChart'), {
-      type: 'line',
-      data: { labels: [], datasets: [
-        { label: 'USD/IDR', data: [], borderColor: '#d4af37', fill: false },
-        { label: 'USD/EUR', data: [], borderColor: '#800000', fill: false }
-      ]},
-      options: { responsive: true }
-    });
-
-    const stockChart = new Chart(document.getElementById('stockChart'), {
-      type: 'line',
-      data: { labels: [], datasets: [
-        { label: 'S&P 500', data: [], borderColor: '#d4af37', fill: false },
-        { label: 'NASDAQ', data: [], borderColor: '#800000', fill: false }
-      ]},
-      options: { responsive: true }
-    });
-
-    // Fetch Crypto (CoinGecko) - refresh tiap 60s
-    async function fetchCrypto() {
-      try {
-        const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd');
-        const data = await res.json();
-        const now = new Date().toLocaleTimeString();
-        cryptoChart.data.labels.push(now);
-        cryptoChart.data.datasets[0].data.push(data.bitcoin.usd);
-        cryptoChart.data.datasets[1].data.push(data.ethereum.usd);
-        if (cryptoChart.data.labels.length > 10) {
-          cryptoChart.data.labels.shift();
-          cryptoChart.data.datasets.forEach(d => d.data.shift());
-        }
-        cryptoChart.update();
-      } catch (err) { console.error(err); }
-    }
-    fetchCrypto();
-    setInterval(fetchCrypto, 60000);
-
-    // Fetch Forex (exchangerate.host) - refresh tiap 5 menit
-    async function fetchForex() {
-      try {
-        const res = await fetch('https://api.exchangerate.host/latest?base=USD&symbols=IDR,EUR');
-        const data = await res.json();
-        const now = new Date().toLocaleTimeString();
-        forexChart.data.labels.push(now);
-        forexChart.data.datasets[0].data.push(data.rates.IDR);
-        forexChart.data.datasets[1].data.push(data.rates.EUR);
-        if (forexChart.data.labels.length > 10) {
-          forexChart.data.labels.shift();
-          forexChart.data.datasets.forEach(d => d.data.shift());
-        }
-        forexChart.update();
-      } catch (err) { console.error(err); }
-    }
-    fetchForex();
-    setInterval(fetchForex, 300000);
-
-    // Fetch Stock (placeholder Yahoo Finance API) - refresh tiap 10 menit
-    async function fetchStock() {
-      try {
-        // Placeholder data sementara (karena beberapa API butuh key)
-        const sp500 = 5000 + Math.random() * 100; 
-        const nasdaq = 15000 + Math.random() * 200;
-        const now = new Date().toLocaleTimeString();
-        stockChart.data.labels.push(now);
-        stockChart.data.datasets[0].data.push(sp500);
-        stockChart.data.datasets[1].data.push(nasdaq);
-        if (stockChart.data.labels.length > 10) {
-          stockChart.data.labels.shift();
-          stockChart.data.datasets.forEach(d => d.data.shift());
-        }
-        stockChart.update();
-      } catch (err) { console.error(err); }
-    }
-    fetchStock();
-    setInterval(fetchStock, 600000);
+    // Auto refresh data
+    setInterval(()=>{
+      btcChart.data.datasets[0].data = generateDummyData(20, 60000);
+      btcChart.update();
+      ethChart.data.datasets[0].data = generateDummyData(20, 3000);
+      ethChart.update();
+    }, 60000); // refresh tiap 60 detik
   </script>
-  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
