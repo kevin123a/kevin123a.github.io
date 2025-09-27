@@ -1,67 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coming Soon - PT Sinar Langit Hanoi</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Bickham+Script+Pro&family=EB+Garamond&display=swap" rel="stylesheet">
+  <title>Personal Financial Management</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=EB+Garamond&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: Garamond, serif;
-      margin: 0;
-      padding: 0;
-      background: #420D09; /* maroon gelap */
-      color: #FDC12A; /* emas terang */
+      font-family: "EB Garamond", serif;
+      background: #fff;
+      color: #800000;
+      line-height: 1.7;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background: #fff;
+      padding: 16px 22px;
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      height: 100vh;
-      text-align: center;
+      border-bottom: 1.5px solid #d4af37;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-
-    h1 {
-      font-family: "Bickham Script Pro", cursive;
-      font-size: 60px;
-      margin: 0;
-      animation: pulse 2s infinite;
+    .logo-area { display: flex; align-items: center; gap: 10px; }
+    .logo { height: 42px; }
+    .logo-title {
+      font-family: "Cinzel Decorative", serif;
+      font-size: 22px;
+      font-weight: bold;
+      color: #800000;
     }
-
-    p {
-      font-size: 18px;
-      margin-top: 15px;
-      font-style: italic;
+    .hamburger { display: flex; flex-direction: column; gap: 5px; border: none; background: none; cursor: pointer; }
+    .hamburger span { height: 3px; width: 28px; background: #d4af37; border-radius: 2px; }
+    .nav-popup {
+      position: absolute; top: 70px; right: 20px; background: #fff; border: 2px solid #d4af37;
+      border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); padding: 16px 22px; display: none; z-index: 1200;
     }
-
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.05); opacity: 0.8; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    a {
-      display: inline-block;
-      margin-top: 25px;
-      text-decoration: none;
-      color: #FDC12A;
-      border: 1px solid #FDC12A;
-      padding: 10px 20px;
-      border-radius: 8px;
-      transition: 0.3s;
-    }
-
-    a:hover {
-      background: #FDC12A;
-      color: #420D09;
-    }
+    .nav-popup.open { display: block; }
+    .nav-popup ul { list-style: none; }
+    .nav-popup a { font-family: "Cinzel Decorative", serif; font-size: 17px; color: #800000; text-decoration: none; display: block; padding: 6px 10px; border-radius: 8px; }
+    .nav-popup a:hover { background: #d4af37; color: #fff; }
+    .content { flex: 1; text-align: center; padding: 60px 20px; }
+    .content h1 { font-family: "Cinzel Decorative", serif; font-size: 28px; margin-bottom: 20px; }
+    .content p { font-size: 17px; max-width: 750px; margin: 0 auto 20px; }
+    .btn-mail { background: #d4af37; color: #fff; padding: 12px 24px; border: none; border-radius: 8px; font-size: 16px; text-decoration: none; }
+    .btn-mail:hover { background: #800000; }
+    footer { border-top: 1.5px solid #d4af37; padding: 16px; text-align: center; margin-top: auto; }
   </style>
 </head>
 <body>
-  <div>
-    <h1>COMING SOON</h1>
-    <p>Halaman ini sedang dalam pengembangan. Mohon cek kembali nanti.</p>
-    <a href="service.html">Kembali ke Services</a>
-  </div>
+  <header>
+    <div class="logo-area">
+      <img src="logo.png" alt="Logo PT Sinar Langit" class="logo">
+      <h1 class="logo-title">Sinar Langit Hanoi</h1>
+    </div>
+    <button class="hamburger"><span></span><span></span><span></span></button>
+  </header>
+
+  <nav class="nav-popup">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="aboutus.html">About Us</a></li>
+      <li><a href="service.html" class="active">Service</a></li>
+      <li><a href="vvip.html">VVIP</a></li>
+      <li><a href="https://eucheriusgroup.web.id" target="_blank">Eucherius Group</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="content">
+    <h1>Personal Financial Management</h1>
+    <p>
+      Kami menyediakan solusi perencanaan keuangan yang disesuaikan untuk membantu individu mencapai
+      stabilitas dan pertumbuhan finansial jangka panjang.
+    </p>
+    <a href="mailto:cs@sinarlangithanoi.my.id?subject=Personal%20Financial%20Management&body=Nama%20:%0AAlamat%20:%0ANo%20Telp%20(aktif)%20:%0A"
+       class="btn-mail">Hubungi Kami</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 PT Sinar Langit Hanoi. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navPopup = document.querySelector('.nav-popup');
+    hamburger.addEventListener('click', () => navPopup.classList.toggle('open'));
+  </script>
 </body>
 </html>
-
