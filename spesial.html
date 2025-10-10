@@ -1,0 +1,255 @@
+<!-- File: special.html -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Filosofi Grup — PT Sinar Langit Hanoi</title>
+  <style>
+    :root{
+      --maroon: #591212;
+      --gold: #D4A017;
+      --muted: #f7f6f4;
+      --card-bg: #fff7ef;
+      --text: #222;
+      --maxw: 980px;
+      --radius: 12px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    html,body{height:100%;}
+    body{
+      margin:0;
+      background: linear-gradient(180deg,var(--maroon) 0%, #3b0b0b 60%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px 20px;
+    }
+
+    .wrap{
+      width:100%;
+      max-width:var(--maxw);
+      background:linear-gradient(180deg,var(--card-bg),#fff);
+      border-radius:var(--radius);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,0.06);
+    }
+
+    header{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      padding:26px 28px;
+      background: linear-gradient(90deg,var(--maroon), #6a1616);
+      color:var(--gold);
+    }
+    .logo-box{display:flex;gap:12px;align-items:center;}
+    .logo-mark{
+      width:72px;height:72px;
+      display:grid;
+      place-items:center;
+      border-radius:12px;
+      background: linear-gradient(180deg, rgba(212,160,23,0.95), rgba(180,120,18,1));
+      box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+    }
+    .brand{
+      font-weight:700;
+      letter-spacing:0.6px;
+      font-size:20px;
+    }
+    .sub{font-size:12px;opacity:0.95;}
+    main{padding:28px;display:grid;grid-template-columns:1fr 340px;gap:26px;}
+    .content h1{margin:0 0 12px;font-size:22px;color:var(--maroon);}
+    .content p.lead{margin:0 0 18px;color:#3b3b3b;}
+    .card{
+      background: #fff;
+      padding:16px;
+      border-radius:10px;
+      border:1px solid rgba(0,0,0,0.04);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    }
+
+    .philosophy{
+      font-size:15px;
+      line-height:1.58;
+      color:#2c2c2c;
+    }
+
+    .grid-logos{display:flex;flex-direction:column;gap:12px;}
+    .brand-item{display:flex;gap:12px;align-items:center;padding:12px;border-radius:8px;background:linear-gradient(180deg,#fff,#fff);border:1px solid rgba(0,0,0,0.03);}
+    .brand-item .mini-logo{width:62px;height:62px;border-radius:8px;display:grid;place-items:center;background:linear-gradient(180deg,var(--gold), #c7920f); color:#fff;}
+    .brand-item h4{margin:0;font-size:15px;color:var(--maroon);}
+    .brand-item p{margin:4px 0 0;font-size:13px;color:#444;opacity:0.95;}
+
+    aside{padding:0 0 26px 0;}
+    footer{padding:18px 28px;background:#faf7f5;border-top:1px solid rgba(0,0,0,0.03);display:flex;justify-content:space-between;align-items:center;color:#6b6b6b;font-size:13px;}
+    .btn{display:inline-block;background:var(--maroon);color:var(--gold);padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:600;font-size:13px;}
+    pre{white-space:pre-wrap;background:#f3f3f3;padding:12px;border-radius:8px;overflow:auto;font-size:13px;}
+
+    /* responsive */
+    @media (max-width:920px){
+      main{grid-template-columns:1fr; padding:18px;}
+      aside{order:2}
+      .grid-logos{flex-direction:row;flex-wrap:wrap;}
+      .brand-item{flex:1 1 45%;}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap" role="main">
+    <header>
+      <div class="logo-box">
+        <div class="logo-mark" aria-hidden="true">
+          <!-- simplified dragon + star emblem (svg) -->
+          <svg width="48" height="48" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="32" cy="32" r="31" stroke="rgba(0,0,0,0.08)" fill="none"/>
+            <path d="M10 42c6-8 18-8 28-10 6-1.2 10-6 12-10" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M40 18 L34 26 L44 26 L36 32" fill="#fff" stroke="#fff" stroke-width="0.6"/>
+          </svg>
+        </div>
+        <div>
+          <div class="brand">PT Sinar Langit Hanoi</div>
+          <div class="sub">Eucherius Group — De Yuwa — Minimal K Group</div>
+        </div>
+      </div>
+      <div style="margin-left:auto; text-align:right;">
+        <div style="font-weight:700; color:var(--gold)">Filosofi Terpadu</div>
+        <div style="color:#ffe8b8;font-size:12px;">Keberanian • Cahaya • Kemuliaan • Keseimbangan</div>
+      </div>
+    </header>
+
+    <main>
+      <section class="content">
+        <article class="card">
+          <h1>Filosofi Terpadu Grup</h1>
+          <p class="lead">Satu jiwa, empat wajah — sebuah filosofi yang menyatukan nilai perusahaan, brand, dan arah strategi.</p>
+
+          <div class="philosophy">
+            <!-- Unified concise philosophy -->
+            <strong>Filosofi Singkat (Unified):</strong>
+            <p style="margin:10px 0 14px;">
+              <em>“Kami berdiri atas keberanian untuk memimpin, memberi cahaya arah bagi langkah bersama, mengolah kemuliaan menjadi etika usaha, dan menjaga keseimbangan operasi agar setiap tindakan memberi nilai maksimal dari bentuk yang minimal.”</em>
+            </p>
+
+            <strong>Penjelasan inti:</strong>
+            <ul style="margin:10px 0 0 18px; padding:0; color:#333;">
+              <li><strong>Keberanian:</strong> simbol naga — berani mengambil tanggung jawab, berani bersaing.</li>
+              <li><strong>Cahaya & Arah:</strong> nama Sinar Langit — memberi panduan dan tujuan strategis.</li>
+              <li><strong>Kemuliaan & Integritas:</strong> warna emas — kerja yang bermartabat, hasil yang terhormat.</li>
+              <li><strong>Keseimbangan & Efisiensi:</strong> konsep “Minimal” — capai hasil maksimal dengan proses sederhana dan konsisten.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card" style="margin-top:14px;">
+          <h2 style="margin:0 0 10px;">Ringkasan Per Brand</h2>
+          <div style="display:grid;gap:12px;">
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <div style="width:56px;height:56px;border-radius:10px;background:linear-gradient(180deg,var(--gold), #c78d0f);display:grid;place-items:center;color:#fff;font-weight:700;">E</div>
+              <div>
+                <strong>Eucherius Group</strong>
+                <div style="font-size:13px;color:#444;margin-top:6px;">Fondasi kepemimpinan — keberanian yang melindungi visi, simbol kejayaan lewat bintang dan naga.</div>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <div style="width:56px;height:56px;border-radius:10px;background:#591212;display:grid;place-items:center;color:var(--gold);font-weight:700;">S</div>
+              <div>
+                <strong>PT Sinar Langit Hanoi</strong>
+                <div style="font-size:13px;color:#444;margin-top:6px;">Cahaya pengarah: menjaga konsistensi, memberi pedoman operasional dan etika bisnis.</div>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <div style="width:56px;height:56px;border-radius:10px;background:linear-gradient(180deg,#c7920f,#9b6f0a);display:grid;place-items:center;color:#fff;font-weight:700;">D</div>
+              <div>
+                <strong>De Yuwa Group</strong>
+                <div style="font-size:13px;color:#444;margin-top:6px;">Jiwa inovator: kemuliaan dan kekuatan dalam desain layanan dan produk.</div>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <div style="width:56px;height:56px;border-radius:10px;background:#fff;border:1px solid rgba(0,0,0,0.06);display:grid;place-items:center;color:var(--maroon);font-weight:700;">M</div>
+              <div>
+                <strong>Minimal K Group (Minimal SHP)</strong>
+                <div style="font-size:13px;color:#444;margin-top:6px;">Efisiensi & keseimbangan: operasi retail modern, hasil maksimal dari konsep minimal.</div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <aside>
+        <div class="card">
+          <h3 style="margin:0 0 10px;color:var(--maroon)">Makna visual singkat</h3>
+          <div class="grid-logos">
+            <div class="brand-item">
+              <div class="mini-logo" aria-hidden="true">
+                <!-- small dragon icon -->
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><path d="M3 12c4-6 10-6 14-8" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/></svg>
+              </div>
+              <div>
+                <h4>Eucherius / Sinar Langit</h4>
+                <p>Keberanian (naga) — Kejayaan (bintang) — Perlindungan (taring).</p>
+              </div>
+            </div>
+
+            <div class="brand-item">
+              <div class="mini-logo" aria-hidden="true" style="background:var(--maroon)">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3" fill="#ffd77a"/></svg>
+              </div>
+              <div>
+                <h4>De Yuwa</h4>
+                <p>Naga S-shape: dinamis — Kemuliaan & inovasi.</p>
+              </div>
+            </div>
+
+            <div class="brand-item">
+              <div class="mini-logo" style="background:#fff;color:var(--maroon);border:1px solid rgba(0,0,0,0.04)">M</div>
+              <div>
+                <h4>Minimal K Group</h4>
+                <p>Simplicity & efficiency — retail modern & nama pendiri.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="height:14px"></div>
+
+        <a class="btn" href="#philosophy" onclick="document.querySelector('.content').scrollIntoView({behavior:'smooth'})">Gunakan Filosofi</a>
+      </aside>
+    </main>
+
+    <footer>
+      <div>© <strong>PT Sinar Langit Hanoi</strong> — Eucherius Group</div>
+      <div style="opacity:0.85;">Versi: 1.0 — 2025</div>
+    </footer>
+  </div>
+
+  <!-- small script to allow quick edits: double-click text to edit (for convenience) -->
+  <script>
+    // quick-edit helper: double click on paragraphs to edit text inline (not for production)
+    (function(){
+      const editable = document.querySelectorAll('.philosophy, .card p, .card h2, .card h1, .brand-item p');
+      editable.forEach(el=>{
+        el.setAttribute('title','Double-click to edit (temporary, content not saved automatically)');
+        el.addEventListener('dblclick', (e)=>{
+          if(!el.isContentEditable){
+            el.contentEditable = true;
+            el.style.outline = "2px dashed rgba(90,20,20,0.15)";
+            el.focus();
+          }
+        });
+        el.addEventListener('blur', ()=> {
+          el.contentEditable = false;
+          el.style.outline = "none";
+        });
+      });
+    })();
+  </script>
+</body>
+                                                   </html>
