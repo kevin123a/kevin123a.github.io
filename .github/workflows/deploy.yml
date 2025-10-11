@@ -23,3 +23,15 @@ jobs:
           -----END OPENSSH PRIVATE KEY-----
         source: "index.html"
         target: "/var/www/html/"
+
+    - name: Restart Nginx
+      uses: appleboy/ssh-action@v0.1.10
+      with:
+        host: "192.168.8.10"
+        username: "euch997"
+        key: |
+          -----BEGIN OPENSSH PRIVATE KEY-----
+          AAAAC3NZaC1lZDI1NTE5AAAAIN4WVYwvsXIq/rs1XK0dvovPVfQAGKRPAKDE7cBhzxWc
+          -----END OPENSSH PRIVATE KEY-----
+        script: |
+          sudo systemctl restart nginx
