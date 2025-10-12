@@ -1,0 +1,20 @@
+name: Auto Deploy to Ubuntu Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: 192.168.8.10
+          username: euch997
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/euch997
+            git pull origin main
