@@ -170,6 +170,401 @@
       margin-top: auto;
     }
 
+    /* ===== Login Modal Styles ===== */
+    .login-modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+    .login-modal[style*="display:none"] { display: none !important; }
+    .login-modal-content {
+      background: #fff;
+      padding: 28px 24px 20px 24px;
+      border-radius: 14px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.20);
+      min-width: 320px;
+      max-width: 90vw;
+      position: relative;
+    }
+    .login-close {
+      position: absolute;
+      top: 12px; right: 18px;
+      font-size: 24px;
+      color: #800000;
+      cursor: pointer;
+    }
+    #loginForm label { display:block; margin-top:12px; font-size: 15px; }
+    #loginForm input {
+      width: 100%; margin-top:6px; margin-bottom:10px;
+      padding: 7px 12px;
+      border: 1px solid #d4af37;
+      border-radius: 7px;
+      font-size: 15px;
+    }
+    #loginForm button {
+      background: #d4af37;
+      color: #800000;
+      border: none;
+      padding: 9px 18px;
+      border-radius: 7px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+      font-family: "Cinzel Decorative", serif;
+      font-weight: bold;
+    }
+    #loginForm button:hover {
+      background: #800000;
+      color: #fff;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 24px; }
+      .hero .tagline { font-size: 15px; }
+      .logo-title { font-size: 16px; }
+      #google_translate_element select { font-size: 12px; padding: 3px 6px; }
+      .login-modal-content { min-width: 90vw; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo-area">
+      <img src="logo.png" alt="Logo PT Sinar Langit" class="logo">
+      <h1 class="logo-title">Sinar Langit Hanoi</h1>
+    </div>
+
+    <!-- Hamburger -->
+    <button class="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Navigation Popup -->
+  <nav class="nav-popup">
+    <ul>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="aboutus.html">About Us</a></li>
+      <li><a href="service.html">Service</a></li>
+      <li><a href="vvip.html">VVIP</a></li>
+      <li><a href="https://eucheriusgroup.web.id" target="_blank">Eucherius group</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><button class="login-btn">Login</button></li>
+      <li>
+        <!-- Language Selector moved into navigation menu -->
+        <div class="translate-box translate-nav-item" id="google_translate_element"></div>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Selamat Datang di PT Sinar Langit Hanoi</h1>
+    <p class="tagline">
+      PT Sinar Langit Hanoi is here as a strategic transformation partner to help your business grow faster, more efficiently, and more competitively in Southeast Asia.
+    </p>
+    <p class="address">
+      Jl. Nakula, Tanjunganom, Nganjuk, JawaTimur, Indonesia
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 PT Sinar Langit Hanoi. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Login Modal -->
+  <div class="login-modal" style="display:none;">
+    <div class="login-modal-content">
+      <span class="login-close">&times;</span>
+      <h2>Login</h2>
+      <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Login</button>
+        <p id="login-message" style="color:red; margin-top:8px;"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navPopup = document.querySelector('.nav-popup');
+
+    // Toggle popup saat klik hamburger
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navPopup.classList.toggle('open');
+    });
+
+    // Tutup popup saat klik link
+    document.querySelectorAll('.nav-popup a').forEach(link => {
+      link.addEventListener('click', () => {
+        navPopup.classList.remove('open');
+      });
+    });
+
+    // Tutup popup saat klik di luar
+    document.addEventListener('click', (e) => {
+      if (navPopup.classList.contains('open') && !navPopup.contains(e.target) && !hamburger.contains(e.target)) {
+        navPopup.classList.remove('open');
+      }
+    });
+
+    // Google Translate
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'id',
+        includedLanguages: 'id,en,vi',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+
+    // ===== Login Modal =====
+    const loginBtn = document.querySelector('.login-btn');
+    const loginModal = document.querySelector('.login-modal');
+    const loginClose = document.querySelector('.login-close');
+    const loginForm = document.getElementById('loginForm');
+    const loginMsg = document.getElementById('login-message');
+
+    // Tampilkan modal
+    loginBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navPopup.classList.remove('open');
+      loginModal.style.display = 'flex';
+    });
+
+    // Tutup modal klik [X]
+    loginClose.addEventListener('click', () => {
+      loginModal.style.display = 'none';
+      loginMsg.textContent = '';
+      loginForm.reset();
+    });
+
+    // Tutup modal klik luar
+    loginModal.addEventListener('click', (e) => {
+      if (e.target === loginModal) {
+        loginModal.style.display = 'none';
+        loginMsg.textContent = '';
+        loginForm.reset();
+      }
+    });
+
+    // AJAX Login
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      loginMsg.textContent = 'Loading...';
+      fetch('login.php', {
+        method: 'POST',
+        body: new FormData(loginForm)
+      })
+      .then(res => res.text())
+      .then(text => {
+        // Sesuaikan response dari login.php
+        if (text.trim().toLowerCase() === 'success') {
+          loginMsg.style.color = 'green';
+          loginMsg.textContent = 'Login berhasil!';
+          setTimeout(() => {
+            loginModal.style.display = 'none';
+            loginMsg.textContent = '';
+            loginForm.reset();
+            // TODO: ubah UI atau redirect, sesuai kebutuhan
+          }, 1200);
+        } else {
+          loginMsg.style.color = 'red';
+          loginMsg.textContent = text;
+        }
+      })
+      .catch(() => {
+        loginMsg.style.color = 'red';
+        loginMsg.textContent = 'Gagal terhubung ke server!';
+      });
+    });
+  </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html><!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PT Sinar Langit Hanoi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=EB+Garamond&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "EB Garamond", serif;
+      background: #fff;
+      color: #800000;
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #fff;
+      padding: 16px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1.5px solid #d4af37;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo-area { display: flex; align-items: center; gap: 10px; }
+    .logo { height: 42px; width: auto; }
+    .logo-title {
+      font-family: "Cinzel Decorative", serif;
+      font-size: 22px;
+      font-weight: bold;
+      color: #800000;
+      letter-spacing: 1.5px;
+      white-space: nowrap;
+    }
+
+    /* ========================
+       Hamburger
+       ======================== */
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+      border: none;
+      background: none;
+      width: 32px;
+      height: 32px;
+      justify-content: center;
+      z-index: 1201;
+    }
+    .hamburger span {
+      height: 3px;
+      width: 28px;
+      background: #d4af37;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* ========================
+       Navigation Popup
+       ======================== */
+    .nav-popup {
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      background: #fff;
+      border: 2px solid #d4af37;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      padding: 16px 22px;
+      display: none;
+      z-index: 1200;
+      animation: fadeIn 0.25s ease-out;
+    }
+    .nav-popup.open { display: block; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .nav-popup ul { list-style: none; margin: 0; padding: 0; }
+    .nav-popup li { margin: 12px 0; }
+    .nav-popup a,
+    .nav-popup .translate-nav-item {
+      font-family: "Cinzel Decorative", serif;
+      font-size: 17px;
+      color: #800000;
+      padding: 6px 10px;
+      border-radius: 8px;
+      display: block;
+      transition: background 0.3s, color 0.3s;
+      text-decoration: none;
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+    }
+    .nav-popup a:hover,
+    .nav-popup a.active,
+    .nav-popup .translate-nav-item:focus {
+      background: #d4af37;
+      color: #fff;
+    }
+    .nav-popup .translate-box {
+      margin: 0 !important;
+      padding: 0;
+    }
+    #google_translate_element select {
+      border: 1px solid #d4af37;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 14px;
+      color: #800000;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .nav-popup .translate-box {
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-popup .translate-nav-item {
+      padding: 0;
+      margin: 0;
+      background: none;
+      border: none;
+      cursor: default;
+    }
+
+    /* ========================
+       Hero Section
+       ======================== */
+    .hero {
+      flex: 1;
+      text-align: center;
+      padding: 80px 6vw 50px 6vw;
+    }
+    .hero h1 {
+      font-family: "Cinzel Decorative", serif;
+      font-size: 34px;
+      margin-bottom: 20px;
+      color: #800000;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+    }
+    .hero .tagline {
+      font-size: 18px;
+      max-width: 700px;
+      margin: 0 auto 18px auto;
+      color: #800000;
+    }
+    .hero .address {
+      font-size: 16px;
+      color: #333;
+    }
+
+    footer {
+      background: #fff;
+      color: #800000;
+      text-align: center;
+      padding: 18px 8px;
+      font-size: 15px;
+      border-top: 1.5px solid #d4af37;
+      margin-top: auto;
+    }
+
     @media (max-width: 600px) {
       .hero h1 { font-size: 24px; }
       .hero .tagline { font-size: 15px; }
