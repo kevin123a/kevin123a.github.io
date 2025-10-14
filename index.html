@@ -297,100 +297,16 @@
   </div>
 
   <!-- Script -->
-  <script>
-    const hamburger = document.querySelector('.hamburger');
-    const navPopup = document.querySelector('.nav-popup');
+  <!-- Ganti fungsi login modal -->
+<script>
+  const loginBtn = document.querySelector('.login-btn');
 
-    // Toggle popup saat klik hamburger
-    hamburger.addEventListener('click', (e) => {
-      e.stopPropagation();
-      navPopup.classList.toggle('open');
-    });
-
-    // Tutup popup saat klik link
-    document.querySelectorAll('.nav-popup a').forEach(link => {
-      link.addEventListener('click', () => {
-        navPopup.classList.remove('open');
-      });
-    });
-
-    // Tutup popup saat klik di luar
-    document.addEventListener('click', (e) => {
-      if (navPopup.classList.contains('open') && !navPopup.contains(e.target) && !hamburger.contains(e.target)) {
-        navPopup.classList.remove('open');
-      }
-    });
-
-    // Google Translate
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-        pageLanguage: 'id',
-        includedLanguages: 'id,en,vi',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-      }, 'google_translate_element');
-    }
-
-    // ===== Login Modal =====
-    const loginBtn = document.querySelector('.login-btn');
-    const loginModal = document.querySelector('.login-modal');
-    const loginClose = document.querySelector('.login-close');
-    const loginForm = document.getElementById('loginForm');
-    const loginMsg = document.getElementById('login-message');
-
-    // Tampilkan modal
-    loginBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      navPopup.classList.remove('open');
-      loginModal.style.display = 'flex';
-    });
-
-    // Tutup modal klik [X]
-    loginClose.addEventListener('click', () => {
-      loginModal.style.display = 'none';
-      loginMsg.textContent = '';
-      loginForm.reset();
-    });
-
-    // Tutup modal klik luar
-    loginModal.addEventListener('click', (e) => {
-      if (e.target === loginModal) {
-        loginModal.style.display = 'none';
-        loginMsg.textContent = '';
-        loginForm.reset();
-      }
-    });
-
-    // AJAX Login
-    loginForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      loginMsg.textContent = 'Loading...';
-      fetch('login.php', {
-        method: 'POST',
-        body: new FormData(loginForm)
-      })
-      .then(res => res.text())
-      .then(text => {
-        // Sesuaikan response dari login.php
-        if (text.trim().toLowerCase() === 'success') {
-          loginMsg.style.color = 'green';
-          loginMsg.textContent = 'Login berhasil!';
-          setTimeout(() => {
-            loginModal.style.display = 'none';
-            loginMsg.textContent = '';
-            loginForm.reset();
-            // TODO: ubah UI atau redirect, sesuai kebutuhan
-          }, 1200);
-        } else {
-          loginMsg.style.color = 'red';
-          loginMsg.textContent = text;
-        }
-      })
-      .catch(() => {
-        loginMsg.style.color = 'red';
-        loginMsg.textContent = 'Gagal terhubung ke server!';
-      });
-    });
-  </script>
+  // langsung arahkan ke login.php di server
+  loginBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = "login.php";
+  });
+</script>
   <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
