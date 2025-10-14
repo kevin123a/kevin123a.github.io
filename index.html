@@ -202,6 +202,7 @@
       .logo-title { font-size: 16px; }
       #google_translate_element select { font-size: 12px; padding: 3px 6px; }
       .login-modal-content { min-width: 90vw; }
+      .nav-popup { right: 8px; left: 8px; width: auto; }
     }
   </style>
 </head>
@@ -213,12 +214,12 @@
       <h1 class="logo-title">Sinar Langit Hanoi</h1>
     </div>
 
-    <button class="hamburger" aria-label="Menu">
+    <button class="hamburger" aria-label="Menu" id="menuToggle">
       <span></span><span></span><span></span>
     </button>
   </header>
 
-  <nav class="nav-popup">
+  <nav class="nav-popup" id="navPopup">
     <ul>
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="aboutus.html">About Us</a></li>
@@ -246,6 +247,34 @@
   </footer>
 
   <script>
+    // Hamburger menu interaksi
+    const menuToggle = document.getElementById('menuToggle');
+    const navPopup = document.getElementById('navPopup');
+
+    menuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      navPopup.classList.toggle('open');
+    });
+
+    // Tutup menu jika klik di luar nav atau hamburger
+    document.addEventListener('click', function(e) {
+      if (navPopup.classList.contains('open')) {
+        if (!navPopup.contains(e.target) && !menuToggle.contains(e.target)) {
+          navPopup.classList.remove('open');
+        }
+      }
+    });
+
+    // Tutup menu jika klik menu (kecuali translate atau login)
+    navPopup.querySelectorAll('a, button').forEach(function(item) {
+      item.addEventListener('click', function(e) {
+        // Untuk login dan translate, jangan tutup
+        if (item.classList.contains('login-btn') || item.classList.contains('translate-nav-item')) return;
+        navPopup.classList.remove('open');
+      });
+    });
+
+    // Script login (tidak diubah)
     const loginBtn = document.querySelector('.login-btn');
     if (loginBtn) {
       loginBtn.addEventListener('click', (e) => {
@@ -256,4 +285,4 @@
   </script>
   <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
-  </html>
+</html>
