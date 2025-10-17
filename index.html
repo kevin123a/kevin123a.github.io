@@ -86,20 +86,23 @@
       background: var(--color-accent); color: #fff;
     }
 
-    /* Make login button visible and styled in nav */
+    /* Make login button consistent with other nav items */
     .login-btn {
-      display:inline-block;
-      background: var(--color-accent);
+      /* match the nav item appearance by default */
+      display: block;
+      background: none;
       color: var(--color-primary);
-      border-radius: 8px;
-      padding: 8px 12px;
-      border: 2px solid var(--color-accent);
+      border: none;
+      padding: 6px 10px;
+      border-radius: var(--radius-md);
       font-family: var(--font-heading);
+      font-size: 17px;
       font-weight: 700;
+      text-align: left;
       cursor: pointer;
     }
-    .login-btn:hover, .login-btn:focus {
-      background: var(--color-primary);
+    .login-btn:hover, .login-btn:focus, .login-btn.active {
+      background: var(--color-accent);
       color: #fff;
       outline: none;
     }
