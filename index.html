@@ -6,144 +6,126 @@
   <title>PT Sinar Langit Hanoi</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=EB+Garamond&display=swap" rel="stylesheet">
   <style>
+    /* CSS variables for exact colors, fonts and spacing */
+    :root{
+      --color-primary: #800000;    /* maroon */
+      --color-accent:  #d4af37;    /* gold */
+      --bg:            #ffffff;
+      --text-muted:    #333333;
+      --font-heading:  "Cinzel Decorative", serif;
+      --font-body:     "EB Garamond", serif;
+      --radius-lg:     12px;
+      --radius-md:     8px;
+      --header-padding: 16px 22px;
+      --logo-height:   42px;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html,body { height: 100%; }
     body {
-      font-family: "EB Garamond", serif;
-      background: #fff;
-      color: #800000;
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--color-primary);
       line-height: 1.7;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      font-size: 16px;
     }
 
     header {
-      background: #fff;
-      padding: 16px 22px;
+      background: var(--bg);
+      padding: var(--header-padding);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1.5px solid #d4af37;
+      border-bottom: 1.5px solid var(--color-accent);
       position: sticky;
       top: 0;
       z-index: 1000;
     }
-    .logo-area { display: flex; align-items: center; gap: 10px; }
-    .logo { height: 42px; width: auto; }
+    .logo-area { display:flex; align-items:center; gap:10px; }
+    .logo { height: var(--logo-height); width: auto; display:block; }
     .logo-title {
-      font-family: "Cinzel Decorative", serif;
+      font-family: var(--font-heading);
       font-size: 22px;
-      font-weight: bold;
-      color: #800000;
+      font-weight: 700;
+      color: var(--color-primary);
       letter-spacing: 1.5px;
       white-space: nowrap;
     }
 
     .hamburger {
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 5px;
-      border: none;
-      background: none;
-      width: 32px;
-      height: 32px;
-      justify-content: center;
-      z-index: 1201;
+      display:flex; flex-direction:column; cursor:pointer; gap:5px;
+      border:none; background:none; width:32px; height:32px;
+      justify-content:center; z-index:1201;
     }
     .hamburger span {
-      height: 3px;
-      width: 28px;
-      background: #d4af37;
-      border-radius: 2px;
-      transition: 0.3s;
+      height:3px; width:28px; background:var(--color-accent);
+      border-radius:2px; transition: 0.3s;
     }
 
     .nav-popup {
-      position: absolute;
-      top: 70px;
-      right: 20px;
-      background: #fff;
-      border: 2px solid #d4af37;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      padding: 16px 22px;
-      display: none;
-      z-index: 1200;
-      animation: fadeIn 0.25s ease-out;
+      position:absolute; top:70px; right:20px;
+      background:var(--bg); border:2px solid var(--color-accent);
+      border-radius: var(--radius-lg); box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      padding:16px 22px; display:none; z-index:1200; animation: fadeIn 0.25s ease-out;
+      min-width: 220px;
     }
-    .nav-popup.open { display: block; }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-8px); }
-      to { opacity: 1; transform: translateY(0); }
+    .nav-popup.open{ display:block; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(-8px);} to{opacity:1; transform:translateY(0);} }
+
+    .nav-popup ul{ list-style:none; margin:0; padding:0; }
+    .nav-popup li{ margin: 12px 0; }
+    .nav-popup a, .nav-popup .translate-nav-item, .nav-popup button {
+      font-family: var(--font-heading); font-size: 17px; color: var(--color-primary);
+      padding:6px 10px; border-radius: var(--radius-md); display:block; transition: background .3s, color .3s;
+      text-decoration:none; background:none; border:none; text-align:left; cursor:pointer;
     }
-    .nav-popup ul { list-style: none; margin: 0; padding: 0; }
-    .nav-popup li { margin: 12px 0; }
-    .nav-popup a,
-    .nav-popup .translate-nav-item {
-      font-family: "Cinzel Decorative", serif;
-      font-size: 17px;
-      color: #800000;
-      padding: 6px 10px;
+    .nav-popup a:hover, .nav-popup a.active, .nav-popup .translate-nav-item:focus {
+      background: var(--color-accent); color: #fff;
+    }
+
+    /* Make login button visible and styled in nav */
+    .login-btn {
+      display:inline-block;
+      background: var(--color-accent);
+      color: var(--color-primary);
       border-radius: 8px;
-      display: block;
-      transition: background 0.3s, color 0.3s;
-      text-decoration: none;
-      background: none;
-      border: none;
-      text-align: left;
+      padding: 8px 12px;
+      border: 2px solid var(--color-accent);
+      font-family: var(--font-heading);
+      font-weight: 700;
       cursor: pointer;
     }
-    .nav-popup a:hover,
-    .nav-popup a.active,
-    .nav-popup .translate-nav-item:focus {
-      background: #d4af37;
+    .login-btn:hover, .login-btn:focus {
+      background: var(--color-primary);
       color: #fff;
+      outline: none;
     }
-    #google_translate_element select {
-      border: 1px solid #d4af37;
-      border-radius: 6px;
-      padding: 4px 8px;
-      font-size: 14px;
-      color: #800000;
-      background: #fff;
-      cursor: pointer;
+
+    #google_translate_element select{
+      border:1px solid var(--color-accent); border-radius:6px; padding:4px 8px;
+      font-size:14px; color:var(--color-primary); background:var(--bg); cursor:pointer;
     }
 
     .hero {
-      flex: 1;
-      text-align: center;
-      padding: 80px 6vw 50px 6vw;
+      flex:1; text-align:center; padding:80px 6vw 50px 6vw;
     }
     .hero h1 {
-      font-family: "Cinzel Decorative", serif;
-      font-size: 34px;
-      margin-bottom: 20px;
-      color: #800000;
-      font-weight: 900;
-      letter-spacing: 1.5px;
+      font-family: var(--font-heading); font-size:34px; margin-bottom:20px;
+      color:var(--color-primary); font-weight:900; letter-spacing:1.5px;
     }
-    .hero .tagline {
-      font-size: 18px;
-      max-width: 700px;
-      margin: 0 auto 18px auto;
-      color: #800000;
-    }
-    .hero .address {
-      font-size: 16px;
-      color: #333;
-    }
+    .hero .tagline { font-size:18px; max-width:700px; margin:0 auto 18px auto; color:var(--color-primary); }
+    .hero .address { font-size:16px; color:var(--text-muted); }
 
     footer {
-      background: #fff;
-      color: #800000;
-      text-align: center;
-      padding: 18px 8px;
-      font-size: 15px;
-      border-top: 1.5px solid #d4af37;
-      margin-top: auto;
+      background: var(--bg); color: var(--color-primary);
+      text-align:center; padding:18px 8px; font-size:15px;
+      border-top:1.5px solid var(--color-accent); margin-top:auto;
     }
 
+    /* Login modal */
     .login-modal {
       position: fixed;
       top: 0; left: 0;
@@ -154,9 +136,9 @@
       justify-content: center;
       z-index: 2000;
     }
-    .login-modal[style*="display:none"] { display: none !important; }
+    .login-modal[aria-hidden="true"] { display: none; }
     .login-modal-content {
-      background: #fff;
+      background: var(--bg);
       padding: 28px 24px 20px 24px;
       border-radius: 14px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.20);
@@ -168,41 +150,43 @@
       position: absolute;
       top: 12px; right: 18px;
       font-size: 24px;
-      color: #800000;
+      color: var(--color-primary);
       cursor: pointer;
+      background: none;
+      border: none;
     }
     #loginForm label { display:block; margin-top:12px; font-size: 15px; }
     #loginForm input {
       width: 100%; margin-top:6px; margin-bottom:10px;
       padding: 7px 12px;
-      border: 1px solid #d4af37;
+      border: 1px solid var(--color-accent);
       border-radius: 7px;
       font-size: 15px;
     }
-    #loginForm button {
-      background: #d4af37;
-      color: #800000;
+    #loginForm button[type="submit"] {
+      background: var(--color-accent);
+      color: var(--color-primary);
       border: none;
       padding: 9px 18px;
       border-radius: 7px;
       font-size: 16px;
       cursor: pointer;
       margin-top: 10px;
-      font-family: "Cinzel Decorative", serif;
+      font-family: var(--font-heading);
       font-weight: bold;
     }
-    #loginForm button:hover {
-      background: #800000;
+    #loginForm button[type="submit"]:hover {
+      background: var(--color-primary);
       color: #fff;
     }
 
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 24px; }
-      .hero .tagline { font-size: 15px; }
-      .logo-title { font-size: 16px; }
-      #google_translate_element select { font-size: 12px; padding: 3px 6px; }
-      .login-modal-content { min-width: 90vw; }
-      .nav-popup { right: 8px; left: 8px; width: auto; }
+    @media (max-width:600px){
+      .hero h1{ font-size:24px; }
+      .hero .tagline{ font-size:15px; }
+      .logo-title{ font-size:16px; }
+      #google_translate_element select{ font-size:12px; padding:3px 6px; }
+      .login-modal-content{ min-width:90vw; }
+      .nav-popup{ right:8px; left:8px; width:auto; }
     }
   </style>
 </head>
@@ -219,20 +203,20 @@
     </button>
   </header>
 
-  <nav class="nav-popup" id="navPopup">
+  <nav class="nav-popup" id="navPopup" aria-hidden="true">
     <ul>
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="aboutus.html">About Us</a></li>
       <li><a href="service.html">Service</a></li>
       <li><a href="vvip.html">VVIP</a></li>
-      <li><a href="https://eucheriusgroup.web.id" target="_blank">Eucherius Group</a></li>
+      <li><a href="https://eucheriusgroup.web.id" target="_blank" rel="noopener">Eucherius Group</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><button class="login-btn">Login</button></li>
+      <li><button class="login-btn" id="openLoginBtn" aria-haspopup="dialog">Login</button></li>
       <li><div class="translate-box translate-nav-item" id="google_translate_element"></div></li>
     </ul>
   </nav>
 
-  <section class="hero">
+  <section class="hero" role="main">
     <h1>Selamat Datang di PT Sinar Langit Hanoi</h1>
     <p class="tagline">
       PT Sinar Langit Hanoi is here as a strategic transformation partner to help your business grow faster, more efficiently, and more competitively in Southeast Asia.
@@ -246,43 +230,168 @@
     <p>&copy; 2025 PT Sinar Langit Hanoi. All Rights Reserved.</p>
   </footer>
 
+  <!-- Login modal markup (initially hidden via aria-hidden) -->
+  <div class="login-modal" id="loginModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="login-modal-content" role="document">
+      <button class="login-close" id="loginCloseBtn" aria-label="Tutup formulir login">&times;</button>
+      <h2 id="loginTitle" style="font-family:var(--font-heading); color:var(--color-primary);">Login</h2>
+
+      <form id="loginForm" action="login.php" method="post" novalidate>
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" autocomplete="username" required>
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required minlength="4">
+
+        <button type="submit">Masuk</button>
+      </form>
+    </div>
+  </div>
+
   <script>
-    // Hamburger menu interaksi
+    /* JavaScript interaksi (dengan modal login yang accessible) */
     const menuToggle = document.getElementById('menuToggle');
     const navPopup = document.getElementById('navPopup');
+    const openLoginBtn = document.getElementById('openLoginBtn');
 
-    menuToggle.addEventListener('click', function(e) {
+    menuToggle.addEventListener('click', function(e){
       e.stopPropagation();
-      navPopup.classList.toggle('open');
+      const open = navPopup.classList.toggle('open');
+      navPopup.setAttribute('aria-hidden', !open);
     });
 
-    // Tutup menu jika klik di luar nav atau hamburger
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function(e){
       if (navPopup.classList.contains('open')) {
         if (!navPopup.contains(e.target) && !menuToggle.contains(e.target)) {
           navPopup.classList.remove('open');
+          navPopup.setAttribute('aria-hidden','true');
         }
       }
     });
 
-    // Tutup menu jika klik menu (kecuali translate atau login)
-    navPopup.querySelectorAll('a, button').forEach(function(item) {
-      item.addEventListener('click', function(e) {
-        // Untuk login dan translate, jangan tutup
-        if (item.classList.contains('login-btn') || item.classList.contains('translate-nav-item')) return;
+    // Tutup nav saat klik link (kecuali login dan translate)
+    navPopup.querySelectorAll('a, button').forEach(function(item){
+      item.addEventListener('click', function(e){
+        if (item === openLoginBtn || item.classList.contains('translate-nav-item')) return;
         navPopup.classList.remove('open');
+        navPopup.setAttribute('aria-hidden','true');
       });
     });
 
-    // Script login (tidak diubah)
-    const loginBtn = document.querySelector('.login-btn');
-    if (loginBtn) {
-      loginBtn.addEventListener('click', (e) => {
+    // --- Login modal behavior ---
+    const loginModal = document.getElementById('loginModal');
+    const loginCloseBtn = document.getElementById('loginCloseBtn');
+    const loginForm = document.getElementById('loginForm');
+    const firstFocusableSelector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+    let lastFocusedBeforeModal = null;
+
+    function openLoginModal() {
+      lastFocusedBeforeModal = document.activeElement;
+      loginModal.setAttribute('aria-hidden', 'false');
+      // show visually (CSS controlled by aria-hidden)
+      // focus first input
+      const firstInput = loginModal.querySelector('input, button, select, textarea');
+      if (firstInput) firstInput.focus();
+      // Prevent page from scrolling
+      document.body.style.overflow = 'hidden';
+      // Simple focus trap: keep focus inside modal
+      trapFocus(loginModal);
+    }
+
+    function closeLoginModal() {
+      loginModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (lastFocusedBeforeModal) lastFocusedBeforeModal.focus();
+      removeTrapFocus();
+    }
+
+    openLoginBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      // Close nav popup when opening modal
+      navPopup.classList.remove('open');
+      navPopup.setAttribute('aria-hidden','true');
+      openLoginModal();
+    });
+
+    loginCloseBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      closeLoginModal();
+    });
+
+    // Close when clicking overlay outside modal content
+    loginModal.addEventListener('click', function(e){
+      if (e.target === loginModal) {
+        closeLoginModal();
+      }
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape') {
+        if (loginModal.getAttribute('aria-hidden') === 'false') {
+          closeLoginModal();
+        } else if (navPopup.classList.contains('open')) {
+          navPopup.classList.remove('open');
+          navPopup.setAttribute('aria-hidden','true');
+          menuToggle.focus();
+        }
+      }
+    });
+
+    // Simple client-side validation to show helpful messages (progressive enhancement)
+    loginForm.addEventListener('submit', function(e){
+      if (!loginForm.checkValidity()) {
         e.preventDefault();
-        window.location.href = "login.php";
-      });
+        // Show browser validation UI by calling reportValidity()
+        loginForm.reportValidity();
+        return;
+      }
+      // Otherwise allow form to submit to login.php (server handles authentication)
+      // Optionally you could do AJAX here.
+    });
+
+    // Focus trap implementation (basic)
+    let trapHandler = null;
+    function trapFocus(modal) {
+      const focusable = Array.from(modal.querySelectorAll(firstFocusableSelector)).filter(el => el.offsetParent !== null);
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      trapHandler = function(e) {
+        if (e.key !== 'Tab') return;
+        if (e.shiftKey) { // shift + tab
+          if (document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else { // tab
+          if (document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      };
+      modal.addEventListener('keydown', trapHandler);
+    }
+    function removeTrapFocus() {
+      if (!trapHandler) return;
+      loginModal.removeEventListener('keydown', trapHandler);
+      trapHandler = null;
+    }
+
+    // Inisialisasi Google Translate — wajib kalau mau dropdown translate muncul
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'id',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
     }
   </script>
+
+  <!-- Google Translate loader (perhatikan cb=googleTranslateElementInit) -->
   <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
