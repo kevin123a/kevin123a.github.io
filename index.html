@@ -201,12 +201,12 @@
       <h1 class="logo-title">Sinar Langit Hanoi</h1>
     </div>
 
-    <button class="hamburger" aria-label="Menu" id="menuToggle">
+    <button class="hamburger" aria-label="Menu" id="menuToggle" aria-expanded="false" aria-controls="navPopup">
       <span></span><span></span><span></span>
     </button>
   </header>
 
-  <nav class="nav-popup" id="navPopup" aria-hidden="true">
+  <nav class="nav-popup" id="navPopup" aria-hidden="true" role="navigation" aria-label="Main menu">
     <ul>
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="aboutus.html">About Us</a></li>
@@ -261,6 +261,7 @@
       e.stopPropagation();
       const open = navPopup.classList.toggle('open');
       navPopup.setAttribute('aria-hidden', !open);
+      menuToggle.setAttribute('aria-expanded', open);
     });
 
     document.addEventListener('click', function(e){
@@ -268,6 +269,7 @@
         if (!navPopup.contains(e.target) && !menuToggle.contains(e.target)) {
           navPopup.classList.remove('open');
           navPopup.setAttribute('aria-hidden','true');
+          menuToggle.setAttribute('aria-expanded', 'false');
         }
       }
     });
@@ -278,6 +280,7 @@
         if (item === openLoginBtn || item.classList.contains('translate-nav-item')) return;
         navPopup.classList.remove('open');
         navPopup.setAttribute('aria-hidden','true');
+        menuToggle.setAttribute('aria-expanded', 'false');
       });
     });
 
@@ -292,7 +295,6 @@
     function openLoginModal() {
       lastFocusedBeforeModal = document.activeElement;
       loginModal.setAttribute('aria-hidden', 'false');
-      // show visually (CSS controlled by aria-hidden)
       // focus first input
       const firstInput = loginModal.querySelector('input, button, select, textarea');
       if (firstInput) firstInput.focus();
@@ -315,6 +317,7 @@
       // Close nav popup when opening modal
       navPopup.classList.remove('open');
       navPopup.setAttribute('aria-hidden','true');
+      menuToggle.setAttribute('aria-expanded', 'false');
       openLoginModal();
     });
 
@@ -338,6 +341,7 @@
         } else if (navPopup.classList.contains('open')) {
           navPopup.classList.remove('open');
           navPopup.setAttribute('aria-hidden','true');
+          menuToggle.setAttribute('aria-expanded', 'false');
           menuToggle.focus();
         }
       }
@@ -352,7 +356,6 @@
         return;
       }
       // Otherwise allow form to submit to login.php (server handles authentication)
-      // Optionally you could do AJAX here.
     });
 
     // Focus trap implementation (basic)
